@@ -1,92 +1,97 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
+import { FaArrowRight, FaCheck, FaGlobeEurope } from 'react-icons/fa';
 import VideoBackground from './VideoBackground';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Hero = () => {
   const { t } = useLanguage();
 
-  const languageTags = [
-    { flag: '🇫🇷', text: 'Bonjour' },
-    { flag: '🇩🇪', text: 'Hallo' },
-    { flag: '🇮🇹', text: 'Ciao' },
-    { flag: '🇪🇸', text: 'Hola' },
-    { flag: '🇷🇴', text: 'Salut' },
-  ];
-
   return (
-    <section className="relative w-full min-h-screen flex items-center pt-20 overflow-hidden bg-gray-950">
+    <section className="relative isolate min-h-[calc(100vh-80px)] overflow-hidden bg-[#0b192c]">
       <VideoBackground
-        videoSrc="/videos/hero-background.mp4"
-        posterSrc="/images/hero-poster.jpg"
-        overlayOpacity={0.7}
+        videoSrc={[
+          '/video/italy.mp4',
+          '/video/paris.mp4',
+          '/video/switzerland.mp4',
+        ]}
+        overlayOpacity={0.78}
       />
 
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_30%,rgba(193,154,104,.22),transparent_32%),linear-gradient(90deg,rgba(11,25,44,.98)_0%,rgba(11,25,44,.78)_52%,rgba(11,25,44,.35)_100%)]" />
+      <div className="absolute -right-32 -top-32 h-96 w-96 rounded-full border border-[#c19a68]/20" />
+      <div className="absolute bottom-[-12rem] left-[-8rem] h-96 w-96 rounded-full border border-[#9b1c31]/25" />
 
-      <div className="relative z-10 w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left Content */}
-          <div className="text-center lg:text-left">
-            <span className="text-purple-400 font-semibold uppercase tracking-widest text-sm">
+      <div className="relative z-10 mx-auto flex min-h-[calc(100vh-80px)] w-full max-w-[1500px] items-center px-5 py-20 sm:px-8 lg:px-12">
+        <div className="grid w-full items-center gap-14 lg:grid-cols-[1.05fr_.95fr]">
+          <div className="max-w-3xl">
+            <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-[#c19a68]/35 bg-[#f7f4ef]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[.2em] text-[#f7f4ef] backdrop-blur-md">
+              <FaGlobeEurope className="text-[#c19a68]" />
               {t('Language Learning Reimagined')}
-            </span>
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight mt-4">
-              {t('Learn New Languages,')}{' '}
-              <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                {t('Make Real Connections.')}
-              </span>
+            </div>
+
+            <h1 className="text-5xl font-semibold leading-[1.02] tracking-[-.04em] text-[#f7f4ef] sm:text-6xl lg:text-7xl xl:text-[5.3rem]">
+              {t('Learn the language.')}{' '}
+              <span className="text-[#c19a68]">{t('Live the life.')}</span>
             </h1>
-            <p className="mt-6 text-lg text-gray-400 max-w-lg mx-auto lg:mx-0">
-              {t(
-                'Get personalized language tutoring in French, German, Italian, and Romanian. Learn with native speakers and build a brighter future.'
-              )}
+
+            <p className="mt-7 max-w-2xl text-base leading-8 text-[#f7f4ef]/78 sm:text-lg">
+              {t('Personalized language learning with native speakers — built for real conversations, real goals, and the life you want in Europe.')}
             </p>
-            <div className="mt-10 flex flex-wrap justify-center lg:justify-start gap-4">
-              <Link
-                href="#"
-                className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:opacity-90 transition-opacity text-sm"
-              >
-                {t('Start Learning Now')}
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link href="#pricing" className="group inline-flex items-center justify-center gap-3 rounded-xl bg-[#9b1c31] px-7 py-4 text-sm font-bold text-white shadow-xl shadow-black/20 transition hover:-translate-y-0.5 hover:bg-[#85172a]">
+                {t('See Plans & Pricing')}
+                <FaArrowRight className="text-xs transition-transform group-hover:translate-x-1" />
               </Link>
-              <Link
-                href="#"
-                className="border border-gray-700 text-gray-300 px-8 py-4 rounded-xl font-semibold hover:bg-gray-900 transition-colors text-sm"
-              >
+              <Link href="#languages" className="inline-flex items-center justify-center rounded-xl border border-[#f7f4ef]/30 bg-[#f7f4ef]/8 px-7 py-4 text-sm font-bold text-[#f7f4ef] backdrop-blur-md transition hover:bg-[#f7f4ef]/15">
                 {t('Explore Languages')}
               </Link>
             </div>
+
+            <div className="mt-9 grid max-w-2xl grid-cols-1 gap-3 sm:grid-cols-3">
+              {['Native-speaking tutors', 'Goal-based learning', 'Flexible online lessons'].map((item) => (
+                <div key={item} className="flex items-center gap-2 text-sm text-[#f7f4ef]/82">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#c19a68]/18 text-[#c19a68]"><FaCheck className="text-[10px]" /></span>
+                  {t(item)}
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Right Image */}
-          <div className="relative w-full h-[400px] lg:h-[550px] rounded-2xl overflow-hidden shadow-2xl border border-gray-800 group">
-            <Image
-              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80"
-              alt="Language learner"
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
-              className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-gray-950/90 via-gray-950/40 to-transparent" />
-            <div className="absolute bottom-6 left-6 right-6">
-              <div className="flex flex-wrap gap-2 justify-center">
-                {languageTags.map((tag) => (
-                  <div
-                    key={tag.text}
-                    className="bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-xs sm:text-sm font-medium text-white border border-white/20 shadow-lg"
-                  >
-                    {tag.flag} {tag.text}
-                  </div>
-                ))}
+          <div className="hidden lg:block">
+            <div className="relative mx-auto max-w-md rounded-[2rem] border border-[#f7f4ef]/18 bg-[#f7f4ef]/10 p-3 shadow-2xl backdrop-blur-xl">
+              <div className="rounded-[1.5rem] border border-[#c19a68]/25 bg-[#0b192c]/80 p-7">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-semibold uppercase tracking-[.18em] text-[#c19a68]">{t('Choose your goal')}</span>
+                  <span className="rounded-full bg-[#9b1c31] px-3 py-1 text-[10px] font-bold text-white">Native Connects</span>
+                </div>
+                <div className="mt-7 space-y-3">
+                  {[
+                    ['🇩🇪', 'I want to work in Germany'],
+                    ['👩‍👦', 'I want my child to learn'],
+                    ['✈️', 'I am moving to Europe'],
+                    ['💬', 'I want to speak confidently'],
+                  ].map(([icon, label]) => (
+                    <div key={label} className="flex items-center gap-4 rounded-2xl border border-[#f7f4ef]/10 bg-[#f7f4ef]/6 p-4 text-sm font-medium text-[#f7f4ef]">
+                      <span className="text-xl">{icon}</span>
+                      <span>{t(label)}</span>
+                      <FaArrowRight className="ml-auto text-xs text-[#c19a68]" />
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6 rounded-2xl bg-[#f7f4ef] p-4 text-[#0b192c]">
+                  <div className="text-xs font-bold uppercase tracking-[.16em] text-[#9b1c31]">{t('A better way to learn')}</div>
+                  <p className="mt-1 text-sm leading-6">{t('Learn the language you need for the life you are building.')}</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#c19a68]/60 to-transparent" />
     </section>
   );
 };

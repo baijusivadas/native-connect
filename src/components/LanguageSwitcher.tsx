@@ -28,27 +28,27 @@ export default function LanguageSwitcher() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm font-medium px-3 py-2 rounded-lg hover:bg-gray-800/50"
+        className="flex items-center gap-2 text-[#0b192c] hover:text-[#0b192c] transition-colors text-sm font-medium px-3 py-2 rounded-lg bg-[#f7f4ef] border border-[#0b192c]/10 shadow-sm hover:bg-white"
         aria-label="Change language"
       >
         {isTranslating ? (
-          <FaSpinner className="animate-spin text-base text-purple-400" />
+          <FaSpinner className="animate-spin text-base text-[#9b1c31]" />
         ) : (
-          <FaGlobe className="text-base" />
+          <FaGlobe className="text-base text-[#9b1c31]" />
         )}
         <span className="hidden sm:inline">
           {current?.flag} {current?.label}
         </span>
         <span className="sm:hidden">{current?.flag}</span>
         <FaChevronDown
-          className={`text-xs transition-transform ${
+          className={`text-xs transition-transform text-[#0b192c] ${
             isOpen ? 'rotate-180' : ''
           }`}
         />
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-gray-900 border border-gray-800 rounded-xl shadow-2xl overflow-hidden z-50">
+        <div className="absolute right-0 mt-2 w-52 bg-[#f7f4ef] border border-[#0b192c]/10 rounded-xl shadow-2xl overflow-hidden z-50">
           {SUPPORTED_LOCALES.map((lang) => (
             <button
               key={lang.code}
@@ -58,14 +58,14 @@ export default function LanguageSwitcher() {
               }}
               className={`w-full flex items-center gap-3 px-4 py-3 text-sm transition-colors ${
                 locale === lang.code
-                  ? 'bg-gradient-to-r from-purple-600/20 to-blue-600/20 text-white'
-                  : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
+                  ? 'bg-gradient-to-r from-[#9b1c31]/10 to-[#c19a68]/15 text-[#0b192c]'
+                  : 'text-[#0b192c]/75 hover:text-[#0b192c] hover:bg-[#0b192c]/5'
               }`}
             >
               <span className="text-lg">{lang.flag}</span>
               <span>{lang.label}</span>
               {locale === lang.code && (
-                <span className="ml-auto w-2 h-2 rounded-full bg-purple-400" />
+                <span className="ml-auto w-2 h-2 rounded-full bg-[#9b1c31]" />
               )}
             </button>
           ))}

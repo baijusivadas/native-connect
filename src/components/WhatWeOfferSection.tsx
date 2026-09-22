@@ -4,49 +4,36 @@ import { FaUser, FaUsers, FaComments, FaGlobe, FaCalendarAlt, FaChartBar } from 
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const offers = [
-  { icon: FaUser, title: 'One-on-One Tutoring', description: 'Personalized sessions with native speakers.' },
-  { icon: FaUsers, title: 'Group Classes', description: 'Learn with peers in small groups.' },
-  { icon: FaComments, title: 'Conversation Practice', description: 'Real-world conversations with native tutors.' },
-  { icon: FaGlobe, title: 'Cultural Insights', description: 'Understand the culture behind the language.' },
-  { icon: FaCalendarAlt, title: 'Flexible Scheduling', description: 'Book lessons at your convenience.' },
-  { icon: FaChartBar, title: 'Progress Reports', description: 'Track your growth with detailed analytics.' },
-];
+  [FaUser, 'One-on-One Tutoring', 'Personalized sessions with native speakers.'],
+  [FaUsers, 'Small Group Classes', 'Learn with peers while still getting meaningful attention.'],
+  [FaComments, 'Conversation Practice', 'Use the language in realistic conversations, not just exercises.'],
+  [FaGlobe, 'Cultural Insights', 'Understand the context behind the words and expressions.'],
+  [FaCalendarAlt, 'Flexible Scheduling', 'Book lessons around your real schedule.'],
+  [FaChartBar, 'Progress Reports', 'Track your growth and know where to focus next.'],
+] as const;
 
-const WhatWeOfferSection = () => {
+export default function WhatWeOfferSection() {
   const { t } = useLanguage();
-
   return (
-    <section id="offer" className="w-full py-24 bg-gray-900 border-t border-gray-800/60">
-      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <span className="text-purple-400 font-semibold uppercase tracking-[0.2em] text-xs sm:text-sm">
-            {t('Our Services')}
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-4 tracking-tight">
-            {t('What We Offer')}
-          </h2>
-          <p className="text-gray-400 mt-4 max-w-2xl mx-auto text-sm sm:text-base">
-            {t('We offer comprehensive language tutoring to help you achieve your goals.')}
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {offers.map((offer) => (
-            <div
-              key={offer.title}
-              className="bg-gray-950/50 border border-gray-800 rounded-2xl p-8 hover:border-purple-500/50 hover:-translate-y-1 transition-all duration-300 group"
-            >
-              <div className="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center mb-6 group-hover:bg-purple-500/20 transition-colors duration-300">
-                <offer.icon className="text-2xl text-purple-400" />
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2">{t(offer.title)}</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">{t(offer.description)}</p>
-            </div>
-          ))}
+    <section id="offer" className="bg-[#f7f4ef] py-24">
+      <div className="mx-auto max-w-[1500px] px-5 sm:px-8 lg:px-12">
+        <div className="rounded-[2rem] bg-[#0b192c] p-7 text-[#f7f4ef] sm:p-10 lg:p-14">
+          <div className="max-w-3xl">
+            <p className="eyebrow text-[#c19a68]">{t('Our Services')}</p>
+            <h2 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">{t('Everything you need to move from learning to living.')}</h2>
+            <p className="mt-5 text-sm leading-7 text-[#f7f4ef]/60">{t('A complete learning experience designed around practical progress, personal attention and confidence.')}</p>
+          </div>
+          <div className="mt-10 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+            {offers.map(([Icon, title, description]) => (
+              <article key={title} className="rounded-2xl border border-[#f7f4ef]/10 bg-[#f7f4ef]/5 p-6 transition hover:border-[#c19a68]/45 hover:bg-[#f7f4ef]/8">
+                <Icon className="text-xl text-[#c19a68]" />
+                <h3 className="mt-5 font-semibold">{t(title)}</h3>
+                <p className="mt-2 text-sm leading-6 text-[#f7f4ef]/55">{t(description)}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default WhatWeOfferSection;
+}

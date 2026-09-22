@@ -4,35 +4,21 @@ import Link from 'next/link';
 import { FaLanguage } from 'react-icons/fa';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-const Footer = () => {
+export default function Footer() {
   const { t } = useLanguage();
-
   return (
-    <footer className="w-full bg-gray-950 border-t border-gray-800 py-12">
-      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-2">
-            <div className="bg-linear-to-r from-purple-600 to-blue-600 p-1.5 rounded-lg">
-              <FaLanguage className="text-white text-xl" />
-            </div>
-            <span className="text-lg font-bold text-white">
-              Native <span className="bg-linear-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Connects</span>
-            </span>
+    <footer className="bg-[#0b192c] py-12 text-[#f7f4ef]">
+      <div className="mx-auto max-w-[1500px] px-5 sm:px-8 lg:px-12">
+        <div className="grid gap-10 md:grid-cols-[1.3fr_1fr_1fr]">
+          <div>
+            <Link href="/" className="flex items-center gap-3 text-xl font-bold"><span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#9b1c31] text-[#c19a68]"><FaLanguage /></span>Native <span className="text-[#c19a68]">Connects</span></Link>
+            <p className="mt-5 max-w-sm text-sm leading-7 text-[#f7f4ef]/45">{t('Personalized language learning with native speakers for real goals and real life.')}</p>
           </div>
-          <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-500">
-            <Link href="#" className="hover:text-white transition-colors">{t('Home')}</Link>
-            <Link href="#languages" className="hover:text-white transition-colors">{t('Languages')}</Link>
-            <Link href="#about" className="hover:text-white transition-colors">{t('About')}</Link>
-            <Link href="#offer" className="hover:text-white transition-colors">{t('What We Offer')}</Link>
-            <Link href="#" className="hover:text-white transition-colors">{t('Contact')}</Link>
-          </div>
-          <p className="text-sm text-gray-600">
-            © {new Date().getFullYear()} Native Connects. All rights reserved.
-          </p>
+          <div><p className="text-xs font-bold uppercase tracking-[.18em] text-[#c19a68]">{t('Explore')}</p><div className="mt-5 space-y-3 text-sm text-[#f7f4ef]/60"><Link className="block hover:text-white" href="#languages">{t('Languages')}</Link><Link className="block hover:text-white" href="#offer">{t('What We Offer')}</Link><Link className="block hover:text-white" href="#pricing">{t('Pricing')}</Link><Link className="block hover:text-white" href="#about">{t('About')}</Link></div></div>
+          <div><p className="text-xs font-bold uppercase tracking-[.18em] text-[#c19a68]">{t('Trust')}</p><div className="mt-5 space-y-3 text-sm text-[#f7f4ef]/60"><Link className="block hover:text-white" href="#testimonials">{t('Student Stories')}</Link><span className="block">{t('Google Reviews — add link')}</span><span className="block">{t('Trustpilot — add link')}</span></div></div>
         </div>
+        <div className="mt-12 flex flex-col gap-3 border-t border-[#f7f4ef]/10 pt-6 text-xs text-[#f7f4ef]/35 sm:flex-row sm:justify-between"><span>© {new Date().getFullYear()} Native Connects. {t('All rights reserved.')}</span><span>{t('Built for learning. Designed for life.')}</span></div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

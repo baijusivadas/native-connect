@@ -14,9 +14,9 @@ import { LOCAL_TRANSLATIONS } from '@/constants/translations';
 export const SUPPORTED_LOCALES = [
   { code: 'en', label: 'English', flag: '🇬🇧' },
   { code: 'fr', label: 'Français', flag: '🇫🇷' },
-  { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
   { code: 'it', label: 'Italiano', flag: '🇮🇹' },
   { code: 'ro', label: 'Română', flag: '🇷🇴' },
+  { code: 'gr', label: 'German', flag: '🇩🇪' },
 ] as const;
 
 type LanguageContextValue = {
@@ -40,11 +40,18 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const saved = localStorage.getItem('locale');
-    if (!saved || !SUPPORTED_LOCALES.some((language) => language.code === saved)) {
+    const migratedLocale = saved === 'de' ? 'gr' : saved;
+    if (
+      !migratedLocale ||
+      !SUPPORTED_LOCALES.some((language) => language.code === migratedLocale)
+    ) {
       return;
     }
 
-    const timer = setTimeout(() => setLocaleState(saved), 0);
+    const timer = setTimeout(() => setLocaleState(migratedLocale), 0);
+    if (migratedLocale !== saved) {
+      localStorage.setItem('locale', migratedLocale);
+    }
     return () => clearTimeout(timer);
   }, []);
 

@@ -1,67 +1,34 @@
 'use client';
 
-import Image from 'next/image';
+import { FaQuoteLeft, FaUsers, FaHeart, FaGlobeEurope } from 'react-icons/fa';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-const stats = [
-  { number: '4', label: 'Languages' },
-  { number: '500+', label: 'Native Speakers' },
-  { number: '100%', label: 'Satisfaction' },
-];
-
-const AboutSection = () => {
+export default function AboutSection() {
   const { t } = useLanguage();
-
   return (
-    <section id="about" className="w-full py-24 bg-gray-950 border-t border-gray-800/60">
-      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left Content */}
+    <section id="about" className="bg-[#f7f4ef] py-24">
+      <div className="mx-auto max-w-[1500px] px-5 sm:px-8 lg:px-12">
+        <div className="grid gap-12 lg:grid-cols-[1fr_.9fr] lg:items-center">
           <div>
-            <span className="text-purple-400 font-semibold uppercase tracking-widest text-sm">
-              {t('About Us')}
-            </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
-              {t('More Than a Language –')}{' '}
-              <span className="bg-linear-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                {t('A Global Community')}
-              </span>
-            </h2>
-            <p className="text-gray-400 mb-10">
-              {t('Native Connects is a language tutoring platform that offers personalized lessons with native speakers. We believe language is a bridge that connects cultures.')}
-            </p>
-            <div className="grid grid-cols-3 gap-8">
-              {stats.map((stat) => (
-                <div key={stat.label}>
-                  <div className="text-3xl md:text-4xl font-bold bg-linear-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                    {stat.number}
-                  </div>
-                  <div className="text-sm text-gray-500 mt-1">{t(stat.label)}</div>
-                </div>
-              ))}
+            <p className="eyebrow">{t('About Us')}</p>
+            <h2 className="section-title">{t('A language platform built around people, not just lessons.')}</h2>
+            <p className="section-copy">{t('Native Connects was created around a simple belief: learning a language should help you participate more confidently in the life you are moving toward.')}</p>
+            <p className="mt-5 max-w-2xl text-sm leading-7 text-[#0b192c]/60">{t('Tell the founder story here — who started Native Connects, what problem they saw, and why this platform exists. This personal context is one of the strongest trust-building opportunities on the page.')}</p>
+            <div className="mt-8 grid gap-3 sm:grid-cols-3">
+              {[[FaUsers, 'Human-first'], [FaHeart, 'Purpose-led'], [FaGlobeEurope, 'Europe-focused']].map(([Icon, label]) => <div key={label as string} className="rounded-2xl border border-[#0b192c]/10 bg-white/60 p-4"><Icon className="text-[#9b1c31]" /><p className="mt-3 text-sm font-semibold">{t(label as string)}</p></div>)}
             </div>
           </div>
-
-          {/* Right Image */}
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-800">
-            <Image
-              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
-              alt="Global community"
-              width={800}
-              height={600}
-              className="w-full h-auto object-cover"
-            />
-            <div className="absolute inset-0 bg-linear-to-t from-gray-950/80 to-transparent" />
-            <div className="absolute bottom-6 right-6 bg-white/10 backdrop-blur-md px-6 py-3 rounded-xl border border-white/20">
-              <span className="font-semibold text-white text-sm">
-                {t('Learn. Connect. Grow.')}
-              </span>
+          <div className="relative rounded-[2rem] bg-[#0b192c] p-8 text-[#f7f4ef] shadow-2xl sm:p-10">
+            <FaQuoteLeft className="text-3xl text-[#c19a68]" />
+            <blockquote className="mt-8 text-2xl font-medium leading-10 tracking-tight">{t('We are not here to teach you words. We are here to help you feel at home in another language.')}</blockquote>
+            <div className="mt-10 flex items-center gap-4 border-t border-[#f7f4ef]/10 pt-6">
+              <div className="h-12 w-12 rounded-full bg-[#c19a68]/20" />
+              <div><p className="font-semibold">{t('Founder story')}</p><p className="text-xs text-[#f7f4ef]/45">{t('Add founder name & role')}</p></div>
             </div>
+            <p className="mt-7 rounded-xl bg-[#f7f4ef]/5 p-4 text-xs leading-6 text-[#f7f4ef]/45">{t('Launch note: replace this placeholder with the real founder introduction, photo and reason Native Connects was created.')}</p>
           </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default AboutSection;
+}

@@ -1,40 +1,46 @@
 @import "tailwindcss";
 
 :root {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 10, 10, 10;
-  --background-end-rgb: 10, 10, 10;
+  --ivory: #f7f4ef;
+  --navy: #0b192c;
+  --maroon: #9b1c31;
+  --gold: #c19a68;
 }
 
+html { scroll-behavior: smooth; }
 body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-start-rgb));
+  color: var(--navy);
+  background: var(--ivory);
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+* { box-sizing: border-box; }
+::selection { background: rgba(193, 154, 104, .82); color: var(--navy); }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--ivory); }
+::-webkit-scrollbar-thumb { background: var(--navy); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--maroon); }
 
-html {
-  scroll-behavior: smooth;
+.eyebrow {
+  color: var(--maroon);
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .2em;
+  text-transform: uppercase;
 }
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+.section-title {
+  margin-top: .75rem;
+  color: var(--navy);
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -.04em;
+  font-weight: 600;
 }
-::-webkit-scrollbar-track {
-  background: #0a0a0a;
-}
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #7c3aed, #3b82f6);
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #8b5cf6, #60a5fa);
-}
-
-/* Selection Color */
-::selection {
-  background-color: rgba(139, 92, 246, 0.3);
-  color: white;
+.section-copy {
+  margin-top: 1.25rem;
+  max-width: 42rem;
+  color: rgba(11, 25, 44, .62);
+  font-size: .98rem;
+  line-height: 1.9;
 }

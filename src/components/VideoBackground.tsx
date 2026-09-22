@@ -3,7 +3,7 @@
 import { useRef, useEffect, useState } from 'react';
 
 interface VideoBackgroundProps {
-  videoSrc: string;
+  videoSrc: string | string[];
   posterSrc?: string;
   overlayOpacity?: number;
 }
@@ -13,43 +13,70 @@ const VideoBackground = ({
   posterSrc,
   overlayOpacity = 0.7,
 }: VideoBackgroundProps) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const videos = Array.isArray(videoSrc) ? videoSrc : [videoSrc];
+  const [slotSources, setSlotSources] = useState([0, Math.min(1, videos.length - 1)]);
+  const [activeSlot, setActiveSlot] = useState(0);
+  const [transitionSlot, setTransitionSlot] = useState<number | null>(null);
+  const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    video.muted = true;
-    const playPromise = video.play();
-    if (playPromise !== undefined) {
-      playPromise.catch((error) => {
-        console.warn('Autoplay was prevented:', error);
-      });
-    }
+    videoRefs.current[0]?.load();
   }, []);
 
+  const playVideo = (slot: number) => {
+    const playPromise = videoRefs.current[slot]?.play();
+    playPromise?.catch((error) => {
+      console.warn('Autoplay was prevented:', error);
+    });
+  };
+
+  const handleVideoLoaded = (slot: number) => {
+    playVideo(slot);
+
+    if (transitionSlot === slot) {
+      setActiveSlot(slot);
+      setTransitionSlot(null);
+    }
+  };
+
+  const playNextVideo = (slot: number) => {
+    if (videos.length < 2 || transitionSlot !== null) return;
+
+    const incomingSlot = slot === 0 ? 1 : 0;
+    const nextSource = (slotSources[incomingSlot] + 1) % videos.length;
+
+    setTransitionSlot(incomingSlot);
+    setSlotSources((sources) => {
+      const nextSources = [...sources];
+      nextSources[incomingSlot] = nextSource;
+      return nextSources;
+    });
+  };
+
   return (
-    <div className="absolute inset-0 w-full h-full overflow-hidden bg-gray-950">
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="none"
-        poster={posterSrc}
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-          isVideoLoaded ? 'opacity-40' : 'opacity-0'
-        }`}
-        onLoadedData={() => setIsVideoLoaded(true)}
-      >
-        <source src={videoSrc} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+    <div className="absolute inset-0 w-full h-full overflow-hidden bg-[#f7f4ef]">
+      {slotSources.map((sourceIndex, slot) => (
+        <video
+          key={slot}
+          ref={(element) => {
+            videoRefs.current[slot] = element;
+          }}
+          src={videos[sourceIndex]}
+          autoPlay={slot === 0}
+          muted
+          playsInline
+          preload="auto"
+          poster={posterSrc}
+          onEnded={() => playNextVideo(slot)}
+          onLoadedData={() => handleVideoLoaded(slot)}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[1200ms] ease-in-out ${
+            slot === activeSlot ? 'opacity-75' : 'opacity-0'
+          }`}
+        />
+      ))}
 
       <div
-        className="absolute inset-0 bg-gradient-to-b from-gray-950/90 via-gray-950/60 to-gray-950"
+        className="absolute inset-0 bg-[#0b192c]"
         style={{ opacity: overlayOpacity }}
       />
     </div>
