@@ -13,7 +13,7 @@ export default function AudienceSection() {
   const { t } = useLanguage();
   return (
     <section className="bg-[#f7f4ef] py-20 sm:py-24">
-      <div className="mx-auto max-w-[1500px] px-5 sm:px-8 lg:px-12">
+      <div className="w-full px-5 sm:px-8 lg:px-12">
         <div className="max-w-3xl">
           <p className="eyebrow">{t('Built around your goal')}</p>
           <h2 className="section-title">{t('Not everyone learns a language for the same reason.')}</h2>

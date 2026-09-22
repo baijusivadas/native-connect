@@ -8,7 +8,7 @@ export default function CTASection() {
   const { t } = useLanguage();
   return (
     <section id="contact" className="bg-[#9b1c31] py-20 text-white">
-      <div className="mx-auto flex max-w-[1500px] flex-col items-start justify-between gap-8 px-5 sm:px-8 lg:flex-row lg:items-center lg:px-12">
+      <div className="flex w-full flex-col items-start justify-between gap-8 px-5 sm:px-8 lg:flex-row lg:items-center lg:px-12">
         <div className="max-w-3xl">
           <p className="text-xs font-bold uppercase tracking-[.2em] text-[#c19a68]">{t('Your next chapter starts here')}</p>
           <h2 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">{t('Ready to start your language journey?')}</h2>

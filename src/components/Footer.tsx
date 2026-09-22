@@ -8,7 +8,7 @@ export default function Footer() {
   const { t } = useLanguage();
   return (
     <footer className="bg-[#0b192c] py-12 text-[#f7f4ef]">
-      <div className="mx-auto max-w-[1500px] px-5 sm:px-8 lg:px-12">
+      <div className="w-full px-5 sm:px-8 lg:px-12">
         <div className="grid gap-10 md:grid-cols-[1.3fr_1fr_1fr]">
           <div>
             <Link href="/" className="flex items-center gap-3 text-xl font-bold"><span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#9b1c31] text-[#c19a68]"><FaLanguage /></span>Native <span className="text-[#c19a68]">Connects</span></Link>

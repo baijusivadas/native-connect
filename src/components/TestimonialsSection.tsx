@@ -15,7 +15,7 @@ export default function TestimonialsSection() {
   const { t } = useLanguage();
   return (
     <section id="testimonials" className="bg-[#f7f4ef] py-24">
-      <div className="mx-auto max-w-[1500px] px-5 sm:px-8 lg:px-12">
+      <div className="w-full px-5 sm:px-8 lg:px-12">
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div className="max-w-3xl">
             <p className="eyebrow">{t('Real student stories')}</p>

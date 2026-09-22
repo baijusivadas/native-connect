@@ -23,7 +23,7 @@ const Hero = () => {
       <div className="absolute -right-32 -top-32 h-96 w-96 rounded-full border border-[#c19a68]/20" />
       <div className="absolute bottom-[-12rem] left-[-8rem] h-96 w-96 rounded-full border border-[#9b1c31]/25" />
 
-      <div className="relative z-10 mx-auto flex min-h-[calc(100vh-80px)] w-full max-w-[1500px] items-center px-5 py-20 sm:px-8 lg:px-12">
+      <div className="relative z-10 flex min-h-[calc(100vh-80px)] w-full items-center px-5 py-20 sm:px-8 lg:px-12">
         <div className="grid w-full items-center gap-14 lg:grid-cols-[1.05fr_.95fr]">
           <div className="max-w-3xl">
             <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-[#c19a68]/35 bg-[#f7f4ef]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[.2em] text-[#f7f4ef] backdrop-blur-md">

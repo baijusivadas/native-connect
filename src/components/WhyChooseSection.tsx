@@ -16,7 +16,7 @@ export default function WhyChooseSection() {
   const { t } = useLanguage();
   return (
     <section className="bg-[#f7f4ef] py-24">
-      <div className="mx-auto max-w-[1500px] px-5 sm:px-8 lg:px-12">
+      <div className="w-full px-5 sm:px-8 lg:px-12">
         <div className="grid gap-14 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
           <div>
             <p className="eyebrow">{t('Why Choose Us')}</p>

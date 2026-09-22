@@ -16,7 +16,7 @@ export default function WhatWeOfferSection() {
   const { t } = useLanguage();
   return (
     <section id="offer" className="bg-[#f7f4ef] py-24">
-      <div className="mx-auto max-w-[1500px] px-5 sm:px-8 lg:px-12">
+      <div className="w-full px-5 sm:px-8 lg:px-12">
         <div className="rounded-[2rem] bg-[#0b192c] p-7 text-[#f7f4ef] sm:p-10 lg:p-14">
           <div className="max-w-3xl">
             <p className="eyebrow text-[#c19a68]">{t('Our Services')}</p>

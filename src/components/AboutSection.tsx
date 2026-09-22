@@ -7,7 +7,7 @@ export default function AboutSection() {
   const { t } = useLanguage();
   return (
     <section id="about" className="bg-[#f7f4ef] py-24">
-      <div className="mx-auto max-w-[1500px] px-5 sm:px-8 lg:px-12">
+      <div className="w-full px-5 sm:px-8 lg:px-12">
         <div className="grid gap-12 lg:grid-cols-[1fr_.9fr] lg:items-center">
           <div>
             <p className="eyebrow">{t('About Us')}</p>
