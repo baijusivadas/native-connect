@@ -45,6 +45,9 @@ const Hero = () => {
                 {t('See Plans & Pricing')}
                 <FaArrowRight className="text-xs transition-transform group-hover:translate-x-1" />
               </Link>
+              <Link href="#contact" className="inline-flex items-center justify-center rounded-xl border border-[#f7f4ef]/30 bg-[#f7f4ef]/8 px-7 py-4 text-sm font-bold text-[#f7f4ef] backdrop-blur-md transition hover:bg-[#f7f4ef]/15">
+                {t('Book a Demo Session')}
+              </Link>
               <Link href="#languages" className="inline-flex items-center justify-center rounded-xl border border-[#f7f4ef]/30 bg-[#f7f4ef]/8 px-7 py-4 text-sm font-bold text-[#f7f4ef] backdrop-blur-md transition hover:bg-[#f7f4ef]/15">
                 {t('Explore Languages')}
               </Link>

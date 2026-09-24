@@ -38,11 +38,12 @@ export default function Navbar() {
     { href: "#testimonials", label: t("Students") },
     { href: "#pricing", label: t("Pricing") },
     { href: "#about", label: t("About") },
+    { href: "#contact", label: t("Contact") },
   ];
 
   const handleNavigation = (
     event: React.MouseEvent<HTMLAnchorElement>,
-    href: string
+    href: string,
   ) => {
     event.preventDefault();
     const target = document.querySelector(href);
@@ -50,8 +51,8 @@ export default function Navbar() {
 
     const navbarHeight = 80;
     const targetTop = target.getBoundingClientRect().top + window.scrollY;
-    window.history.pushState(null, '', href);
-    window.scrollTo({ top: targetTop - navbarHeight, behavior: 'smooth' });
+    window.history.pushState(null, "", href);
+    window.scrollTo({ top: targetTop - navbarHeight, behavior: "smooth" });
     setMobileOpen(false);
   };
 
@@ -75,6 +76,20 @@ export default function Navbar() {
           </div>
           <div className="flex items-center gap-2.5">
             <LanguageSwitcher />
+            {/* <Link href="#contact" onClick={(event) => handleNavigation(event, '#contact')} className="hidden px-2 py-2 text-sm font-semibold text-[#0b192c]/65 transition hover:text-[#9b1c31] lg:inline-flex">Log in</Link> */}
+            {/* <Link href="#contact" onClick={(event) => handleNavigation(event, '#contact')} className="hidden rounded-xl border border-[#0b192c]/15 px-4 py-2.5 text-sm font-bold text-[#0b192c] transition hover:border-[#9b1c31] hover:text-[#9b1c31] sm:inline-flex">Sign up</Link> */}
+            <Link
+              href="#contact"
+              onClick={(event) => {
+                handleNavigation(event, "#contact");
+                window.dispatchEvent(
+                  new CustomEvent("native-connects:open-demo"),
+                );
+              }}
+              className="hidden rounded-xl bg-[#9b1c31] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#85172a] sm:inline-flex"
+            >
+              {t("Book a Demo")}
+            </Link>
             <Link
               href="#pricing"
               className="hidden rounded-xl bg-[#0b192c] px-5 py-2.5 text-sm font-bold text-[#f7f4ef] transition hover:bg-[#9b1c31] sm:inline-flex"
@@ -91,7 +106,7 @@ export default function Navbar() {
           </div>
         </div>
         <div
-          className={`md:hidden overflow-hidden border-t border-[#0b192c]/10 bg-[#f7f4ef] transition-all duration-300 ${mobileOpen ? "max-h-[28rem] opacity-100" : "max-h-0 opacity-0"}`}
+          className={`md:hidden overflow-hidden border-t border-[#0b192c]/10 bg-[#f7f4ef] transition-all duration-300 ${mobileOpen ? "max-h-112 opacity-100" : "max-h-0 opacity-0"}`}
         >
           <div className="space-y-1 px-5 py-5 sm:px-8">
             {navLinks.map((link) => (
@@ -104,10 +119,38 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <div className="pt-4">
+            <div className="pt-4 space-y-2">
+              <div className="grid grid-cols-2 gap-2">
+                <Link
+                  href="#contact"
+                  onClick={(event) => handleNavigation(event, "#contact")}
+                  className="rounded-xl border border-[#0b192c]/15 px-5 py-3 text-center text-sm font-bold text-[#0b192c]"
+                >
+                  Log in
+                </Link>
+                <Link
+                  href="#contact"
+                  onClick={(event) => handleNavigation(event, "#contact")}
+                  className="rounded-xl border border-[#9b1c31] px-5 py-3 text-center text-sm font-bold text-[#9b1c31]"
+                >
+                  Sign up
+                </Link>
+              </div>
+              <Link
+                href="#contact"
+                onClick={(event) => {
+                  handleNavigation(event, "#contact");
+                  window.dispatchEvent(
+                    new CustomEvent("native-connects:open-demo"),
+                  );
+                }}
+                className="block rounded-xl bg-[#9b1c31] px-5 py-3 text-center text-sm font-bold text-white"
+              >
+                Book a Demo
+              </Link>
               <Link
                 href="#pricing"
-                onClick={(event) => handleNavigation(event, '#pricing')}
+                onClick={(event) => handleNavigation(event, "#pricing")}
                 className="block rounded-xl bg-[#0b192c] px-5 py-3 text-center text-sm font-bold text-[#f7f4ef]"
               >
                 {t("Start Learning")}

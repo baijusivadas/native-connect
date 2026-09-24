@@ -16,7 +16,7 @@ export default function LanguagesSection() {
   return (
     <section id="languages" className="bg-[#f7f4ef] py-24">
       <div className="w-full px-5 sm:px-8 lg:px-12">
-        <div className="rounded-[2rem] bg-[#0b192c] p-7 text-[#f7f4ef] sm:p-10 lg:p-14">
+        <div className="rounded-4xl bg-[#0b192c] p-7 text-[#f7f4ef] sm:p-10 lg:p-14">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div className="max-w-3xl">
               <p className="eyebrow text-[#c19a68]">{t('Our Languages')}</p>

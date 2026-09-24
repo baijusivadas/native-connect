@@ -45,3 +45,14 @@ body {
   font-size: .98rem;
   line-height: 1.9;
 }
+
+
+/* Responsive safeguards */
+html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
+img, video, canvas, svg { max-width: 100%; }
+button, input, select, textarea { font: inherit; }
+input, select, textarea { min-width: 0; }
+@media (max-width: 640px) {
+  section { scroll-margin-top: 5rem; }
+  .section-title { font-size: clamp(2rem, 10vw, 3rem); }
+}

@@ -142,6 +142,8 @@ export async function POST(req: NextRequest) {
     const results: Record<string, string> = {};
     const missing: string[] = [];
 
+    const lang = targetLang === 'gr' ? 'de' : targetLang;
+
     // 1. Check cache
     for (const text of texts) {
       const key = `${targetLang}:${text}`;
@@ -155,7 +157,7 @@ export async function POST(req: NextRequest) {
 
     // 2. Translate missing strings (serialized via waitForSlot)
     for (const text of missing) {
-      const translated = await translateText(text, targetLang);
+      const translated = await translateText(text, lang);
       results[text] = translated;
       if (translated !== text) {
         translationCache.set(`${targetLang}:${text}`, translated);
