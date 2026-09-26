@@ -46,6 +46,16 @@ body {
   line-height: 1.9;
 }
 
+.partner-marquee-window {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+
 
 /* Responsive safeguards */
 html, body { width: 100%; max-width: 100%; overflow-x: hidden; }

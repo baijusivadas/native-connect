@@ -31,7 +31,9 @@ const VideoBackground = ({
   };
 
   const handleVideoLoaded = (slot: number) => {
-    playVideo(slot);
+    if (slot === activeSlot || slot === transitionSlot) {
+      playVideo(slot);
+    }
 
     if (transitionSlot === slot) {
       setActiveSlot(slot);
@@ -62,10 +64,10 @@ const VideoBackground = ({
             videoRefs.current[slot] = element;
           }}
           src={videos[sourceIndex]}
-          autoPlay={slot === 0}
+          autoPlay={slot === activeSlot}
           muted
           playsInline
-          preload="auto"
+          preload={slot === activeSlot ? 'auto' : 'metadata'}
           poster={posterSrc}
           onEnded={() => playNextVideo(slot)}
           onLoadedData={() => handleVideoLoaded(slot)}

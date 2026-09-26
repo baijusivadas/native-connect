@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import PartnersSection from '@/components/PartnersSection';
 import LanguagesSection from '@/components/LanguagesSection';
 import TutorSection from '@/components/TutorSection';
 import CurriculumSection from '@/components/CurriculumSection';
@@ -34,6 +35,7 @@ export default function Home() {
       <FAQSection />
       <ContactSection />
       <CTASection />
+      <PartnersSection />
       <ChatWidget />
       <Footer />
     </main>

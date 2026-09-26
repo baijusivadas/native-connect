@@ -7,6 +7,7 @@ import {
   useRef,
   useCallback,
   useEffect,
+  useMemo,
   ReactNode,
 } from 'react';
 import { LOCAL_TRANSLATIONS } from '@/constants/translations';
@@ -23,10 +24,10 @@ type LanguageContextValue = {
   locale: string;
   setLocale: (l: string) => void;
   t: (text: string) => string;
-  isTranslating: boolean;
 };
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
+const TranslationStatusContext = createContext(false);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<string>('en');
@@ -49,11 +50,19 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
 
     const timer = setTimeout(() => setLocaleState(migratedLocale), 0);
+    document.documentElement.lang = migratedLocale === 'gr' ? 'de' : migratedLocale;
     if (migratedLocale !== saved) {
       localStorage.setItem('locale', migratedLocale);
     }
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(
+    () => () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    },
+    [],
+  );
 
   const flushTranslations = useCallback(async () => {
     if (pendingRef.current.size === 0) return;
@@ -114,7 +123,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     [locale, translations, registerText]
   );
 
-  const setLocale = (l: string) => {
+  const setLocale = useCallback((l: string) => {
     if (!SUPPORTED_LOCALES.some((language) => language.code === l)) return;
 
     registeredRef.current.clear();
@@ -124,17 +133,20 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setTranslations({});
     setIsTranslating(false);
     setLocaleState(l);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('locale', l);
-      document.documentElement.lang = l;
-    }
-  };
+    localStorage.setItem('locale', l);
+    document.documentElement.lang = l === 'gr' ? 'de' : l;
+  }, []);
+
+  const languageValue = useMemo(
+    () => ({ locale, setLocale, t }),
+    [locale, setLocale, t],
+  );
 
   return (
-    <LanguageContext.Provider
-      value={{ locale, setLocale, t, isTranslating }}
-    >
-      {children}
+    <LanguageContext.Provider value={languageValue}>
+      <TranslationStatusContext.Provider value={isTranslating}>
+        {children}
+      </TranslationStatusContext.Provider>
     </LanguageContext.Provider>
   );
 }
@@ -145,4 +157,8 @@ export function useLanguage() {
     throw new Error('useLanguage must be used within LanguageProvider');
   }
   return ctx;
+}
+
+export function useTranslationStatus() {
+  return useContext(TranslationStatusContext);
 }

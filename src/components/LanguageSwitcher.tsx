@@ -1,11 +1,16 @@
 'use client';
 
-import { useLanguage, SUPPORTED_LOCALES } from '@/contexts/LanguageContext';
+import {
+  useLanguage,
+  useTranslationStatus,
+  SUPPORTED_LOCALES,
+} from '@/contexts/LanguageContext';
 import { useState, useRef, useEffect } from 'react';
 import { FaGlobe, FaChevronDown, FaSpinner } from 'react-icons/fa';
 
 export default function LanguageSwitcher() {
-  const { locale, setLocale, isTranslating } = useLanguage();
+  const { locale, setLocale } = useLanguage();
+  const isTranslating = useTranslationStatus();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
