@@ -11,6 +11,7 @@ const Hero = () => {
   return (
     <section className="relative isolate min-h-[calc(100vh-80px)] overflow-hidden bg-[#0b192c]">
       <VideoBackground
+        posterSrc="/img/italy.jpeg"
         videoSrc={[
           '/video/italy.mp4',
           '/video/paris.mp4',
@@ -41,12 +42,9 @@ const Hero = () => {
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link href="#pricing" className="group inline-flex items-center justify-center gap-3 rounded-xl bg-[#9b1c31] px-7 py-4 text-sm font-bold text-white shadow-xl shadow-black/20 transition hover:-translate-y-0.5 hover:bg-[#85172a]">
-                {t('See Plans & Pricing')}
+              <Link href="#contact" className="group inline-flex items-center justify-center gap-3 rounded-xl bg-[#9b1c31] px-7 py-4 text-sm font-bold text-white shadow-xl shadow-black/20 transition hover:-translate-y-0.5 hover:bg-[#85172a]">
+                {t('Book a Free Demo')}
                 <FaArrowRight className="text-xs transition-transform group-hover:translate-x-1" />
-              </Link>
-              <Link href="#contact" className="inline-flex items-center justify-center rounded-xl border border-[#f7f4ef]/30 bg-[#f7f4ef]/8 px-7 py-4 text-sm font-bold text-[#f7f4ef] backdrop-blur-md transition hover:bg-[#f7f4ef]/15">
-                {t('Book a Demo Session')}
               </Link>
               <Link href="#languages" className="inline-flex items-center justify-center rounded-xl border border-[#f7f4ef]/30 bg-[#f7f4ef]/8 px-7 py-4 text-sm font-bold text-[#f7f4ef] backdrop-blur-md transition hover:bg-[#f7f4ef]/15">
                 {t('Explore Languages')}

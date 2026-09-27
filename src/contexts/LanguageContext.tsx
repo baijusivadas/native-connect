@@ -4,7 +4,6 @@ import {
   createContext,
   useContext,
   useState,
-  useRef,
   useCallback,
   useEffect,
   useMemo,
@@ -17,7 +16,7 @@ export const SUPPORTED_LOCALES = [
   { code: 'fr', label: 'Français', flag: '🇫🇷' },
   { code: 'it', label: 'Italiano', flag: '🇮🇹' },
   { code: 'ro', label: 'Română', flag: '🇷🇴' },
-  { code: 'gr', label: 'German', flag: '🇩🇪' },
+  { code: 'de', label: 'German', flag: '🇩🇪' },
 ] as const;
 
 type LanguageContextValue = {
@@ -27,114 +26,27 @@ type LanguageContextValue = {
 };
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
-const TranslationStatusContext = createContext(false);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<string>('en');
-  const [translations, setTranslations] = useState<Record<string, string>>({});
-  const [isTranslating, setIsTranslating] = useState(false);
-
-  const registeredRef = useRef<Set<string>>(new Set());
-  const pendingRef = useRef<Set<string>>(new Set());
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const requestVersionRef = useRef(0);
 
   useEffect(() => {
     const saved = localStorage.getItem('locale');
-    const migratedLocale = saved === 'de' ? 'gr' : saved;
-    if (
-      !migratedLocale ||
-      !SUPPORTED_LOCALES.some((language) => language.code === migratedLocale)
-    ) {
-      return;
-    }
-
-    const timer = setTimeout(() => setLocaleState(migratedLocale), 0);
-    document.documentElement.lang = migratedLocale === 'gr' ? 'de' : migratedLocale;
-    if (migratedLocale !== saved) {
-      localStorage.setItem('locale', migratedLocale);
-    }
-    return () => clearTimeout(timer);
+    if (!saved || !SUPPORTED_LOCALES.some((language) => language.code === saved)) return;
+    setLocaleState(saved);
+    document.documentElement.lang = saved;
   }, []);
 
-  useEffect(
-    () => () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    },
-    [],
-  );
-
-  const flushTranslations = useCallback(async () => {
-    if (pendingRef.current.size === 0) return;
-
-    const texts = Array.from(pendingRef.current);
-    pendingRef.current.clear();
-    const requestVersion = requestVersionRef.current;
-
-    setIsTranslating(true);
-    try {
-      const res = await fetch('/api/translate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ texts, targetLang: locale }),
-      });
-
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
-      const data = await res.json();
-      if (requestVersion !== requestVersionRef.current) return;
-      setTranslations((prev) => ({ ...prev, ...data.translations }));
-    } catch (err) {
-      console.error('Translation failed, using English fallback:', err);
-    } finally {
-      if (requestVersion === requestVersionRef.current) {
-        setIsTranslating(false);
-      }
-    }
-  }, [locale]);
-
-  const registerText = useCallback(
-    (text: string) => {
-      if (locale === 'en' || !text.trim()) return;
-
-      const key = `${locale}:${text}`;
-      if (registeredRef.current.has(key)) return;
-
-      registeredRef.current.add(key);
-      pendingRef.current.add(text);
-
-      if (timerRef.current) clearTimeout(timerRef.current);
-      timerRef.current = setTimeout(() => {
-        flushTranslations();
-      }, 500);
-    },
-    [locale, flushTranslations]
-  );
-
   const t = useCallback(
-    (text: string) => {
-      if (locale === 'en') return text;
-      const localTranslation = LOCAL_TRANSLATIONS[locale]?.[text];
-      if (localTranslation) return localTranslation;
-      if (translations[text]) return translations[text];
-      registerText(text);
-      return text;
-    },
-    [locale, translations, registerText]
+    (text: string) => LOCAL_TRANSLATIONS[locale]?.[text] ?? text,
+    [locale],
   );
 
   const setLocale = useCallback((l: string) => {
     if (!SUPPORTED_LOCALES.some((language) => language.code === l)) return;
-
-    registeredRef.current.clear();
-    pendingRef.current.clear();
-    requestVersionRef.current += 1;
-    if (timerRef.current) clearTimeout(timerRef.current);
-    setTranslations({});
-    setIsTranslating(false);
     setLocaleState(l);
     localStorage.setItem('locale', l);
-    document.documentElement.lang = l === 'gr' ? 'de' : l;
+    document.documentElement.lang = l;
   }, []);
 
   const languageValue = useMemo(
@@ -144,9 +56,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   return (
     <LanguageContext.Provider value={languageValue}>
-      <TranslationStatusContext.Provider value={isTranslating}>
-        {children}
-      </TranslationStatusContext.Provider>
+      {children}
     </LanguageContext.Provider>
   );
 }
@@ -159,6 +69,3 @@ export function useLanguage() {
   return ctx;
 }
 
-export function useTranslationStatus() {
-  return useContext(TranslationStatusContext);
-}

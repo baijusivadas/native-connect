@@ -142,7 +142,7 @@ export async function POST(req: NextRequest) {
     const results: Record<string, string> = {};
     const missing: string[] = [];
 
-    const lang = targetLang === 'gr' ? 'de' : targetLang;
+    const lang = targetLang;
 
     // 1. Check cache
     for (const text of texts) {

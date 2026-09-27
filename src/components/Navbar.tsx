@@ -90,22 +90,20 @@ export default function Navbar() {
             >
               {t("Book a Demo")}
             </Link>
-            <Link
-              href="#pricing"
-              className="hidden rounded-xl bg-[#0b192c] px-5 py-2.5 text-sm font-bold text-[#f7f4ef] transition hover:bg-[#9b1c31] sm:inline-flex"
-            >
-              {t("Start Learning")}
-            </Link>
             <button
+              type="button"
               onClick={() => setMobileOpen(!mobileOpen)}
               className="rounded-lg p-2 text-[#0b192c] md:hidden"
-              aria-label="Toggle menu"
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-navigation"
             >
               {mobileOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
             </button>
           </div>
         </div>
         <div
+          id="mobile-navigation"
           className={`md:hidden overflow-hidden border-t border-[#0b192c]/10 bg-[#f7f4ef] transition-all duration-300 ${mobileOpen ? "max-h-112 opacity-100" : "max-h-0 opacity-0"}`}
         >
           <div className="space-y-1 px-5 py-5 sm:px-8">
@@ -119,41 +117,16 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <div className="pt-4 space-y-2">
-              <div className="grid grid-cols-2 gap-2">
-                <Link
-                  href="#contact"
-                  onClick={(event) => handleNavigation(event, "#contact")}
-                  className="rounded-xl border border-[#0b192c]/15 px-5 py-3 text-center text-sm font-bold text-[#0b192c]"
-                >
-                  Log in
-                </Link>
-                <Link
-                  href="#contact"
-                  onClick={(event) => handleNavigation(event, "#contact")}
-                  className="rounded-xl border border-[#9b1c31] px-5 py-3 text-center text-sm font-bold text-[#9b1c31]"
-                >
-                  Sign up
-                </Link>
-              </div>
+            <div className="pt-4">
               <Link
                 href="#contact"
                 onClick={(event) => {
                   handleNavigation(event, "#contact");
-                  window.dispatchEvent(
-                    new CustomEvent("native-connects:open-demo"),
-                  );
+                  window.dispatchEvent(new CustomEvent("native-connects:open-demo"));
                 }}
                 className="block rounded-xl bg-[#9b1c31] px-5 py-3 text-center text-sm font-bold text-white"
               >
-                Book a Demo
-              </Link>
-              <Link
-                href="#pricing"
-                onClick={(event) => handleNavigation(event, "#pricing")}
-                className="block rounded-xl bg-[#0b192c] px-5 py-3 text-center text-sm font-bold text-[#f7f4ef]"
-              >
-                {t("Start Learning")}
+                {t("Book a Demo")}
               </Link>
             </div>
           </div>

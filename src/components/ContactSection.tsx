@@ -39,6 +39,7 @@ export default function ContactSection() {
     "idle" | "loading" | "success" | "error"
   >("idle");
   const [error, setError] = useState("");
+  const [website, setWebsite] = useState("");
 
   useEffect(() => {
     const handler = () => openDemo();
@@ -72,6 +73,7 @@ export default function ContactSection() {
         body: JSON.stringify({
           ...form,
           source: mode === "demo" ? "demo-booking" : "contact-form",
+          website,
         }),
       });
       const data = await response.json();
@@ -86,7 +88,7 @@ export default function ContactSection() {
   }
 
   return (
-    <section id="contact" className="scroll-mt-24 bg-[#f7f4ef] py-24">
+    <section id="contact" className="scroll-mt-24 bg-[#f7f4ef] py-16 sm:py-20">
       <div className="w-full px-5 sm:px-8 lg:px-12">
         <div className="grid gap-8 lg:grid-cols-[.85fr_1.15fr]">
           <div className="rounded-[2rem] bg-[#9b1c31] p-7 text-white sm:p-10 lg:p-12">
@@ -179,6 +181,16 @@ export default function ContactSection() {
                 onSubmit={submit}
                 className="mt-8 grid gap-5 sm:grid-cols-2"
               >
+                <input
+                  type="text"
+                  name="website"
+                  value={website}
+                  onChange={(e) => setWebsite(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="absolute -left-[9999px] h-px w-px overflow-hidden"
+                />
                 <label className="sm:col-span-1">
                   <span className="mb-2 block text-xs font-bold uppercase tracking-wider text-[#0b192c]/55">
                     {t("Name *")}

@@ -13,7 +13,10 @@ import {
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Online Language Courses for Europe',
+  title: {
+    default: 'Native Connects | Online Language Courses for Europe',
+    template: '%s | Native Connects',
+  },
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
   keywords: SITE_KEYWORDS,
@@ -37,9 +40,15 @@ export const metadata: Metadata = {
     ...(SITE_URL ? { url: SITE_URL } : {}),
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: 'Online Language Courses for Europe | Native Connects',
     description: SITE_DESCRIPTION,
+  },
+  // Geo tags for local/regional SEO (Germany + Europe focus)
+  other: {
+    'geo.region': 'DE',
+    'geo.placename': 'Germany',
+    'ICBM': '51.1657,10.4515',
   },
   ...(SITE_URL
     ? { metadataBase: new URL(SITE_URL), alternates: { canonical: '/' } }
@@ -58,6 +67,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        {/* Geographic targeting meta tags */}
+        <meta name="geo.region" content="DE" />
+        <meta name="geo.placename" content="Germany" />
+        <meta name="ICBM" content="51.1657, 10.4515" />
+        <meta name="DC.title" content="Native Connects" />
+      </head>
       <body className={inter.className}>
         <script
           type="application/ld+json"

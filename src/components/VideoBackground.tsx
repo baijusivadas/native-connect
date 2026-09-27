@@ -15,13 +15,22 @@ const VideoBackground = ({
 }: VideoBackgroundProps) => {
   const videos = Array.isArray(videoSrc) ? videoSrc : [videoSrc];
   const [slotSources, setSlotSources] = useState([0, Math.min(1, videos.length - 1)]);
+  const [staticMode, setStaticMode] = useState(false);
   const [activeSlot, setActiveSlot] = useState(0);
   const [transitionSlot, setTransitionSlot] = useState<number | null>(null);
   const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
 
   useEffect(() => {
-    videoRefs.current[0]?.load();
+    const media = window.matchMedia('(max-width: 767px), (prefers-reduced-motion: reduce)');
+    const update = () => setStaticMode(media.matches);
+    update();
+    media.addEventListener?.('change', update);
+    return () => media.removeEventListener?.('change', update);
   }, []);
+
+  useEffect(() => {
+    if (!staticMode) videoRefs.current[0]?.load();
+  }, [staticMode]);
 
   const playVideo = (slot: number) => {
     const playPromise = videoRefs.current[slot]?.play();
@@ -54,6 +63,18 @@ const VideoBackground = ({
       return nextSources;
     });
   };
+
+  if (staticMode) {
+    return (
+      <div
+        className="absolute inset-0 h-full w-full bg-cover bg-center bg-[#f7f4ef]"
+        style={posterSrc ? { backgroundImage: `url(${posterSrc})` } : undefined}
+        aria-hidden="true"
+      >
+        <div className="absolute inset-0 bg-[#0b192c]" style={{ opacity: overlayOpacity }} />
+      </div>
+    );
+  }
 
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden bg-[#f7f4ef]">

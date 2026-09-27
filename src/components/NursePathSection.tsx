@@ -31,7 +31,7 @@ const stages = [
 export default function NursePathSection() {
   const { t } = useLanguage();
   return (
-    <section id="nurses" className="bg-[#f7f4ef] py-24">
+    <section id="nurses" className="bg-[#f7f4ef] py-16 sm:py-20">
       <div className="w-full px-5 sm:px-8 lg:px-12">
         <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
           <div>
@@ -48,10 +48,10 @@ export default function NursePathSection() {
               )}
             </p>
             <Link
-              href="#contact"
+              href="/german-for-nurses"
               className="mt-8 inline-flex items-center gap-2 rounded-xl bg-[#0b192c] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#9b1c31]"
             >
-              {t("Discuss your nursing pathway")}{" "}
+            {t('Discuss your nursing pathway')}{' '}
               <FaArrowRight className="text-xs" />
             </Link>
           </div>

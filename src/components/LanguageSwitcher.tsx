@@ -2,15 +2,13 @@
 
 import {
   useLanguage,
-  useTranslationStatus,
   SUPPORTED_LOCALES,
 } from '@/contexts/LanguageContext';
 import { useState, useRef, useEffect } from 'react';
-import { FaGlobe, FaChevronDown, FaSpinner } from 'react-icons/fa';
+import { FaGlobe, FaChevronDown } from 'react-icons/fa';
 
 export default function LanguageSwitcher() {
   const { locale, setLocale } = useLanguage();
-  const isTranslating = useTranslationStatus();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -35,12 +33,10 @@ export default function LanguageSwitcher() {
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2 text-[#0b192c] hover:text-[#0b192c] transition-colors text-sm font-medium px-3 py-2 rounded-lg bg-[#f7f4ef] border border-[#0b192c]/10 shadow-sm hover:bg-white"
         aria-label="Change language"
+        aria-expanded={isOpen}
+        aria-haspopup="listbox"
       >
-        {isTranslating ? (
-          <FaSpinner className="animate-spin text-base text-[#9b1c31]" />
-        ) : (
-          <FaGlobe className="text-base text-[#9b1c31]" />
-        )}
+        <FaGlobe className="text-base text-[#9b1c31]" />
         <span className="hidden sm:inline">
           {current?.flag} {current?.label}
         </span>
@@ -53,7 +49,7 @@ export default function LanguageSwitcher() {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-52 bg-[#f7f4ef] border border-[#0b192c]/10 rounded-xl shadow-2xl overflow-hidden z-50">
+        <div role="listbox" aria-label="Language options" className="absolute right-0 mt-2 w-52 bg-[#f7f4ef] border border-[#0b192c]/10 rounded-xl shadow-2xl overflow-hidden z-50">
           {SUPPORTED_LOCALES.map((lang) => (
             <button
               key={lang.code}
