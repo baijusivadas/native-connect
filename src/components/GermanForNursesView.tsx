@@ -10,6 +10,7 @@ import {
   FaFileAlt,
   FaGraduationCap,
   FaLanguage,
+  FaLinkedinIn,
   FaMapMarkerAlt,
   FaPassport,
   FaStethoscope,
@@ -27,6 +28,7 @@ import {
   PATHWAY_STEPS,
   RECOGNITION_OUTCOMES,
   SOURCE_LINKS,
+  TRAINER_PROFILE,
   VISUAL_STORY,
   WHY_GERMAN_POINTS,
 } from "@/constants/germanForNurses";
@@ -424,6 +426,115 @@ export default function GermanForNursesView() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* TRAINER PROFILE */}
+      <section className="bg-white py-20 sm:py-24">
+        <div className="w-full px-5 sm:px-8 lg:px-12">
+          <div className="max-w-3xl">
+            <p className="eyebrow">{t("Meet your German trainer")}</p>
+            <h2 className="section-title">
+              {t("Learn German with structured, practical guidance.")}
+            </h2>
+            <p className="section-copy">
+              {t(
+                "Our German training is supported by language-focused tutors who combine structured learning with practical communication.",
+              )}
+            </p>
+          </div>
+
+          <article className="mt-10 grid overflow-hidden rounded-[2rem] border border-[#0b192c]/10 bg-[#f7f4ef] shadow-sm lg:grid-cols-[.8fr_1.2fr]">
+            <div className="relative min-h-[320px] lg:min-h-full">
+              <Image
+                src={TRAINER_PROFILE.image}
+                alt="Healthcare German learning at Native Connects"
+                fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-x-5 bottom-5 rounded-2xl border border-white/20 bg-[#0b192c]/80 p-4 text-white backdrop-blur">
+                <p className="text-xs font-bold uppercase tracking-[.18em] text-[#c19a68]">
+                  {t("German Training")}
+                </p>
+                <p className="mt-1 text-sm font-semibold">
+                  {t("General + Healthcare Communication")}
+                </p>
+              </div>
+            </div>
+
+            <div className="p-7 sm:p-10">
+              <div className="flex flex-wrap items-start justify-between gap-4">
+                <div>
+                  <p className="text-3xl font-semibold tracking-tight">
+                    {TRAINER_PROFILE.name}
+                  </p>
+                  <p className="mt-1 text-sm font-semibold text-[#9b1c31]">
+                    {t(TRAINER_PROFILE.role)}
+                  </p>
+                </div>
+                <span className="rounded-full border border-[#c19a68]/50 bg-[#c19a68]/15 px-3 py-1.5 text-xs font-bold text-[#0b192c]">
+                  {t(TRAINER_PROFILE.certification)}
+                </span>
+              </div>
+
+              <p className="mt-6 text-sm leading-7 text-[#0b192c]/65">
+                {t(TRAINER_PROFILE.summary)}
+              </p>
+
+              <div className="mt-7 grid gap-7 sm:grid-cols-2">
+                <div>
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-[#9b1c31]">
+                    {t("Experience")}
+                  </h3>
+                  <ul className="mt-3 space-y-2.5">
+                    {TRAINER_PROFILE.experience.map((item) => (
+                      <li
+                        key={item}
+                        className="flex gap-2 text-sm leading-6 text-[#0b192c]/65"
+                      >
+                        <FaCheck
+                          className="mt-1 shrink-0 text-[#c19a68]"
+                          aria-hidden="true"
+                        />
+                        {t(item)}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-[#9b1c31]">
+                    {t("Education")}
+                  </h3>
+                  <ul className="mt-3 space-y-2.5">
+                    {TRAINER_PROFILE.education.map((item) => (
+                      <li
+                        key={item}
+                        className="flex gap-2 text-sm leading-6 text-[#0b192c]/65"
+                      >
+                        <FaCheck
+                          className="mt-1 shrink-0 text-[#c19a68]"
+                          aria-hidden="true"
+                        />
+                        {t(item)}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <a
+                href={TRAINER_PROFILE.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-8 inline-flex items-center gap-2 rounded-xl bg-[#0b192c] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#142945] focus:outline-none focus:ring-2 focus:ring-[#9b1c31]"
+              >
+                <FaLinkedinIn aria-hidden="true" />
+                {t("View LinkedIn Profile")}
+              </a>
+            </div>
+          </article>
         </div>
       </section>
 

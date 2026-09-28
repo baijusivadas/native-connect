@@ -8,6 +8,17 @@ export interface LanguageLevel {
   focus: string;
 }
 
+export interface TrainerProfile {
+  name: string;
+  role: string;
+  certification: string;
+  summary: string;
+  experience: string[];
+  education: string[];
+  linkedin: string;
+  image: string;
+}
+
 export interface PathwayStep {
   number: string;
   title: string;
@@ -94,6 +105,26 @@ export const LEARNING_FOCUS: string[] = [
   'De-escalation, empathy, and communicating with grieving or anxious families',
   'Standard German medical hygiene and hospital safety protocols',
 ];
+
+export const TRAINER_PROFILE: TrainerProfile = {
+  name: 'Otilia Cărare',
+  role: 'German Language Tutor',
+  certification: 'B2 Certified German',
+  summary:
+    'Otilia brings experience tutoring German and French, together with academic training in German teaching, translation and interpretation. Her learning approach can help students build practical German skills step by step.',
+  experience: [
+    'German and French language tutoring experience',
+    'Experience working in Germany and adapting to different working environments',
+    'Focus on structured, level-appropriate language learning',
+  ],
+  education: [
+    'Master’s studies in German language teaching, University of Bucharest',
+    'Translation & Interpretation studies in French and German',
+    'Academic exchange experience at Aix-Marseille Université',
+  ],
+  linkedin: 'https://www.linkedin.com/in/otilia-c%C4%83rare-6600b6321/',
+  image: '/img/Student_working_as_hospital_nurse.jpg',
+};
 
 export const PATHWAY_STEPS: PathwayStep[] = [
   {
