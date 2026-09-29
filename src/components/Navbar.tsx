@@ -33,8 +33,8 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { t } = useLanguage();
   const navLinks = [
+    { href: "#nurses", label: t("German for nurses") },
     { href: "#languages", label: t("Languages") },
-    { href: "#offer", label: t("What We Offer") },
     { href: "#testimonials", label: t("Students") },
     { href: "#pricing", label: t("Pricing") },
     { href: "#about", label: t("About") },

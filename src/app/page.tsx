@@ -30,6 +30,9 @@ export default function Home() {
       {/* 3. What languages you teach */}
       <LanguagesSection />
 
+      {/* 4. Specialised pathway first to match the strongest offer */}
+      <NursePathSection />
+
       {/* 5. Why native tutors */}
       <TutorSection />
 
@@ -39,28 +42,25 @@ export default function Home() {
       {/* 7. Main differentiators */}
       <WhyChooseSection />
 
-      {/* 8. Specialized Germany/Nursing pathway */}
-      <NursePathSection />
-
-      {/* 9. Other learning services */}
-      <WhatWeOfferSection />
-
-      {/* 10. Social proof */}
+      {/* 8. Social proof */}
       <TestimonialsSection />
 
-      {/* 11. Learning plans */}
+      {/* 9. Learning plans */}
       <PricingSection />
 
-      {/* 12. Brand story */}
+      {/* 10. Other learning services */}
+      <WhatWeOfferSection />
+
+      {/* 11. Brand story */}
       <AboutSection />
 
-      {/* 13. Trust / partnerships */}
+      {/* 12. Trust / partnerships */}
       <PartnersSection />
 
-      {/* 14. Remove objections */}
+      {/* 13. Remove objections */}
       <FAQSection />
 
-      {/* 15. Lead capture */}
+      {/* 14. Lead capture */}
       <ContactSection />
 
       <ChatWidget />

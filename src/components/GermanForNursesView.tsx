@@ -25,7 +25,6 @@ import {
   LEARNING_FOCUS,
   LEVELS,
   OVERVIEW_STATS,
-  PATHWAY_STEPS,
   RECOGNITION_OUTCOMES,
   SOURCE_LINKS,
   TRAINER_PROFILE,
@@ -457,9 +456,6 @@ export default function GermanForNursesView() {
                 <p className="text-xs font-bold uppercase tracking-[.18em] text-[#c19a68]">
                   {t("German Training")}
                 </p>
-                <p className="mt-1 text-sm font-semibold">
-                  {t("General + Healthcare Communication")}
-                </p>
               </div>
             </div>
 
@@ -578,94 +574,6 @@ export default function GermanForNursesView() {
         </div>
       </section>
 
-      {/* RECOGNITION & 2026 VISAS - Full width */}
-      <section className="bg-[#f7f4ef] py-12 sm:py-16">
-        <div className="grid w-full gap-8 px-5 sm:px-8 lg:grid-cols-[.9fr_1.1fr] lg:gap-12 lg:px-12">
-          <div>
-            <p className="eyebrow">{t("2026 Pathways")}</p>
-
-            <h2 className="section-title mt-1.5 text-2xl sm:text-3xl lg:text-4xl">
-              {t("Recognition (Anerkennung) & Visa Routes")}
-            </h2>
-
-            <p className="section-copy mt-2 text-sm sm:text-base">
-              {t(
-                "Degrees from India (GNM or B.Sc) are submitted to the German State Examination Office (Landesprüfungsamt) to evaluate equivalence.",
-              )}
-            </p>
-
-            <div className="mt-5 space-y-3 text-xs sm:text-sm text-[#0b192c]/80">
-              <div className="rounded-2xl border border-[#0b192c]/10 bg-white p-4">
-                <h4 className="font-bold text-[#0b192c]">
-                  {t("Closing the Deficit (Defizitbescheid):")}
-                </h4>
-                <p className="mt-1 text-xs leading-relaxed text-[#0b192c]/70">
-                  <strong>
-                    {t("1. Adaptation Course (Anpassungslehrgang):")}
-                  </strong>{" "}
-                  {t(
-                    "Practical onboarding inside a German hospital without a high-stress final exam.",
-                  )}
-                  <br />
-                  <strong>
-                    {t("2. Knowledge Exam (Kenntnisprüfung):")}
-                  </strong>{" "}
-                  {t("Direct oral/practical exam for expedited recognition.")}
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-[#0b192c]/10 bg-white p-4">
-                <h4 className="font-bold text-[#0b192c]">
-                  {t("2026 Visa Options:")}
-                </h4>
-                <p className="mt-1 text-xs leading-relaxed text-[#0b192c]/70">
-                  <strong>{t("• Recognition Partnership:")}</strong>{" "}
-                  {t(
-                    "Arrive with A2/B1 German + employment offer to complete B2 while working as an assistant.",
-                  )}
-                  <br />
-                  <strong>
-                    {t("• Opportunity Card (Chancenkarte):")}
-                  </strong>{" "}
-                  {t("Points-based route for qualified professionals.")}
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-5 rounded-2xl bg-[#0b192c] p-5 text-white">
-              <p className="text-[10px] font-bold uppercase tracking-wider text-[#c19a68]">
-                {t("Advisory Notice")}
-              </p>
-              <p className="mt-1.5 text-xs leading-relaxed text-white/75">
-                {t(
-                  "Native Connects provides certified language training. Official legal recognition decisions and visas are issued directly by German State Authorities and Embassies.",
-                )}
-              </p>
-            </div>
-          </div>
-
-          <div className="space-y-3">
-            {PATHWAY_STEPS.map(({ number, title, copy }) => (
-              <div
-                key={number}
-                className="grid gap-3 rounded-2xl border border-[#0b192c]/10 bg-white p-4 sm:grid-cols-[50px_1fr] sm:items-start"
-              >
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#9b1c31] text-xs font-bold text-white">
-                  {number}
-                </div>
-                <div>
-                  <h3 className="text-sm font-bold text-[#0b192c] sm:text-base">
-                    {t(title)}
-                  </h3>
-                  <p className="mt-1 text-xs leading-relaxed text-[#0b192c]/65 sm:text-sm">
-                    {t(copy)}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* RECOGNITION OUTCOMES - Full width */}
       <section className="bg-white py-12 sm:py-16">

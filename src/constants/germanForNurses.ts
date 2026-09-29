@@ -123,7 +123,7 @@ export const TRAINER_PROFILE: TrainerProfile = {
     'Academic exchange experience at Aix-Marseille Université',
   ],
   linkedin: 'https://www.linkedin.com/in/otilia-c%C4%83rare-6600b6321/',
-  image: '/img/Student_working_as_hospital_nurse.jpg',
+  image: '/img/OtiliaCărare.jpg',
 };
 
 export const PATHWAY_STEPS: PathwayStep[] = [
