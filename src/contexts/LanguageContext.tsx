@@ -3,10 +3,10 @@
 import {
   createContext,
   useContext,
-  useState,
   useCallback,
   useEffect,
   useMemo,
+  useSyncExternalStore,
   ReactNode,
 } from 'react';
 import { LOCAL_TRANSLATIONS } from '@/constants/translations';
@@ -16,7 +16,7 @@ export const SUPPORTED_LOCALES = [
   { code: 'fr', label: 'Français', flag: '🇫🇷' },
   { code: 'it', label: 'Italiano', flag: '🇮🇹' },
   { code: 'ro', label: 'Română', flag: '🇷🇴' },
-  { code: 'de', label: 'German', flag: '🇩🇪' },
+  { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
 ] as const;
 
 type LanguageContextValue = {
@@ -25,16 +25,41 @@ type LanguageContextValue = {
   t: (text: string) => string;
 };
 
+let currentLocale = 'en';
+const localeSubscribers = new Set<() => void>();
+
+function subscribeToLocale(onStoreChange: () => void) {
+  localeSubscribers.add(onStoreChange);
+  return () => localeSubscribers.delete(onStoreChange);
+}
+
+function getLocaleSnapshot() {
+  return currentLocale;
+}
+
+function getServerLocaleSnapshot() {
+  return 'en';
+}
+
+function publishLocale(locale: string) {
+  currentLocale = locale;
+  localeSubscribers.forEach((subscriber) => subscriber());
+}
+
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<string>('en');
+  const locale = useSyncExternalStore(
+    subscribeToLocale,
+    getLocaleSnapshot,
+    getServerLocaleSnapshot,
+  );
 
   useEffect(() => {
-    const saved = localStorage.getItem('locale');
+    const saved = window.localStorage.getItem('locale');
     if (!saved || !SUPPORTED_LOCALES.some((language) => language.code === saved)) return;
-    setLocaleState(saved);
     document.documentElement.lang = saved;
+    publishLocale(saved);
   }, []);
 
   const t = useCallback(
@@ -42,11 +67,15 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     [locale],
   );
 
-  const setLocale = useCallback((l: string) => {
-    if (!SUPPORTED_LOCALES.some((language) => language.code === l)) return;
-    setLocaleState(l);
-    localStorage.setItem('locale', l);
-    document.documentElement.lang = l;
+  const setLocale = useCallback((nextLocale: string) => {
+    if (!SUPPORTED_LOCALES.some((language) => language.code === nextLocale)) return;
+    try {
+      window.localStorage.setItem('locale', nextLocale);
+    } catch {
+      // The in-memory locale still works when browser storage is unavailable.
+    }
+    document.documentElement.lang = nextLocale;
+    publishLocale(nextLocale);
   }, []);
 
   const languageValue = useMemo(

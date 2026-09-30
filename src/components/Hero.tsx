@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { FaArrowRight, FaCheck, FaGlobeEurope } from 'react-icons/fa';
+import { FaArrowRight, FaCheck } from 'react-icons/fa';
 import VideoBackground from './VideoBackground';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -12,26 +12,15 @@ const Hero = () => {
     <section className="relative isolate min-h-[calc(100vh-80px)] overflow-hidden bg-[#0b192c]">
       <VideoBackground
         posterSrc="/img/italy.jpeg"
-        videoSrc={[
-          '/video/italy.mp4',
-          '/video/paris.mp4',
-          '/video/switzerland.mp4',
-        ]}
-        overlayOpacity={0.78}
+        videoSrc="/video/banger.mp4"
+        overlayOpacity={0.18}
       />
 
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_30%,rgba(193,154,104,.22),transparent_32%),linear-gradient(90deg,rgba(11,25,44,.98)_0%,rgba(11,25,44,.78)_52%,rgba(11,25,44,.35)_100%)]" />
-      <div className="absolute -right-32 -top-32 h-96 w-96 rounded-full border border-[#c19a68]/20" />
-      <div className="absolute bottom-[-12rem] left-[-8rem] h-96 w-96 rounded-full border border-[#9b1c31]/25" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,25,44,.7)_0%,rgba(11,25,44,.38)_48%,rgba(11,25,44,.12)_100%)]" />
 
       <div className="relative z-10 flex min-h-[calc(100vh-80px)] w-full items-center px-5 py-20 sm:px-8 lg:px-12">
         <div className="grid w-full items-center gap-14 lg:grid-cols-[1.05fr_.95fr]">
           <div className="max-w-3xl">
-            <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-[#c19a68]/35 bg-[#f7f4ef]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[.2em] text-[#f7f4ef] backdrop-blur-md">
-              <FaGlobeEurope className="text-[#c19a68]" />
-              {t('Language Learning Reimagined')}
-            </div>
-
             <h1 className="text-5xl font-semibold leading-[1.02] tracking-[-.04em] text-[#f7f4ef] sm:text-6xl lg:text-7xl xl:text-[5.3rem]">
               {t('Learn the language.')}{' '}
               <span className="text-[#c19a68]">{t('Live the life.')}</span>

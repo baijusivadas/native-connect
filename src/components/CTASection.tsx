@@ -37,7 +37,7 @@ export default function CTASection() {
           }}
           className="group inline-flex shrink-0 items-center gap-3 rounded-xl bg-[#f7f4ef] px-7 py-4 text-sm font-bold text-[#0b192c] transition hover:-translate-y-0.5 hover:bg-white"
         >
-          Book a Demo Session{" "}
+          {t("Book a Demo Session")}{" "}
           <FaArrowRight className="text-xs transition-transform group-hover:translate-x-1" />
         </button>
       </div>

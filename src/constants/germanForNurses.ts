@@ -19,12 +19,6 @@ export interface TrainerProfile {
   image: string;
 }
 
-export interface PathwayStep {
-  number: string;
-  title: string;
-  copy: string;
-}
-
 export interface RecognitionOutcome {
   title: string;
   copy: string;
@@ -38,31 +32,27 @@ export interface SourceLink {
 export interface VisualStoryItem {
   src: string;
   caption: string;
-  type?: 'image' | 'video';
-  poster?: string;
 }
 
 export const WHY_GERMAN_POINTS: string[] = [
-  'High baseline earnings: Standard salary under TVöD-P scale ranges from €3,187 to €4,013+/month gross, plus shift, weekend, and night allowances.',
-  'Immediate demand & job security: Over 200,000 nursing vacancies expected by 2030 across hospitals, clinics, and care facilities.',
-  'Fast-track Permanent Residency: Eligible for permanent residency (Niederlassungserlaubnis) after 3 years of skilled employment (or faster with B2 German).',
-  'Family Reunification: Spouses are entitled to full work rights upon joining you in Germany.',
+  'German skills can support communication, but they do not guarantee employment, qualification recognition or visa approval.',
+  'The competent authority decides how each nursing qualification is assessed; requirements vary by state and individual case.',
+  'Accepted language certificates and professional requirements vary. Confirm them with the relevant authority or employer.',
+  'Visa and family-reunification rules depend on individual circumstances and current law. Check official guidance before making plans.',
 ];
 
 export const VISUAL_STORY: VisualStoryItem[] = [
   {
-    src: '/video/Nurse_working_in_Germany_20260927155957.mp4',
-    caption: 'Step 1: Master German from A1 to B2 alongside your nursing shifts.',
-    type: 'video',
-    poster: '/img/indian_student_standing_in_germany.jpg',
+    src: '/img/Student_working_as_hospital_nurse.jpg',
+    caption: 'Step 1: Practise communication for common nursing situations.',
   },
   {
     src: '/img/Student_working.jpg',
-    caption: 'Step 2: Submit your nursing degree for recognition (Anerkennung).',
+    caption: 'Step 2: Learn how the qualification-recognition process works.',
   },
   {
-    src: '/img/swiss.jpeg',
-    caption: 'Step 3: Begin working in top-tier German hospitals with full stability.',
+    src: '/img/Student_standing_in_Germany_.jpg',
+    caption: 'Step 3: Check your next steps with current official guidance.',
   },
 ];
 
@@ -85,15 +75,15 @@ export const LEVELS: LanguageLevel[] = [
     level: 'B2',
     stage: 'Advanced Clinical German',
     title: 'Professional Medical German & Exam Prep',
-    copy: 'Focus on clinical nursing communication (Pflegefachsprache), shift handovers, doctor discussions, emergency protocols, and Goethe B2 exam practice.',
+    copy: 'Practise clinical communication, shift handovers, conversations with other professionals, and exam skills for your chosen route.',
     focus: 'Estimated time: 6–8 months (Goethe B2 Exam preparation)',
   },
   {
     level: 'B2 Nursing',
     stage: 'Clinical Onboarding',
     title: 'Hospital Adaptation & Recognition',
-    copy: 'Bridge the deficit (Defizitbescheid) via Adaptation Course (Anpassungslehrgang) or Knowledge Exam (Kenntnisprüfung) at your employer hospital.',
-    focus: 'In-Germany training or direct full recognition',
+    copy: 'If required by the recognition authority, prepare for an adaptation course or knowledge exam.',
+    focus: 'Only if required by your recognition decision',
   },
 ];
 
@@ -126,46 +116,18 @@ export const TRAINER_PROFILE: TrainerProfile = {
   image: '/img/OtiliaCărare.jpg',
 };
 
-export const PATHWAY_STEPS: PathwayStep[] = [
-  {
-    number: '01',
-    title: 'Language Training (A1 to B2)',
-    copy: 'Complete structured German language modules designed for nurses while continuing your regular hospital shifts in India.',
-  },
-  {
-    number: '02',
-    title: 'Degree Evaluation & Deficit Notice',
-    copy: 'Submit GNM / B.Sc / M.Sc transcripts and syllabus to the competent State Examination Office (Landesprüfungsamt) in Germany to receive your Defizitbescheid.',
-  },
-  {
-    number: '03',
-    title: 'Visa Application (Chancenkarte or Recognition Partnership)',
-    copy: 'Apply for the visa either via the Recognition Partnership (A2/B1 level with a job contract) or the Opportunity Card (Chancenkarte).',
-  },
-  {
-    number: '04',
-    title: 'Hospital Placement & Deficit Closure',
-    copy: 'Relocate to Germany. Complete the Adaptation Course (Anpassungslehrgang) or take the Knowledge Exam (Kenntnisprüfung) while earning an assistant salary.',
-  },
-  {
-    number: '05',
-    title: 'Full Licensure (Urkunde) & RN Career',
-    copy: 'Receive your formal license to practice as a Registered Nurse (Pflegefachkraft) with full TVöD-P salary scale benefits.',
-  },
-];
-
 export const RECOGNITION_OUTCOMES: RecognitionOutcome[] = [
   {
     title: 'Full Recognition (Volle Gleichwertigkeit)',
-    copy: 'Your Indian degree curriculum is assessed as completely equal to the German nursing standard. You directly receive authorization upon passing B2 German.',
+    copy: 'The competent authority decides whether a qualification is equivalent. Other professional and language requirements may still apply.',
   },
   {
     title: 'Partial Recognition (Defizitbescheid)',
-    copy: 'The standard result for most Indian B.Sc and GNM degrees. Outlines specific theory or practical hours missing, which you fulfill in Germany.',
+    copy: 'If gaps are identified, the decision explains which theory or practical requirements remain. The outcome depends on your individual case.',
   },
   {
     title: 'Adaptation or Exam Route',
-    copy: 'You close the gap either through supervised work in a hospital (Anpassungslehrgang) or by directly passing an oral/practical test (Kenntnisprüfung).',
+    copy: 'The recognition decision specifies available ways to address any gaps. Confirm the route and requirements with the responsible authority.',
   },
 ];
 
@@ -175,7 +137,7 @@ export const DOCUMENT_CHECKLIST: string[] = [
   'Nursing Council Registration Certificate (State/INC)',
   'Detailed Theory & Practical Hours Syllabus Breakdown',
   'Proof of Work Experience & Employment Certificates',
-  'Goethe / Telc / ÖSD German Language Certificates',
+  'Language certificates required for your recognition route',
   'Valid Passport & Updated Europass Format CV',
   'Police Clearance Certificate (PCC) & Medical Fitness Certificate',
 ];
@@ -200,8 +162,8 @@ export const SOURCE_LINKS: SourceLink[] = [
 ];
 
 export const OVERVIEW_STATS = [
-  { value: 'A1 → B2', label: '18–23 Mo. Pathway', icon: 'FaLanguage' as const },
-  { value: '€3,187 - €4,013', label: 'RN Monthly Salary', icon: 'FaEuroSign' as const },
-  { value: 'Chancenkarte', label: '2026 Visa Routes', icon: 'FaPassport' as const },
-  { value: 'Anerkennung', label: 'Degree Recognition', icon: 'FaStethoscope' as const },
+  { value: 'A1 → B2', label: 'CEFR learning range', icon: 'FaLanguage' as const },
+  { value: 'Online', label: 'Learning format', icon: 'FaGraduationCap' as const },
+  { value: 'Clinical German', label: 'Practice focus', icon: 'FaStethoscope' as const },
+  { value: 'Case-specific', label: 'Recognition decision', icon: 'FaFileAlt' as const },
 ];

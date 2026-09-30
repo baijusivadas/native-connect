@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -31,12 +32,14 @@ const Logo = () => (
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const { t } = useLanguage();
   const navLinks = [
     { href: "#nurses", label: t("German for nurses") },
     { href: "#languages", label: t("Languages") },
-    { href: "#testimonials", label: t("Students") },
-    { href: "#pricing", label: t("Pricing") },
+    { href: "#offer", label: t("How learning works") },
+    { href: "#pricing", label: t("Learning plans") },
     { href: "#about", label: t("About") },
     { href: "#contact", label: t("Contact") },
   ];
@@ -65,8 +68,8 @@ export default function Navbar() {
             {navLinks.map((link) => (
               <Link
                 key={link.href}
-                href={link.href}
-                onClick={(event) => handleNavigation(event, link.href)}
+                href={isHome ? link.href : `/${link.href}`}
+                onClick={isHome ? (event) => handleNavigation(event, link.href) : () => setMobileOpen(false)}
                 className="group relative py-2 text-sm font-medium text-[#0b192c]/65 transition hover:text-[#0b192c]"
               >
                 <span>{link.label}</span>
@@ -79,12 +82,16 @@ export default function Navbar() {
             {/* <Link href="#contact" onClick={(event) => handleNavigation(event, '#contact')} className="hidden px-2 py-2 text-sm font-semibold text-[#0b192c]/65 transition hover:text-[#9b1c31] lg:inline-flex">Log in</Link> */}
             {/* <Link href="#contact" onClick={(event) => handleNavigation(event, '#contact')} className="hidden rounded-xl border border-[#0b192c]/15 px-4 py-2.5 text-sm font-bold text-[#0b192c] transition hover:border-[#9b1c31] hover:text-[#9b1c31] sm:inline-flex">Sign up</Link> */}
             <Link
-              href="#contact"
+              href={isHome ? "#contact" : "/#contact"}
               onClick={(event) => {
-                handleNavigation(event, "#contact");
-                window.dispatchEvent(
-                  new CustomEvent("native-connects:open-demo"),
-                );
+                if (isHome) {
+                  handleNavigation(event, "#contact");
+                  window.dispatchEvent(
+                    new CustomEvent("native-connects:open-demo"),
+                  );
+                } else {
+                  setMobileOpen(false);
+                }
               }}
               className="hidden rounded-xl bg-[#9b1c31] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#85172a] sm:inline-flex"
             >
@@ -110,8 +117,8 @@ export default function Navbar() {
             {navLinks.map((link) => (
               <Link
                 key={link.href}
-                href={link.href}
-                onClick={(event) => handleNavigation(event, link.href)}
+                href={isHome ? link.href : `/${link.href}`}
+                onClick={isHome ? (event) => handleNavigation(event, link.href) : () => setMobileOpen(false)}
                 className="block border-b border-[#0b192c]/8 py-3 text-sm font-medium text-[#0b192c]/70"
               >
                 {link.label}
@@ -119,10 +126,14 @@ export default function Navbar() {
             ))}
             <div className="pt-4">
               <Link
-                href="#contact"
+                href={isHome ? "#contact" : "/#contact"}
                 onClick={(event) => {
-                  handleNavigation(event, "#contact");
-                  window.dispatchEvent(new CustomEvent("native-connects:open-demo"));
+                  if (isHome) {
+                    handleNavigation(event, "#contact");
+                    window.dispatchEvent(new CustomEvent("native-connects:open-demo"));
+                  } else {
+                    setMobileOpen(false);
+                  }
                 }}
                 className="block rounded-xl bg-[#9b1c31] px-5 py-3 text-center text-sm font-bold text-white"
               >

@@ -3,7 +3,7 @@ import GermanForNursesView from '@/components/GermanForNursesView';
 import { SITE_URL } from '@/constants/site';
 
 export const metadata: Metadata = {
-  title: 'German for Nurses: A1 to B2 Pathway & 2026 Germany Guide | Native Connects',
+  title: 'German for Nurses: A1 to B2 Learning Guide',
   description:
     'Build practical German from A1 to B2 and prepare for communication in everyday and healthcare settings while understanding the nursing recognition pathway in Germany.',
   keywords: [

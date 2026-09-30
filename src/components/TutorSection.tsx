@@ -9,6 +9,7 @@ const tutors = [
     language: "German",
     speciality: "Goethe exam prep",
     video: "/video/switzerland.mp4",
+    poster: "/img/swiss.jpeg",
     accent: "bg-[#9b1c31]",
   },
   {
@@ -16,6 +17,7 @@ const tutors = [
     language: "French",
     speciality: "Everyday conversation",
     video: "/video/paris.mp4",
+    poster: "/img/paris.jpeg",
     accent: "bg-[#c19a68]",
   },
   {
@@ -23,6 +25,7 @@ const tutors = [
     language: "Italian",
     speciality: "Work & relocation",
     video: "/video/italy.mp4",
+    poster: "/img/italy.jpeg",
     accent: "bg-[#0b192c]",
   },
 ];
@@ -59,9 +62,9 @@ export default function TutorSection() {
                   loop
                   autoPlay
                   playsInline
-                  poster="/img/swiss.jpeg"
+                  poster={tutor.poster}
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-[#0b192c]/75 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0b192c]/75 via-transparent to-transparent" />
                 <span
                   className={`absolute left-5 top-5 flex h-10 w-10 items-center justify-center rounded-full ${tutor.accent} text-white shadow-lg`}
                 >

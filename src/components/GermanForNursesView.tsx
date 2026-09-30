@@ -11,14 +11,13 @@ import {
   FaGraduationCap,
   FaLanguage,
   FaLinkedinIn,
-  FaMapMarkerAlt,
-  FaPassport,
   FaStethoscope,
 } from "react-icons/fa";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ChatWidget from "@/components/ChatWidget";
+import VideoBackground from "@/components/VideoBackground";
 import { useLanguage } from "@/contexts/LanguageContext";
 import {
   DOCUMENT_CHECKLIST,
@@ -34,11 +33,9 @@ import {
 
 const STAT_ICONS = {
   FaLanguage,
-  FaEuroSign,
-  FaPassport,
+  FaGraduationCap,
   FaStethoscope,
   FaFileAlt,
-  FaMapMarkerAlt,
 } as const;
 
 export default function GermanForNursesView() {
@@ -50,24 +47,15 @@ export default function GermanForNursesView() {
 
       {/* HERO SECTION - Full width with tight vertical padding */}
       <section className="relative overflow-hidden bg-[#0b192c] text-white">
-        <div className="absolute inset-0 opacity-25">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            aria-hidden="true"
-            className="h-full w-full object-cover"
-          >
-            <source
-              src="/video/Nurse_working_in_Germany_20260927155957.mp4"
-              type="video/mp4"
-            />
-          </video>
-        </div>
-
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0b192c] via-[#0b192c]/95 to-[#0b192c]/70" />
+        <VideoBackground
+          videoSrc={[
+            "/video/Nurse_working_in_Germany_20260927155957.mp4",
+            "/video/nurse.mp4",
+          ]}
+          posterSrc="/img/Student_working_as_hospital_nurse.jpg"
+          overlayOpacity={0.18}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0b192c]/80 via-[#0b192c]/45 to-[#0b192c]/20" />
 
         <div className="relative w-full px-5 py-12 sm:px-8 sm:py-16 lg:px-12 lg:py-20">
           <Link
@@ -79,17 +67,15 @@ export default function GermanForNursesView() {
           </Link>
 
           <div className="mt-6 max-w-4xl">
-            <span className="inline-block rounded-full bg-[#9b1c31]/30 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-[#c19a68] border border-[#c19a68]/30">
-              {t("German for Nurses • 2026 Roadmap")}
-            </span>
-
             <h1 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.15]">
-              {t("Build your German. Start your nursing career in Germany.")}
+              {t(
+                "Build your German. Explore nursing opportunities in Germany.",
+              )}
             </h1>
 
             <p className="mt-4 max-w-3xl text-sm leading-relaxed text-white/75 sm:text-base sm:leading-7">
               {t(
-                "A comprehensive A1-to-B2 roadmap tailored for Indian nurses (GNM, B.Sc, M.Sc). Master practical healthcare German for clinical work, navigate degree recognition (Anerkennung), and leverage 2026 visa pathways like the Opportunity Card (Chancenkarte).",
+                "A practical language-learning guide for nurses. Explore CEFR levels and clinical communication, and confirm qualification-recognition, language-certificate and visa requirements with the responsible authorities.",
               )}
             </p>
 
@@ -143,15 +129,15 @@ export default function GermanForNursesView() {
       <section className="py-12 sm:py-16">
         <div className="grid w-full gap-8 px-5 sm:px-8 lg:grid-cols-[1.1fr_.9fr] lg:gap-12 lg:px-12">
           <div>
-            <p className="eyebrow">{t("Why Germany Needs You")}</p>
+            <p className="eyebrow">{t("Planning a nursing pathway")}</p>
 
             <h2 className="section-title mt-1.5 text-2xl sm:text-3xl lg:text-4xl">
-              {t("High Demand, Competitive Salaries & Career Security")}
+              {t("German is one part of your nursing pathway")}
             </h2>
 
             <p className="section-copy mt-3">
               {t(
-                "Germany faces an acute nursing shortage projected to exceed 200,000 vacancies by 2030. For GNM, B.Sc., and M.Sc. nurses from India, Germany provides structured clinical career progression, stable public salaries, and direct routes to European permanent residency.",
+                "Language learning can support workplace communication. Qualification recognition, hiring decisions and visas are separate processes decided by the relevant authorities and employers.",
               )}
             </p>
 
@@ -175,9 +161,9 @@ export default function GermanForNursesView() {
                   <FaCheck aria-hidden="true" />
                 </span>
                 <p className="text-xs leading-relaxed text-[#0b192c]/90 sm:text-sm">
-                  <strong>{t("Eligibility:")}</strong>{" "}
+                  <strong>{t("Planning note:")}</strong>{" "}
                   {t(
-                    "3-year GNM, 4-year B.Sc., or Post-Basic/M.Sc. Nursing with active registration with an Indian State Nursing Council. Fresh graduates eligible.",
+                    "GNM, B.Sc. and postgraduate qualifications may be reviewed individually. Confirm your eligibility and required documents with the competent recognition authority.",
                   )}
                 </p>
               </div>
@@ -188,35 +174,23 @@ export default function GermanForNursesView() {
           <div className="self-start overflow-hidden rounded-3xl border border-[#0b192c]/10 bg-white shadow-lg">
             <div
               className="flex aspect-[16/10] snap-x snap-mandatory overflow-x-auto scrollbar-hide"
-              aria-label="Germany journey visual story"
+              role="region"
+              aria-label={t("Germany journey visual story")}
+              aria-roledescription="carousel"
+              tabIndex={0}
             >
-              {VISUAL_STORY.map(({ src, caption, type }) => (
+              {VISUAL_STORY.map(({ src, caption }) => (
                 <figure
                   key={caption}
                   className="relative min-w-full snap-center"
                 >
-                  {type === "video" ? (
-                    <video
-                      autoPlay
-                      controls
-                      loop
-                      muted
-                      playsInline
-                      preload="auto"
-                      aria-label={caption}
-                      className="h-full w-full object-cover"
-                    >
-                      <source src={src} type="video/mp4" />
-                    </video>
-                  ) : (
-                    <Image
-                      src={src}
-                      alt={caption}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 45vw"
-                      className="object-cover"
-                    />
-                  )}
+                  <Image
+                    src={src}
+                    alt={caption}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 45vw"
+                    className="object-cover"
+                  />
 
                   <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent px-5 pb-5 pt-12 text-xs font-semibold text-white sm:text-sm">
                     {t(caption)}
@@ -235,16 +209,14 @@ export default function GermanForNursesView() {
             <p className="eyebrow">{t("A1 → B2 Progression")}</p>
 
             <h2 className="section-title mt-1.5 text-2xl sm:text-3xl lg:text-4xl">
-              {t("Realistic Language Timeline for Working Nurses")}
+              {t("Estimated course timeline")}
             </h2>
 
             <p className="section-copy mt-2 text-sm sm:text-base">
+              {t("The listed A1-A2, B1 and B2 stage estimates add up to")}{" "}
+              <strong>{t("16 to 22 months")}</strong>
               {t(
-                "For nurses balancing full-time hospital shifts, reaching B2 takes approximately",
-              )}{" "}
-              <strong>{t("18 to 23 months")}</strong>
-              {t(
-                ". We structure the coursework step-by-step to prevent burnout while ensuring first-attempt exam clearance (Goethe / Telc B2).",
+                ". This is a planning estimate, not a guaranteed timeline. Your pace depends on your starting level, attendance, practice and exam availability.",
               )}
             </p>
           </div>
@@ -293,30 +265,28 @@ export default function GermanForNursesView() {
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             <div className="rounded-2xl border border-[#c19a68]/40 bg-[#f7f4ef] p-5">
               <p className="text-xs font-bold uppercase tracking-wider text-[#9b1c31]">
-                {t("Recommended Examination")}
+                {t("Exam planning")}
               </p>
               <h4 className="mt-1 text-sm font-bold text-[#0b192c]">
-                {t("Goethe B2 vs. Telc / ÖSD")}
+                {t("Check exam requirements first")}
               </h4>
               <p className="mt-1.5 text-xs leading-relaxed text-[#0b192c]/75 sm:text-sm">
-                {t("While all three are accepted, we strongly recommend")}{" "}
-                <strong>{t("Goethe B2")}</strong>{" "}
                 {t(
-                  "(~₹15,500) for universal acceptance and frictionless visa stamping at German Consulates in India.",
+                  "Confirm the accepted certificate and level with the relevant recognition authority or employer before booking an exam.",
                 )}
               </p>
             </div>
 
             <div className="rounded-2xl border border-[#0b192c]/10 bg-[#f7f4ef] p-5">
               <p className="text-xs font-bold uppercase tracking-wider text-[#9b1c31]">
-                {t("Flexible Learning Schedule")}
+                {t("Learning around shift work")}
               </p>
               <h4 className="mt-1 text-sm font-bold text-[#0b192c]">
-                {t("Designed for Shift Workers")}
+                {t("Ask about available schedules")}
               </h4>
               <p className="mt-1.5 text-xs leading-relaxed text-[#0b192c]/75 sm:text-sm">
                 {t(
-                  "Classes are scheduled around morning, evening, and night shifts with recorded backups and native-speaker speaking drills on off-days.",
+                  "Ask which class times and practice materials are available for your program.",
                 )}
               </p>
             </div>
@@ -324,19 +294,19 @@ export default function GermanForNursesView() {
         </div>
       </section>
 
-      {/* COST & SALARY FINANCIAL OUTLOOK - Full width */}
+      {/* COURSE AND CAREER COST PLANNING */}
       <section className="bg-[#f7f4ef] py-12 sm:py-16">
         <div className="w-full px-5 sm:px-8 lg:px-12">
           <div className="max-w-3xl">
-            <p className="eyebrow">{t("Financial Outlook")}</p>
+            <p className="eyebrow">{t("Course and career planning")}</p>
 
             <h2 className="section-title mt-1.5 text-2xl sm:text-3xl lg:text-4xl">
-              {t("Transparent Training Costs & Guaranteed Salaries")}
+              {t("Plan your costs and employment questions")}
             </h2>
 
             <p className="section-copy mt-2 text-sm sm:text-base">
               {t(
-                "A clear financial comparison of the investment needed in India versus the legal minimum wages earned in German hospitals.",
+                "Course fees and employment pay vary by provider, course format, exam, employer, role, experience, hours and location. Request a current itemized course quote and confirm compensation directly with employers.",
               )}
             </p>
           </div>
@@ -447,7 +417,7 @@ export default function GermanForNursesView() {
             <div className="relative min-h-[320px] lg:min-h-full">
               <Image
                 src={TRAINER_PROFILE.image}
-                alt="Healthcare German learning at Native Connects"
+                alt={`${TRAINER_PROFILE.name}, German language tutor`}
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
@@ -546,7 +516,7 @@ export default function GermanForNursesView() {
 
             <p className="section-copy mt-2 text-sm sm:text-base">
               {t(
-                "Learn the exact language and documentation formats required in German hospitals, clinics, and elderly care wards.",
+                "Practise language for common clinical situations. Responsibilities and documentation standards vary by role, employer and region.",
               )}
             </p>
           </div>
@@ -574,7 +544,6 @@ export default function GermanForNursesView() {
         </div>
       </section>
 
-
       {/* RECOGNITION OUTCOMES - Full width */}
       <section className="bg-white py-12 sm:py-16">
         <div className="w-full px-5 sm:px-8 lg:px-12">
@@ -587,7 +556,7 @@ export default function GermanForNursesView() {
 
             <p className="section-copy mt-2 text-sm sm:text-base">
               {t(
-                "The competent state authority compares your syllabus hours against German standards and issues one of these results:",
+                "The competent authority reviews your documents and decides whether requirements are met. Possible outcomes and measures depend on your case.",
               )}
             </p>
           </div>
@@ -623,7 +592,7 @@ export default function GermanForNursesView() {
 
               <p className="section-copy mt-2 text-sm sm:text-base">
                 {t(
-                  "Nursing certificates, year-wise marksheets, and registration documents must be apostilled, translated by certified translators, and notarized.",
+                  "Translation, certification and authentication requirements vary by document and authority. Check the current official checklist before ordering translations or apostilles.",
                 )}
               </p>
             </div>
@@ -660,7 +629,7 @@ export default function GermanForNursesView() {
 
             <p className="section-copy mt-2 max-w-3xl text-xs sm:text-sm">
               {t(
-                "We align our coaching with official German government portals. Use these official links to check federal state rules, visa updates, and syllabus criteria.",
+                "These official resources are starting points. Confirm current requirements with the authority responsible for your intended German state and visa route.",
               )}
             </p>
 
@@ -694,12 +663,12 @@ export default function GermanForNursesView() {
             </span>
 
             <h2 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
-              {t("Your German Nursing Career Starts Today")}
+              {t("Plan your German nursing pathway")}
             </h2>
 
             <p className="mx-auto mt-3 max-w-xl text-xs leading-relaxed text-white/80 sm:text-sm sm:leading-6">
               {t(
-                "Share your current German level and nursing qualification with our team. We will map out your timeline, match you with native tutors, and get you started.",
+                "Tell us your German level, qualification and learning goals. We can explain our language courses; employers and authorities decide recognition, employment and visa outcomes.",
               )}
             </p>
 

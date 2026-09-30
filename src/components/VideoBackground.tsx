@@ -78,7 +78,7 @@ const VideoBackground = ({
 
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden bg-[#f7f4ef]">
-      {slotSources.map((sourceIndex, slot) => (
+      {(videos.length === 1 ? [0] : slotSources).map((sourceIndex, slot) => (
         <video
           key={slot}
           ref={(element) => {
@@ -86,6 +86,7 @@ const VideoBackground = ({
           }}
           src={videos[sourceIndex]}
           autoPlay={slot === activeSlot}
+          loop={videos.length === 1}
           muted
           playsInline
           preload={slot === activeSlot ? 'auto' : 'metadata'}
@@ -93,7 +94,7 @@ const VideoBackground = ({
           onEnded={() => playNextVideo(slot)}
           onLoadedData={() => handleVideoLoaded(slot)}
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[1200ms] ease-in-out ${
-            slot === activeSlot ? 'opacity-75' : 'opacity-0'
+            slot === activeSlot ? 'opacity-100' : 'opacity-0'
           }`}
         />
       ))}

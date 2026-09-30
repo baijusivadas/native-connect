@@ -1,20 +1,21 @@
-import Navbar from '@/components/Navbar';
-import Hero from '@/components/Hero';
-import AudienceSection from '@/components/AudienceSection';
-import LanguagesSection from '@/components/LanguagesSection';
-import TutorSection from '@/components/TutorSection';
-import CurriculumSection from '@/components/CurriculumSection';
-import WhyChooseSection from '@/components/WhyChooseSection';
-import NursePathSection from '@/components/NursePathSection';
-import WhatWeOfferSection from '@/components/WhatWeOfferSection';
-import TestimonialsSection from '@/components/TestimonialsSection';
-import PricingSection from '@/components/PricingSection';
-import AboutSection from '@/components/AboutSection';
-import PartnersSection from '@/components/PartnersSection';
-import FAQSection from '@/components/FAQSection';
-import ContactSection from '@/components/ContactSection';
-import ChatWidget from '@/components/ChatWidget';
-import Footer from '@/components/Footer';
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import AudienceSection from "@/components/AudienceSection";
+import LanguagesSection from "@/components/LanguagesSection";
+import TutorSection from "@/components/TutorSection";
+import CurriculumSection from "@/components/CurriculumSection";
+import WhyChooseSection from "@/components/WhyChooseSection";
+import NursePathSection from "@/components/NursePathSection";
+import WhatWeOfferSection from "@/components/WhatWeOfferSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
+import PricingSection from "@/components/PricingSection";
+import AboutSection from "@/components/AboutSection";
+import PartnersSection from "@/components/PartnersSection";
+import FAQSection from "@/components/FAQSection";
+import CTASection from "@/components/CTASection";
+import ContactSection from "@/components/ContactSection";
+import ChatWidget from "@/components/ChatWidget";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -48,11 +49,11 @@ export default function Home() {
       {/* 9. Learning plans */}
       <PricingSection />
 
-      {/* 10. Other learning services */}
-      <WhatWeOfferSection />
-
-      {/* 11. Brand story */}
+      {/* 10. Brand story */}
       <AboutSection />
+
+      {/* 11. Other learning services */}
+      <WhatWeOfferSection />
 
       {/* 12. Trust / partnerships */}
       <PartnersSection />
@@ -60,7 +61,10 @@ export default function Home() {
       {/* 13. Remove objections */}
       <FAQSection />
 
-      {/* 14. Lead capture */}
+      {/* 14. Action banner */}
+      <CTASection />
+
+      {/* 15. Lead capture */}
       <ContactSection />
 
       <ChatWidget />

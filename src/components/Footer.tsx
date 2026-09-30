@@ -1,11 +1,14 @@
 ﻿'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { FaLanguage } from 'react-icons/fa';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Footer() {
   const { t } = useLanguage();
+  const pathname = usePathname();
+  const sectionHref = (href: string) => pathname === '/' ? href : `/${href}`;
 
   return (
     <footer className="bg-[#0b192c] py-12 text-[#f7f4ef]">
@@ -30,16 +33,16 @@ export default function Footer() {
               {t('Explore')}
             </p>
             <div className="mt-5 space-y-3 text-sm text-[#f7f4ef]/60">
-              <Link className="block hover:text-white" href="#languages">
+              <Link className="block hover:text-white" href={sectionHref('#languages')}>
                 {t('Languages')}
               </Link>
-              <Link className="block hover:text-white" href="#offer">
+              <Link className="block hover:text-white" href={sectionHref('#offer')}>
                 {t('What We Offer')}
               </Link>
-              <Link className="block hover:text-white" href="#pricing">
+              <Link className="block hover:text-white" href={sectionHref('#pricing')}>
                 {t('Pricing')}
               </Link>
-              <Link className="block hover:text-white" href="#about">
+              <Link className="block hover:text-white" href={sectionHref('#about')}>
                 {t('About')}
               </Link>
               <Link className="block hover:text-white" href="/german-for-nurses">
@@ -48,17 +51,21 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Trust */}
+          {/* Contact */}
           <div>
             <p className="text-xs font-bold uppercase tracking-[.18em] text-[#c19a68]">
-              {t('Trust')}
+              {t('Contact')}
             </p>
             <div className="mt-5 space-y-3 text-sm text-[#f7f4ef]/60">
-              <Link className="block hover:text-white" href="#testimonials">
-                {t('Student Stories')}
+              <Link className="block hover:text-white" href={sectionHref('#faq')}>
+                {t('Questions, answered')}
               </Link>
-              <span className="block">{t('Google Reviews — add link')}</span>
-              <span className="block">{t('Trustpilot — add link')}</span>
+              <Link className="block hover:text-white" href={sectionHref('#contact')}>
+                {t('Book a Demo')}
+              </Link>
+              <Link className="block hover:text-white" href="/german-for-nurses">
+                {t('German for nurses')}
+              </Link>
             </div>
           </div>
         </div>

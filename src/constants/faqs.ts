@@ -2,7 +2,7 @@ export const FAQ_GROUPS = [
   {
     title: 'General FAQs',
     questions: [
-      ['Which languages do you teach?', 'We currently offer coaching in German, French and Romanian, from beginner to advanced levels.'],
+      ['Which languages do you teach?', 'We currently offer online courses in German, French, Italian and Romanian. Available levels and formats vary by language.'],
       ['Who can join the courses?', 'Our programs are suitable for students, working professionals, nurses and healthcare professionals, people planning to study in Europe, job seekers and individuals planning to relocate to Europe.'],
       ['Do I need prior knowledge of the language?', 'No. We offer programs starting from A1 beginner level. Students with existing knowledge can take a level assessment and join the appropriate batch.'],
       ['What levels do you offer?', 'Training can be structured according to the CEFR framework: A1, A2, B1, B2 and C1, depending on the language and program.'],

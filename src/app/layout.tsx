@@ -67,13 +67,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        {/* Geographic targeting meta tags */}
-        <meta name="geo.region" content="DE" />
-        <meta name="geo.placename" content="Germany" />
-        <meta name="ICBM" content="51.1657, 10.4515" />
-        <meta name="DC.title" content="Native Connects" />
-      </head>
       <body className={inter.className}>
         <script
           type="application/ld+json"
