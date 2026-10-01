@@ -1,4 +1,4 @@
-﻿import type { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next';
 import { SITE_URL } from '@/constants/site';
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -15,8 +15,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
           url: `${SITE_URL}/german-for-nurses`,
           lastModified: now,
           changeFrequency: 'monthly',
-          priority: 0.8,
+          priority: 0.9,
+        },
+        {
+          url: `${SITE_URL}/privacy-policy`,
+          lastModified: now,
+          changeFrequency: 'yearly',
+          priority: 0.4,
+        },
+        {
+          url: `${SITE_URL}/terms`,
+          lastModified: now,
+          changeFrequency: 'yearly',
+          priority: 0.4,
         },
       ]
     : [];
 }
+

@@ -336,9 +336,8 @@ export default function ContactSection() {
                     : t("Send Message")}
                 </button>
                 <p className="sm:col-span-2 text-xs leading-5 text-[#0b192c]/40">
-                  {t(
-                    "By submitting, you’re asking Native Connects to contact you about your request. Add your privacy notice before launch.",
-                  )}
+                  By submitting, you agree Native Connects may contact you. Your data is handled per our{" "}
+                  <a href="/privacy-policy" className="underline hover:text-[#9b1c31] transition-colors">Privacy Policy</a>.
                 </p>
               </form>
             )}

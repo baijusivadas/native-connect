@@ -21,13 +21,18 @@ const Hero = () => {
       <div className="relative z-10 flex min-h-[calc(100vh-80px)] w-full items-center px-5 py-20 sm:px-8 lg:px-12">
         <div className="grid w-full items-center gap-14 lg:grid-cols-[1.05fr_.95fr]">
           <div className="max-w-3xl">
-            <h1 className="text-5xl font-semibold leading-[1.02] tracking-[-.04em] text-[#f7f4ef] sm:text-6xl lg:text-7xl xl:text-[5.3rem]">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1 text-xs font-semibold text-[#c19a68] border border-white/15 backdrop-blur-md">
+              <span className="h-2 w-2 rounded-full bg-[#c19a68] animate-pulse" />
+              {t('Language Coaching • TELC & Goethe Prep • Direct Germany Placement')}
+            </div>
+
+            <h1 className="mt-4 text-5xl font-semibold leading-[1.02] tracking-[-.04em] text-[#f7f4ef] sm:text-6xl lg:text-7xl xl:text-[5.3rem]">
               {t('Learn the language.')}{' '}
               <span className="text-[#c19a68]">{t('Live the life.')}</span>
             </h1>
 
             <p className="mt-7 max-w-2xl text-base leading-8 text-[#f7f4ef]/78 sm:text-lg">
-              {t('Personalized language learning with native speakers — built for real conversations, real goals, and the life you want in Europe.')}
+              {t('Personalized language training with native speakers and complete career pathways — from A1 to TELC/Goethe certification and direct hospital placement in Germany.')}
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -35,15 +40,15 @@ const Hero = () => {
                 {t('Book a Free Demo')}
                 <FaArrowRight className="text-xs transition-transform group-hover:translate-x-1" />
               </Link>
-              <Link href="#languages" className="inline-flex items-center justify-center rounded-xl border border-[#f7f4ef]/30 bg-[#f7f4ef]/8 px-7 py-4 text-sm font-bold text-[#f7f4ef] backdrop-blur-md transition hover:bg-[#f7f4ef]/15">
-                {t('Explore Languages')}
+              <Link href="/german-for-nurses" className="inline-flex items-center justify-center rounded-xl border border-[#c19a68]/50 bg-[#c19a68]/15 px-7 py-4 text-sm font-bold text-[#f7f4ef] backdrop-blur-md transition hover:bg-[#c19a68]/25">
+                {t('German Nursing & Placement')}
               </Link>
             </div>
 
             <div className="mt-9 grid max-w-2xl grid-cols-1 gap-3 sm:grid-cols-3">
-              {['Native-speaking tutors', 'Goal-based learning', 'Flexible online lessons'].map((item) => (
-                <div key={item} className="flex items-center gap-2 text-sm text-[#f7f4ef]/82">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#c19a68]/18 text-[#c19a68]"><FaCheck className="text-[10px]" /></span>
+              {['Native-speaking tutors', 'TELC Pflege & Goethe Prep', '0-Fee Placement in Germany'].map((item) => (
+                <div key={item} className="flex items-center gap-2 text-xs sm:text-sm text-[#f7f4ef]/85">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#c19a68]/20 text-[#c19a68]"><FaCheck className="text-[9px]" /></span>
                   {t(item)}
                 </div>
               ))}
@@ -59,10 +64,10 @@ const Hero = () => {
                 </div>
                 <div className="mt-7 space-y-3">
                   {[
-                    ['🇩🇪', 'I want to work in Germany'],
-                    ['👩‍👦', 'I want my child to learn'],
-                    ['✈️', 'I am moving to Europe'],
-                    ['💬', 'I want to speak confidently'],
+                    ['🇩🇪', 'Work as a Nurse in Germany'],
+                    ['🎓', 'Study or Work in Europe'],
+                    ['👩‍👦', 'Language for my child'],
+                    ['💬', 'Speak confidently with Natives'],
                   ].map(([icon, label]) => (
                     <div key={label} className="flex items-center gap-4 rounded-2xl border border-[#f7f4ef]/10 bg-[#f7f4ef]/6 p-4 text-sm font-medium text-[#f7f4ef]">
                       <span className="text-xl">{icon}</span>
@@ -72,8 +77,8 @@ const Hero = () => {
                   ))}
                 </div>
                 <div className="mt-6 rounded-2xl bg-[#f7f4ef] p-4 text-[#0b192c]">
-                  <div className="text-xs font-bold uppercase tracking-[.16em] text-[#9b1c31]">{t('A better way to learn')}</div>
-                  <p className="mt-1 text-sm leading-6">{t('Learn the language you need for the life you are building.')}</p>
+                  <div className="text-xs font-bold uppercase tracking-[.16em] text-[#9b1c31]">{t('Train • Certify • Relocate')}</div>
+                  <p className="mt-1 text-xs leading-5 text-[#0b192c]/75">{t('End-to-end support with certified exam preparation and direct employer matchmaking.')}</p>
                 </div>
               </div>
             </div>

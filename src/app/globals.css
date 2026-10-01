@@ -23,27 +23,29 @@ body {
 ::-webkit-scrollbar-thumb { background: var(--navy); border-radius: 999px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--maroon); }
 
-.eyebrow {
-  color: var(--maroon);
-  font-size: .72rem;
-  font-weight: 800;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-}
-.section-title {
-  margin-top: .75rem;
-  color: var(--navy);
-  font-size: clamp(2.25rem, 5vw, 4rem);
-  line-height: 1.05;
-  letter-spacing: -.04em;
-  font-weight: 600;
-}
-.section-copy {
-  margin-top: 1.25rem;
-  max-width: 42rem;
-  color: rgba(11, 25, 44, .62);
-  font-size: .98rem;
-  line-height: 1.9;
+@layer components {
+  .eyebrow {
+    color: var(--maroon);
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+  }
+  .section-title {
+    margin-top: .75rem;
+    color: var(--navy);
+    font-size: clamp(2.25rem, 5vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -.04em;
+    font-weight: 600;
+  }
+  .section-copy {
+    margin-top: 1.25rem;
+    max-width: 42rem;
+    color: rgba(11, 25, 44, .62);
+    font-size: .98rem;
+    line-height: 1.9;
+  }
 }
 
 .partner-marquee-window {

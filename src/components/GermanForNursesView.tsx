@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-  FaArrowLeft,
   FaArrowRight,
   FaCheck,
   FaEuroSign,
@@ -25,7 +24,10 @@ import {
   LEVELS,
   OVERVIEW_STATS,
   RECOGNITION_OUTCOMES,
+  RECRUITMENT_PATHWAY_STEPS,
   SOURCE_LINKS,
+  TELC_PFLEGE_BENEFITS,
+  TELC_VS_GOETHE_COMPARISON,
   TRAINER_PROFILE,
   VISUAL_STORY,
   WHY_GERMAN_POINTS,
@@ -58,24 +60,20 @@ export default function GermanForNursesView() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#0b192c]/80 via-[#0b192c]/45 to-[#0b192c]/20" />
 
         <div className="relative w-full px-5 py-12 sm:px-8 sm:py-16 lg:px-12 lg:py-20">
-          <Link
-            href="/#nurses"
-            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-white/70 transition hover:text-[#c19a68] focus:outline-none focus:ring-2 focus:ring-[#c19a68]"
-          >
-            <FaArrowLeft className="text-[10px]" />
-            {t("Back to Native Connects")}
-          </Link>
+          <div className="max-w-4xl">
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#9b1c31] px-3.5 py-1 text-xs font-bold text-white shadow-md">
+              <span>🩺</span> {t("Language Training + Certified Exam Prep + Hospital Placement")}
+            </div>
 
-          <div className="mt-6 max-w-4xl">
             <h1 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.15]">
               {t(
-                "Build your German. Explore nursing opportunities in Germany.",
+                "Build your German. Secure your nursing career in Germany.",
               )}
             </h1>
 
             <p className="mt-4 max-w-3xl text-sm leading-relaxed text-white/75 sm:text-base sm:leading-7">
               {t(
-                "A practical language-learning guide for nurses. Explore CEFR levels and clinical communication, and confirm qualification-recognition, language-certificate and visa requirements with the responsible authorities.",
+                "We don't just teach German — we provide a complete pathway. Intensive clinical training, dedicated preparation for TELC Deutsch B1-B2 Pflege & Goethe exams, and direct hospital recruitment with zero placement fees.",
               )}
             </p>
 
@@ -84,15 +82,22 @@ export default function GermanForNursesView() {
                 href="/#contact"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#9b1c31] px-5 py-3 text-sm font-bold text-white shadow-lg shadow-[#9b1c31]/30 transition hover:bg-[#85172a] focus:outline-none focus:ring-2 focus:ring-[#c19a68]"
               >
-                {t("Book a Free Demo")}
+                {t("Book a Free Demo & Assessment")}
                 <FaArrowRight className="text-xs" />
               </Link>
 
               <a
-                href="#roadmap"
-                className="inline-flex items-center justify-center rounded-xl border border-white/20 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:border-[#c19a68] hover:text-[#c19a68] focus:outline-none focus:ring-2 focus:ring-[#c19a68]"
+                href="#placement"
+                className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:border-[#c19a68] hover:text-[#c19a68] focus:outline-none focus:ring-2 focus:ring-[#c19a68]"
               >
-                {t("Explore the A1-B2 Roadmap")}
+                {t("Training & Placement Pathway")}
+              </a>
+
+              <a
+                href="#telc-goethe"
+                className="inline-flex items-center justify-center rounded-xl border border-[#c19a68]/40 px-5 py-3 text-sm font-semibold text-[#c19a68] transition hover:bg-[#c19a68]/10 focus:outline-none focus:ring-2 focus:ring-[#c19a68]"
+              >
+                {t("TELC vs Goethe Guide")}
               </a>
             </div>
           </div>
@@ -129,15 +134,15 @@ export default function GermanForNursesView() {
       <section className="py-12 sm:py-16">
         <div className="grid w-full gap-8 px-5 sm:px-8 lg:grid-cols-[1.1fr_.9fr] lg:gap-12 lg:px-12">
           <div>
-            <p className="eyebrow">{t("Planning a nursing pathway")}</p>
+            <p className="eyebrow">{t("End-to-End Support")}</p>
 
             <h2 className="section-title mt-1.5 text-2xl sm:text-3xl lg:text-4xl">
-              {t("German is one part of your nursing pathway")}
+              {t("Training, Certification & Placement in one place")}
             </h2>
 
             <p className="section-copy mt-3">
               {t(
-                "Language learning can support workplace communication. Qualification recognition, hiring decisions and visas are separate processes decided by the relevant authorities and employers.",
+                "Learning German is the foundation. We pair rigorous language instruction with TELC/Goethe exam strategies and verified German hospital hiring partnerships.",
               )}
             </p>
 
@@ -161,9 +166,9 @@ export default function GermanForNursesView() {
                   <FaCheck aria-hidden="true" />
                 </span>
                 <p className="text-xs leading-relaxed text-[#0b192c]/90 sm:text-sm">
-                  <strong>{t("Planning note:")}</strong>{" "}
+                  <strong>{t("Ethical Recruitment Guarantee:")}</strong>{" "}
                   {t(
-                    "GNM, B.Sc. and postgraduate qualifications may be reviewed individually. Confirm your eligibility and required documents with the competent recognition authority.",
+                    "Nursing candidates are placed with verified German hospitals with 0 recruitment fees. All costs are covered directly by healthcare employers under German labor agreements.",
                   )}
                 </p>
               </div>
@@ -202,24 +207,143 @@ export default function GermanForNursesView() {
         </div>
       </section>
 
+      {/* END-TO-END PLACEMENT PATHWAY SECTION */}
+      <section id="placement" className="scroll-mt-16 bg-[#0b192c] py-14 text-white sm:py-20">
+        <div className="w-full px-5 sm:px-8 lg:px-12">
+          <div className="max-w-3xl">
+            <p className="text-xs font-extrabold uppercase tracking-[.2em] text-[#c19a68]">{t("Complete Career Roadmap")}</p>
+            <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">
+              {t("From Language Beginner to Working Nurse in Germany")}
+            </h2>
+            <p className="mt-3 text-sm text-white/75 sm:text-base leading-relaxed">
+              {t(
+                "We don't leave you stranded after A1 or B2. Native Connects handles the entire lifecycle from classroom training to your first day on a German hospital ward.",
+              )}
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {RECRUITMENT_PATHWAY_STEPS.map((step) => (
+              <div
+                key={step.step}
+                className="relative rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur transition hover:border-[#c19a68]/60 hover:bg-white/10"
+              >
+                <span className="text-2xl font-bold text-[#c19a68]">{step.step}</span>
+                <h3 className="mt-3 text-base font-bold text-white">{t(step.title)}</h3>
+                <p className="mt-2 text-xs leading-5 text-white/65">{t(step.desc)}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 rounded-2xl border border-[#c19a68]/30 bg-white/5 p-5 sm:p-6 text-xs sm:text-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="text-white/80">
+              <strong className="text-[#c19a68]">{t("Ready to explore open nursing positions in Germany?")}</strong>{" "}
+              {t("Talk with our placement counselors and evaluate your qualification recognition.")}
+            </div>
+            <Link
+              href="/#contact"
+              className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-[#9b1c31] px-5 py-2.5 text-xs font-bold text-white shadow hover:bg-[#85172a] transition"
+            >
+              {t("Schedule Consultation")}
+              <FaArrowRight className="text-[10px]" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* TELC VS GOETHE EXAM COMPARISON & TELC PFLEGE GUIDE */}
+      <section id="telc-goethe" className="scroll-mt-16 bg-white py-14 sm:py-20">
+        <div className="w-full px-5 sm:px-8 lg:px-12">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#9b1c31]/10 px-3 py-1 text-xs font-bold text-[#9b1c31] border border-[#9b1c31]/20">
+              {t("Exam Intelligence & Guidance")}
+            </div>
+            <h2 className="section-title mt-2 text-2xl sm:text-3xl lg:text-4xl">
+              {t("TELC vs Goethe: Why TELC Pflege is Heavily Advised for Nurses")}
+            </h2>
+            <p className="section-copy mt-3 text-sm sm:text-base">
+              {t(
+                "While both standard Goethe B2 and TELC B2 are legally recognized by the German government for visa issuance, telc Deutsch B1-B2 Pflege has become the preferred choice for international nurses and German hospitals.",
+              )}
+            </p>
+          </div>
+
+          {/* Key Advantages of TELC Pflege */}
+          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+            {TELC_PFLEGE_BENEFITS.map((b) => (
+              <div
+                key={b.title}
+                className="rounded-2xl border border-[#c19a68]/30 bg-[#f7f4ef] p-5 shadow-sm"
+              >
+                <span className="text-xl">⭐</span>
+                <h3 className="mt-2 text-sm font-bold text-[#0b192c]">{t(b.title)}</h3>
+                <p className="mt-1.5 text-xs leading-relaxed text-[#0b192c]/70">{t(b.desc)}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Side-by-Side Comparison Table / Cards */}
+          <div className="mt-10 overflow-hidden rounded-3xl border border-[#0b192c]/10 bg-[#f7f4ef] p-6 sm:p-8">
+            <h3 className="text-lg font-bold text-[#0b192c]">
+              {t("Detailed Comparison: Goethe-Zertifikat vs. TELC")}
+            </h3>
+
+            <div className="mt-6 space-y-4">
+              {TELC_VS_GOETHE_COMPARISON.map((comp) => (
+                <div
+                  key={comp.category}
+                  className="rounded-2xl border border-[#0b192c]/10 bg-white p-5 shadow-sm"
+                >
+                  <p className="text-xs font-bold uppercase tracking-wider text-[#9b1c31]">
+                    {t(comp.category)}
+                  </p>
+                  <div className="mt-3 grid gap-4 md:grid-cols-2">
+                    <div className="rounded-xl bg-[#f7f4ef]/60 p-3.5 border border-[#0b192c]/5">
+                      <span className="text-xs font-bold text-[#0b192c] flex items-center gap-1.5">
+                        <span className="h-2 w-2 rounded-full bg-slate-500" />
+                        Goethe-Zertifikat
+                      </span>
+                      <p className="mt-1.5 text-xs leading-relaxed text-[#0b192c]/75">
+                        {t(comp.goethe)}
+                      </p>
+                    </div>
+
+                    <div className="rounded-xl bg-[#c19a68]/15 p-3.5 border border-[#c19a68]/40">
+                      <span className="text-xs font-bold text-[#9b1c31] flex items-center gap-1.5">
+                        <span className="h-2 w-2 rounded-full bg-[#9b1c31]" />
+                        TELC (telc Deutsch B1-B2 Pflege)
+                      </span>
+                      <p className="mt-1.5 text-xs leading-relaxed text-[#0b192c]/85">
+                        {t(comp.telc)}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* A1-B2 ROADMAP - Full width */}
-      <section id="roadmap" className="scroll-mt-16 bg-white py-12 sm:py-16">
+      <section id="roadmap" className="scroll-mt-16 bg-[#f7f4ef] py-12 sm:py-16">
         <div className="w-full px-5 sm:px-8 lg:px-12">
           <div className="max-w-3xl">
             <p className="eyebrow">{t("A1 → B2 Progression")}</p>
 
             <h2 className="section-title mt-1.5 text-2xl sm:text-3xl lg:text-4xl">
-              {t("Estimated course timeline")}
+              {t("Structured course roadmap")}
             </h2>
 
             <p className="section-copy mt-2 text-sm sm:text-base">
               {t("The listed A1-A2, B1 and B2 stage estimates add up to")}{" "}
               <strong>{t("16 to 22 months")}</strong>
               {t(
-                ". This is a planning estimate, not a guaranteed timeline. Your pace depends on your starting level, attendance, practice and exam availability.",
+                ". This is a planning estimate. Your pace depends on your schedule, practice, and whether you choose regular or intensive evening batches.",
               )}
             </p>
           </div>
+
 
           <div className="mt-8 grid gap-4 sm:gap-5 md:grid-cols-2">
             {LEVELS.map((item, index) => (
