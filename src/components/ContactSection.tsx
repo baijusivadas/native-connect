@@ -66,6 +66,16 @@ export default function ContactSection() {
     setStatus("loading");
     setError("");
 
+    // Client-side phone validation
+    if (form.phone) {
+      const digits = form.phone.replace(/[\s\-().+]/g, "");
+      if (!/^\d+$/.test(digits) || digits.length < 7 || digits.length > 15) {
+        setStatus("error");
+        setError("Please enter a valid phone number (7–15 digits).");
+        return;
+      }
+    }
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",

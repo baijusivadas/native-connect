@@ -36,7 +36,7 @@ export default function Navbar() {
   const isHome = pathname === "/";
   const { t } = useLanguage();
   const navLinks = [
-    { href: "#nurses", label: t("German for nurses") },
+    { href: "/german-for-nurses", label: t("German for nurses"), isPage: true },
     { href: "#languages", label: t("Languages") },
     { href: "#offer", label: t("How learning works") },
     { href: "#pricing", label: t("Learning plans") },
@@ -65,17 +65,32 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-20">
           <Logo />
           <div className="hidden items-center gap-7 md:flex">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={isHome ? link.href : `/${link.href}`}
-                onClick={isHome ? (event) => handleNavigation(event, link.href) : () => setMobileOpen(false)}
-                className="group relative py-2 text-sm font-medium text-[#0b192c]/65 transition hover:text-[#0b192c]"
-              >
-                <span>{link.label}</span>
-                <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-[#9b1c31] transition-all group-hover:w-full" />
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = link.isPage ? pathname === link.href : false;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.isPage ? link.href : (isHome ? link.href : `/${link.href}`)}
+                  onClick={
+                    link.isPage
+                      ? () => setMobileOpen(false)
+                      : isHome
+                      ? (event) => handleNavigation(event, link.href)
+                      : () => setMobileOpen(false)
+                  }
+                  className={`group relative py-2 text-sm font-medium transition ${
+                    isActive ? "text-[#9b1c31] font-semibold" : "text-[#0b192c]/65 hover:text-[#0b192c]"
+                  }`}
+                >
+                  <span>{link.label}</span>
+                  <span
+                    className={`absolute bottom-0 left-0 h-0.5 bg-[#9b1c31] transition-all ${
+                      isActive ? "w-full" : "w-0 group-hover:w-full"
+                    }`}
+                  />
+                </Link>
+              );
+            })}
           </div>
           <div className="flex items-center gap-2.5">
             <LanguageSwitcher />
@@ -114,16 +129,27 @@ export default function Navbar() {
           className={`md:hidden overflow-hidden border-t border-[#0b192c]/10 bg-[#f7f4ef] transition-all duration-300 ${mobileOpen ? "max-h-112 opacity-100" : "max-h-0 opacity-0"}`}
         >
           <div className="space-y-1 px-5 py-5 sm:px-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={isHome ? link.href : `/${link.href}`}
-                onClick={isHome ? (event) => handleNavigation(event, link.href) : () => setMobileOpen(false)}
-                className="block border-b border-[#0b192c]/8 py-3 text-sm font-medium text-[#0b192c]/70"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = link.isPage ? pathname === link.href : false;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.isPage ? link.href : (isHome ? link.href : `/${link.href}`)}
+                  onClick={
+                    link.isPage
+                      ? () => setMobileOpen(false)
+                      : isHome
+                      ? (event) => handleNavigation(event, link.href)
+                      : () => setMobileOpen(false)
+                  }
+                  className={`block border-b border-[#0b192c]/8 py-3 text-sm font-medium transition ${
+                    isActive ? "text-[#9b1c31] font-bold" : "text-[#0b192c]/70"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
             <div className="pt-4">
               <Link
                 href={isHome ? "#contact" : "/#contact"}

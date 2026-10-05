@@ -1,10 +1,13 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
   FaArrowRight,
   FaCheck,
+  FaChevronLeft,
+  FaChevronRight,
   FaEuroSign,
   FaFileAlt,
   FaGraduationCap,
@@ -28,7 +31,7 @@ import {
   SOURCE_LINKS,
   TELC_PFLEGE_BENEFITS,
   TELC_VS_GOETHE_COMPARISON,
-  TRAINER_PROFILE,
+  TRAINER_PROFILES,
   VISUAL_STORY,
   WHY_GERMAN_POINTS,
 } from "@/constants/germanForNurses";
@@ -42,6 +45,42 @@ const STAT_ICONS = {
 
 export default function GermanForNursesView() {
   const { t } = useLanguage();
+  const [currentTrainerIdx, setCurrentTrainerIdx] = useState(0);
+  const [isFading, setIsFading] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const activeTrainer = TRAINER_PROFILES[currentTrainerIdx];
+
+  const changeTrainer = (newIndex: number) => {
+    if (newIndex === currentTrainerIdx || isFading) return;
+    setIsFading(true);
+    setTimeout(() => {
+      setCurrentTrainerIdx(newIndex);
+      setIsFading(false);
+    }, 220);
+  };
+
+  const nextTrainer = () => {
+    const next = (currentTrainerIdx + 1) % TRAINER_PROFILES.length;
+    changeTrainer(next);
+  };
+
+  const prevTrainer = () => {
+    const prev = (currentTrainerIdx - 1 + TRAINER_PROFILES.length) % TRAINER_PROFILES.length;
+    changeTrainer(prev);
+  };
+
+  useEffect(() => {
+    if (isPaused) return;
+    const interval = setInterval(() => {
+      setIsFading(true);
+      setTimeout(() => {
+        setCurrentTrainerIdx((prev) => (prev + 1) % TRAINER_PROFILES.length);
+        setIsFading(false);
+      }, 220);
+    }, 7000);
+    return () => clearInterval(interval);
+  }, [isPaused]);
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#f7f4ef] text-[#0b192c]">
@@ -522,109 +561,204 @@ export default function GermanForNursesView() {
         </div>
       </section>
 
-      {/* TRAINER PROFILE */}
-      <section className="bg-white py-20 sm:py-24">
+      {/* TRAINER PROFILES CAROUSEL / TRANSITION */}
+      <section
+        className="bg-white py-20 sm:py-24"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
         <div className="w-full px-5 sm:px-8 lg:px-12">
-          <div className="max-w-3xl">
-            <p className="eyebrow">{t("Meet your German trainer")}</p>
-            <h2 className="section-title">
-              {t("Learn German with structured, practical guidance.")}
-            </h2>
-            <p className="section-copy">
-              {t(
-                "Our German training is supported by language-focused tutors who combine structured learning with practical communication.",
-              )}
-            </p>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div className="max-w-3xl">
+              <div className="inline-flex items-center gap-2 rounded-full bg-[#9b1c31]/10 px-3.5 py-1 text-xs font-bold text-[#9b1c31]">
+                <span>👩‍🏫</span> {t("Native & Certified Educators")}
+              </div>
+              <h2 className="section-title mt-3">
+                {t("Learn German with structured, practical guidance.")}
+              </h2>
+              <p className="section-copy">
+                {t(
+                  "Our German training is led by certified, experienced educators who combine structured language learning with real-world clinical and professional communication.",
+                )}
+              </p>
+            </div>
           </div>
 
-          <article className="mt-10 grid overflow-hidden rounded-[2rem] border border-[#0b192c]/10 bg-[#f7f4ef] shadow-sm lg:grid-cols-[.8fr_1.2fr]">
-            <div className="relative min-h-[320px] lg:min-h-full">
-              <Image
-                src={TRAINER_PROFILE.image}
-                alt={`${TRAINER_PROFILE.name}, German language tutor`}
-                fill
-                sizes="(max-width: 1024px) 100vw, 40vw"
-                className="object-cover"
-              />
-              <div className="absolute inset-x-5 bottom-5 rounded-2xl border border-white/20 bg-[#0b192c]/80 p-4 text-white backdrop-blur">
-                <p className="text-xs font-bold uppercase tracking-[.18em] text-[#c19a68]">
-                  {t("German Training")}
+          {/* Trainer Selector Tabs */}
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {TRAINER_PROFILES.map((trainer, idx) => {
+              const isSelected = idx === currentTrainerIdx;
+              return (
+                <button
+                  key={trainer.name}
+                  type="button"
+                  onClick={() => changeTrainer(idx)}
+                  className={`flex items-center gap-3.5 rounded-2xl p-3.5 text-left transition-all duration-300 ${
+                    isSelected
+                      ? "border-2 border-[#9b1c31] bg-[#f7f4ef] shadow-md ring-2 ring-[#9b1c31]/10"
+                      : "border border-[#0b192c]/10 bg-white hover:bg-[#f7f4ef]/60 hover:border-[#c19a68]/40"
+                  }`}
+                >
+                  <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl border border-[#0b192c]/10 bg-[#0b192c]/5">
+                    <Image
+                      key={`thumb-${trainer.name}-${trainer.image}`}
+                      src={trainer.image}
+                      alt={trainer.name}
+                      fill
+                      sizes="48px"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-bold text-[#0b192c]">
+                      {trainer.name}
+                    </p>
+                    <p className="truncate text-xs font-semibold text-[#9b1c31]">
+                      {t(trainer.certification)}
+                    </p>
+                  </div>
+                  {isSelected && (
+                    <span className="h-2.5 w-2.5 rounded-full bg-[#9b1c31] shrink-0" />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Featured Active Trainer Profile Card with Transition */}
+          <div className="mt-6">
+            <article
+              className={`grid overflow-hidden rounded-[2rem] border border-[#0b192c]/10 bg-[#f7f4ef] shadow-md lg:grid-cols-[.75fr_1.25fr] transition-all duration-300 ease-out ${
+                isFading
+                  ? "opacity-0 translate-y-2 scale-[0.995]"
+                  : "opacity-100 translate-y-0 scale-100"
+              }`}
+            >
+              {/* Photo & Badge */}
+              <div className="relative min-h-[340px] sm:min-h-[400px] lg:min-h-full bg-[#0b192c] overflow-hidden">
+                <Image
+                  key={`hero-${activeTrainer.name}-${activeTrainer.image}`}
+                  src={activeTrainer.image}
+                  alt={`${activeTrainer.name}, German language tutor`}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover transition-transform duration-700 hover:scale-105"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0b192c]/90 via-transparent to-black/10" />
+                <div className="absolute inset-x-5 bottom-5 rounded-2xl border border-white/20 bg-[#0b192c]/85 p-4 text-white backdrop-blur-md shadow-lg">
+                  <p className="text-xs font-bold uppercase tracking-[.18em] text-[#c19a68]">
+                    {t("Trainer Profile")}
+                  </p>
+                  <p className="mt-1 text-sm font-semibold text-white/90">
+                    {activeTrainer.name}
+                  </p>
+                </div>
+              </div>
+
+              {/* Information & Qualifications */}
+              <div className="p-6 sm:p-9 lg:p-11">
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  <div>
+                    <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#0b192c]">
+                      {activeTrainer.name}
+                    </h3>
+                    <p className="mt-1 text-sm sm:text-base font-semibold text-[#9b1c31]">
+                      {t(activeTrainer.role)}
+                    </p>
+                  </div>
+                  <span className="rounded-full border border-[#c19a68]/50 bg-[#c19a68]/15 px-3.5 py-1.5 text-xs font-bold text-[#0b192c]">
+                    {t(activeTrainer.certification)}
+                  </span>
+                </div>
+
+                <p className="mt-5 text-sm sm:text-base leading-relaxed text-[#0b192c]/75">
+                  {t(activeTrainer.summary)}
                 </p>
+
+                <div className="mt-7 grid gap-6 sm:grid-cols-2">
+                  <div className="rounded-2xl border border-[#0b192c]/5 bg-white/70 p-5">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-[#9b1c31]">
+                      {t("Experience & Practice")}
+                    </h4>
+                    <ul className="mt-3.5 space-y-2.5">
+                      {activeTrainer.experience.map((item) => (
+                        <li
+                          key={item}
+                          className="flex items-start gap-2.5 text-xs sm:text-sm leading-5 text-[#0b192c]/75"
+                        >
+                          <FaCheck
+                            className="mt-1 shrink-0 text-[#c19a68]"
+                            aria-hidden="true"
+                          />
+                          <span>{t(item)}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="rounded-2xl border border-[#0b192c]/5 bg-white/70 p-5">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-[#9b1c31]">
+                      {t("Education & Credentials")}
+                    </h4>
+                    <ul className="mt-3.5 space-y-2.5">
+                      {activeTrainer.education.map((item) => (
+                        <li
+                          key={item}
+                          className="flex items-start gap-2.5 text-xs sm:text-sm leading-5 text-[#0b192c]/75"
+                        >
+                          <FaCheck
+                            className="mt-1 shrink-0 text-[#c19a68]"
+                            aria-hidden="true"
+                          />
+                          <span>{t(item)}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="mt-8 flex flex-wrap items-center gap-3.5 pt-2 border-t border-[#0b192c]/8">
+                  {activeTrainer.linkedin ? (
+                    <a
+                      href={activeTrainer.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-xl bg-[#0b192c] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#142945] focus:outline-none focus:ring-2 focus:ring-[#9b1c31]"
+                    >
+                      <FaLinkedinIn aria-hidden="true" />
+                      {t("View LinkedIn Profile")}
+                    </a>
+                  ) : null}
+
+                  <Link
+                    href="/#contact"
+                    className="inline-flex items-center gap-2 rounded-xl bg-[#9b1c31] px-5 py-3 text-sm font-bold text-white shadow-md transition hover:bg-[#85172a] focus:outline-none focus:ring-2 focus:ring-[#c19a68]"
+                  >
+                    {t("Book a Session with Native Connects")}
+                    <FaArrowRight className="text-xs" />
+                  </Link>
+                </div>
               </div>
+            </article>
+
+            {/* Pagination Dots */}
+            <div className="mt-5 flex items-center justify-center gap-2">
+              {TRAINER_PROFILES.map((_, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => changeTrainer(idx)}
+                  aria-label={`Go to trainer ${idx + 1}`}
+                  className={`h-2.5 rounded-full transition-all duration-300 ${
+                    idx === currentTrainerIdx
+                      ? "w-8 bg-[#9b1c31]"
+                      : "w-2.5 bg-[#0b192c]/20 hover:bg-[#0b192c]/40"
+                  }`}
+                />
+              ))}
             </div>
-
-            <div className="p-7 sm:p-10">
-              <div className="flex flex-wrap items-start justify-between gap-4">
-                <div>
-                  <p className="text-3xl font-semibold tracking-tight">
-                    {TRAINER_PROFILE.name}
-                  </p>
-                  <p className="mt-1 text-sm font-semibold text-[#9b1c31]">
-                    {t(TRAINER_PROFILE.role)}
-                  </p>
-                </div>
-                <span className="rounded-full border border-[#c19a68]/50 bg-[#c19a68]/15 px-3 py-1.5 text-xs font-bold text-[#0b192c]">
-                  {t(TRAINER_PROFILE.certification)}
-                </span>
-              </div>
-
-              <p className="mt-6 text-sm leading-7 text-[#0b192c]/65">
-                {t(TRAINER_PROFILE.summary)}
-              </p>
-
-              <div className="mt-7 grid gap-7 sm:grid-cols-2">
-                <div>
-                  <h3 className="text-sm font-bold uppercase tracking-wider text-[#9b1c31]">
-                    {t("Experience")}
-                  </h3>
-                  <ul className="mt-3 space-y-2.5">
-                    {TRAINER_PROFILE.experience.map((item) => (
-                      <li
-                        key={item}
-                        className="flex gap-2 text-sm leading-6 text-[#0b192c]/65"
-                      >
-                        <FaCheck
-                          className="mt-1 shrink-0 text-[#c19a68]"
-                          aria-hidden="true"
-                        />
-                        {t(item)}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className="text-sm font-bold uppercase tracking-wider text-[#9b1c31]">
-                    {t("Education")}
-                  </h3>
-                  <ul className="mt-3 space-y-2.5">
-                    {TRAINER_PROFILE.education.map((item) => (
-                      <li
-                        key={item}
-                        className="flex gap-2 text-sm leading-6 text-[#0b192c]/65"
-                      >
-                        <FaCheck
-                          className="mt-1 shrink-0 text-[#c19a68]"
-                          aria-hidden="true"
-                        />
-                        {t(item)}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              <a
-                href={TRAINER_PROFILE.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 inline-flex items-center gap-2 rounded-xl bg-[#0b192c] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#142945] focus:outline-none focus:ring-2 focus:ring-[#9b1c31]"
-              >
-                <FaLinkedinIn aria-hidden="true" />
-                {t("View LinkedIn Profile")}
-              </a>
-            </div>
-          </article>
+          </div>
         </div>
       </section>
 

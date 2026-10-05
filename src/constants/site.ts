@@ -1,5 +1,5 @@
 export const SITE_NAME = 'Native Connects';
-export const LEGAL_ENTITY_NAME = 'Native Connects Education & Career Solutions LLP';
+export const LEGAL_ENTITY_NAME = 'Native Connects';
 export const TRADE_NAME = 'Native Connects';
 
 export const SITE_DESCRIPTION =
@@ -93,4 +93,4 @@ export const ORGANIZATION_SCHEMA = {
     'Nurse training and hospital placement in Germany',
     'Language learning for work, study, nursing, and relocation',
   ],
-};
+};

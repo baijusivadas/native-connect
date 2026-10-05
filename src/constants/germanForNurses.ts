@@ -168,25 +168,67 @@ export const LEARNING_FOCUS: string[] = [
   'Standard German medical hygiene and hospital safety protocols',
 ];
 
-export const TRAINER_PROFILE: TrainerProfile = {
-  name: 'Otilia Cărare',
-  role: 'German Language Tutor',
-  certification: 'B2 Certified German',
-  summary:
-    'Otilia brings experience tutoring German and French, together with academic training in German teaching, translation and interpretation. Her learning approach can help students build practical German skills step by step.',
-  experience: [
-    'German and French language tutoring experience',
-    'Experience working in Germany and adapting to different working environments',
-    'Focus on structured, level-appropriate language learning',
-  ],
-  education: [
-    'Master’s studies in German language teaching, University of Bucharest',
-    'Translation & Interpretation studies in French and German',
-    'Academic exchange experience at Aix-Marseille Université',
-  ],
-  linkedin: 'https://www.linkedin.com/in/otilia-c%C4%83rare-6600b6321/',
-  image: '/img/OtiliaCărare.jpg',
-};
+export const TRAINER_PROFILES: TrainerProfile[] = [
+  {
+    name: 'Otilia Cărare',
+    role: 'German Language Tutor',
+    certification: 'B2 Certified German',
+    summary:
+      'Otilia brings experience tutoring German and French, together with academic training in German teaching, translation and interpretation. Her learning approach can help students build practical German skills step by step.',
+    experience: [
+      'German and French language tutoring experience',
+      'Experience working in Germany and adapting to different working environments',
+      'Focus on structured, level-appropriate language learning',
+    ],
+    education: [
+      'Master’s studies in German language teaching, University of Bucharest',
+      'Translation & Interpretation studies in French and German',
+      'Academic exchange experience at Aix-Marseille Université',
+    ],
+    linkedin: 'https://www.linkedin.com/in/otilia-c%C4%83rare-6600b6321/',
+    image: '/img/OtiliaCărare.jpg',
+  },
+  {
+    name: 'Leonard-Gabriel Mălaia',
+    role: 'Certified German Tutor',
+    certification: 'C1 Certified & ÖSD Certificate',
+    summary:
+      'Certified German speaker with real-world teaching experience in Germany (Gelsenkirchen) and strong international academic background from University of Lucerne, Switzerland. Tailored German tutoring for medical and career pathways.',
+    experience: [
+      'Taught German to international students in Gelsenkirchen, Germany (IQ Lingua references)',
+      'German-speaking professional & communicator at Palace of Parliament in Bucharest',
+      'Practical, conversational & clinical communication training from scratch',
+    ],
+    education: [
+      'C1 Certificate & ÖSD Certificate (Native-level proficiency)',
+      'Tax Analyst Diploma & Certificate — University of Lucerne, Switzerland',
+      'DACH professional culture & healthcare workplace communication',
+    ],
+    linkedin: '',
+    image: '/img/LeonardGabrielMalaia_v2.jpg',
+  },
+  {
+    name: 'Sony S',
+    role: 'German Language Tutor',
+    certification: 'German Certified (A1–B2 Pursuing)',
+    summary:
+      'Sony is a dedicated German language educator with strong multilingual competence (English, Malayalam, Tamil, Hindi) focused on guiding nursing professionals and beginners through foundational to intermediate German with customized pacing.',
+    experience: [
+      'German language tutoring across foundational and intermediate levels (A1–B1)',
+      'Multilingual instruction tailored for Indian healthcare & nursing candidates',
+      'Structured communicative pacing and individual student performance tracking',
+    ],
+    education: [
+      'M.C.A. — Maharaja College for Women, Bharathiyar University (80%)',
+      'B.C.A. — S.A.S. SNDP Yogam College, Mahatma Gandhi University (74%)',
+      'German Language Certification (A1, A2, B1, B2 Pursuing)',
+    ],
+    linkedin: '',
+    image: '/img/SonyS_v2.jpg',
+  },
+];
+
+export const TRAINER_PROFILE: TrainerProfile = TRAINER_PROFILES[0];
 
 export const RECOGNITION_OUTCOMES: RecognitionOutcome[] = [
   {

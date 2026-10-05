@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useRef, useState } from "react";
 import {
   FaCommentDots,
   FaPaperPlane,
@@ -11,37 +11,148 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 type Message = { role: "user" | "assistant"; content: string };
 
-const initialMessage: Message = {
-  role: "assistant",
-  content:
-    "Hi! I’m the Native Connects assistant. Ask me about languages, lessons, pricing, or how our learning experience works.",
+const initialGreetings: Record<string, string> = {
+  en: "Hi! I'm the Native Connects assistant. Ask me about languages, lessons, pricing, or how our learning experience works.",
+  fr: "Bonjour ! Je suis l'assistant Native Connects. Posez-moi vos questions sur les langues, les cours, les tarifs ou notre méthode d'apprentissage.",
+  de: "Hallo! Ich bin der Native Connects Assistent. Fragen Sie mich nach Sprachen, Unterricht, Preisen oder wie unser Lernkonzept funktioniert.",
+  it: "Ciao! Sono l'assistente di Native Connects. Chiedimi informazioni su lingue, lezioni, prezzi o sul nostro metodo di apprendimento.",
+  ro: "Bună! Sunt asistentul Native Connects. Întreabă-mă despre limbi străine, lecții, prețuri sau cum funcționează experiența noastră de învățare.",
 };
 
+const initialMessage: Message = {
+  role: "assistant",
+  content: initialGreetings.en,
+};
+
+/** Minimum user messages before we ask for contact info */
+const CAPTURE_AFTER = 3;
+
+/**
+ * Lightweight markdown renderer for chat messages.
+ * Handles: **bold**, *italic*, bullet lists (* / -), numbered lists, paragraphs.
+ */
+function ChatMarkdown({ text }: { text: string }) {
+  const blocks = text.split(/\n{2,}/);
+
+  return (
+    <div className="flex flex-col gap-2">
+      {blocks.map((block, bi) => {
+        const lines = block.split("\n").map((l) => l.trim()).filter(Boolean);
+        const isBullet = lines.every((l) => /^[*\-]\s/.test(l));
+        const isNumbered = lines.every((l) => /^\d+\.\s/.test(l));
+
+        if ((isBullet || isNumbered) && lines.length > 1) {
+          const Tag = isNumbered ? "ol" : "ul";
+          return (
+            <Tag
+              key={bi}
+              className={`ml-4 flex flex-col gap-1 text-[13px] leading-6 ${
+                isNumbered ? "list-decimal" : "list-disc"
+              }`}
+            >
+              {lines.map((line, li) => {
+                const txt = isNumbered
+                  ? line.replace(/^\d+\.\s/, "")
+                  : line.replace(/^[*\-]\s/, "");
+                return <li key={li}>{renderInline(txt)}</li>;
+              })}
+            </Tag>
+          );
+        }
+
+        return (
+          <p key={bi} className="text-[13px] leading-6">
+            {renderInline(lines.join(" "))}
+          </p>
+        );
+      })}
+    </div>
+  );
+}
+
+/** Renders inline markdown: **bold** and *italic* */
+function renderInline(text: string): React.ReactNode[] {
+  const parts: React.ReactNode[] = [];
+  const regex = /(\*\*(.+?)\*\*|\*(.+?)\*)/g;
+  let last = 0;
+  let match;
+  let idx = 0;
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > last) parts.push(text.slice(last, match.index));
+    if (match[2]) {
+      parts.push(<strong key={idx++} className="font-semibold">{match[2]}</strong>);
+    } else if (match[3]) {
+      parts.push(<em key={idx++}>{match[3]}</em>);
+    }
+    last = regex.lastIndex;
+  }
+  if (last < text.length) parts.push(text.slice(last));
+  return parts;
+}
+
+
 export default function ChatWidget() {
-  const { t } = useLanguage();
+  const { locale, t } = useLanguage();
   const [open, setOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([initialMessage]);
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      role: "assistant",
+      content: initialGreetings[locale] || initialGreetings.en,
+    },
+  ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [userMsgCount, setUserMsgCount] = useState(0);
+
+  // Update greeting when locale changes if no user messages sent yet
+  useEffect(() => {
+    setMessages((prev) => {
+      if (prev.length <= 1) {
+        return [
+          {
+            role: "assistant",
+            content: initialGreetings[locale] || initialGreetings.en,
+          },
+        ];
+      }
+      return prev;
+    });
+  }, [locale]);
+
+  // Lead capture state
+  const [showCapture, setShowCapture] = useState(false);
+  const [captured, setCaptured] = useState(false);
+  const [captureName, setCaptureName] = useState("");
+  const [captureEmail, setCaptureEmail] = useState("");
+  const [captureLoading, setCaptureLoading] = useState(false);
+
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  function scrollToBottom() {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }
 
   async function sendMessage(event?: FormEvent) {
     event?.preventDefault();
     const text = input.trim();
     if (!text || loading) return;
 
-    const nextMessages = [
+    const nextMessages: Message[] = [
       ...messages,
-      { role: "user" as const, content: text },
+      { role: "user", content: text },
     ];
     setMessages(nextMessages);
     setInput("");
     setLoading(true);
 
+    const nextCount = userMsgCount + 1;
+    setUserMsgCount(nextCount);
+
     try {
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: nextMessages }),
+        body: JSON.stringify({ messages: nextMessages, locale }),
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "Something went wrong.");
@@ -50,6 +161,14 @@ export default function ChatWidget() {
         ...current,
         { role: "assistant", content: data.message },
       ]);
+
+      // Show lead capture after CAPTURE_AFTER user messages (only once)
+      if (nextCount >= CAPTURE_AFTER && !captured && !showCapture) {
+        setTimeout(() => {
+          setShowCapture(true);
+          scrollToBottom();
+        }, 600);
+      }
     } catch (error) {
       setMessages((current) => [
         ...current,
@@ -63,7 +182,42 @@ export default function ChatWidget() {
       ]);
     } finally {
       setLoading(false);
+      setTimeout(scrollToBottom, 100);
     }
+  }
+
+  async function saveLeadCapture(event: FormEvent) {
+    event.preventDefault();
+    if (!captureName.trim() || !captureEmail.trim()) return;
+    setCaptureLoading(true);
+
+    // Build a summary of the conversation
+    const conversationSummary = messages
+      .filter((m) => m.role !== "assistant" || messages.indexOf(m) > 0) // skip greeting
+      .map((m) => `${m.role === "user" ? "User" : "Assistant"}: ${m.content}`)
+      .join("\n")
+      .slice(0, 2000);
+
+    try {
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: captureName.trim(),
+          email: captureEmail.trim(),
+          source: "ai-chat",
+          type: "chat",
+          conversationSummary,
+          message: messages.find((m) => m.role === "user")?.content ?? "",
+        }),
+      });
+    } catch {
+      // Non-blocking — silently ignore
+    }
+
+    setCaptureLoading(false);
+    setCaptured(true);
+    setShowCapture(false);
   }
 
   return (
@@ -74,11 +228,10 @@ export default function ChatWidget() {
           role="dialog"
           aria-label={t("Native Connects Assistant")}
         >
+          {/* Header */}
           <div className="flex items-center justify-between bg-[#0b192c] px-5 py-4 text-white">
             <div>
-              <p className="text-sm font-bold">
-                {t("Native Connects Assistant")}
-              </p>
+              <p className="text-sm font-bold">{t("Native Connects Assistant")}</p>
               <p className="mt-0.5 text-[11px] text-white/55">
                 {t("Ask about learning with us")}
               </p>
@@ -93,26 +246,83 @@ export default function ChatWidget() {
             </button>
           </div>
 
-          <div className="flex h-[390px] flex-col gap-3 overflow-y-auto p-4">
+          {/* Messages */}
+          <div className="flex h-[360px] flex-col gap-3 overflow-y-auto p-4">
             {messages.map((message, index) => (
               <div
                 key={`${message.role}-${index}`}
-                className={`max-w-[88%] rounded-2xl px-4 py-3 text-sm leading-6 ${
-                  message.role === "user"
+                className={`max-w-[88%] rounded-2xl px-4 py-3 text-sm leading-6 ${message.role === "user"
                     ? "ml-auto rounded-br-md bg-[#9b1c31] text-white"
                     : "rounded-bl-md bg-[#0b192c]/6 text-[#0b192c]"
-                }`}
+                  }`}
               >
-                {t(message.content)}
+                {message.role === "assistant" ? (
+                  <ChatMarkdown text={message.content} />
+                ) : (
+                  message.content
+                )}
               </div>
             ))}
+
             {loading && (
               <div className="flex w-fit items-center gap-2 rounded-2xl rounded-bl-md bg-[#0b192c]/6 px-4 py-3 text-sm text-[#0b192c]/60">
                 <FaSpinner className="animate-spin" /> {t("Thinking…")}
               </div>
             )}
+
+            {/* Lead capture card */}
+            {showCapture && !captured && (
+              <div className="rounded-2xl border border-[#9b1c31]/20 bg-white p-4 text-sm shadow-sm">
+                <p className="mb-3 font-semibold text-[#0b192c]">
+                  {t("Want us to follow up with you?")}
+                </p>
+                <form onSubmit={saveLeadCapture} className="flex flex-col gap-2">
+                  <input
+                    required
+                    type="text"
+                    placeholder={t("Your name")}
+                    value={captureName}
+                    onChange={(e) => setCaptureName(e.target.value)}
+                    className="rounded-xl border border-[#0b192c]/15 px-3 py-2 text-sm outline-none focus:border-[#9b1c31]/50"
+                  />
+                  <input
+                    required
+                    type="email"
+                    placeholder={t("Your email")}
+                    value={captureEmail}
+                    onChange={(e) => setCaptureEmail(e.target.value)}
+                    className="rounded-xl border border-[#0b192c]/15 px-3 py-2 text-sm outline-none focus:border-[#9b1c31]/50"
+                  />
+                  <div className="flex gap-2">
+                    <button
+                      type="submit"
+                      disabled={captureLoading}
+                      className="flex-1 rounded-xl bg-[#9b1c31] py-2 text-sm font-semibold text-white transition hover:bg-[#85172a] disabled:opacity-60"
+                    >
+                      {captureLoading ? t("Saving…") : t("Yes, follow up")}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setShowCapture(false)}
+                      className="rounded-xl border border-[#0b192c]/15 px-3 py-2 text-sm text-[#0b192c]/60 transition hover:bg-[#0b192c]/5"
+                    >
+                      {t("Skip")}
+                    </button>
+                  </div>
+                </form>
+              </div>
+            )}
+
+            {captured && (
+              <div className="rounded-2xl bg-green-50 px-4 py-3 text-sm text-green-700">
+                ✓ {t("Got it! We'll be in touch soon.")}
+              </div>
+            )}
+
+            <div ref={messagesEndRef} />
           </div>
 
+          {/* Input */}
           <form
             onSubmit={sendMessage}
             className="border-t border-[#0b192c]/10 bg-white/60 p-3"
