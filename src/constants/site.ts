@@ -20,7 +20,7 @@ export const SITE_URL = configuredSiteUrl
 export const CONTACT_DETAILS = {
   registeredName: LEGAL_ENTITY_NAME,
   tradeName: TRADE_NAME,
-  supportEmail: 'support@nativeconnects.com',
+  supportEmail: 'supportnativeconnect@brahmas.org',
   admissionsEmail: 'admissions@nativeconnects.com',
   grievanceEmail: 'grievance@nativeconnects.com',
   phone: '+91 8590832484',
