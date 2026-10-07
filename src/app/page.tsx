@@ -10,7 +10,7 @@ import WhatWeOfferSection from "@/components/WhatWeOfferSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import PricingSection from "@/components/PricingSection";
 import AboutSection from "@/components/AboutSection";
-import PartnersSection from "@/components/PartnersSection";
+// import PartnersSection from "@/components/PartnersSection";
 import FAQSection from "@/components/FAQSection";
 // import CTASection from "@/components/CTASection";
 import ContactSection from "@/components/ContactSection";
@@ -56,7 +56,7 @@ export default function Home() {
       <WhatWeOfferSection />
 
       {/* 12. Trust / partnerships */}
-      <PartnersSection />
+      {/* <PartnersSection /> */}
 
       {/* 13. Remove objections */}
       <FAQSection />
