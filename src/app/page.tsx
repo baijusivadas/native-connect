@@ -12,7 +12,7 @@ import PricingSection from "@/components/PricingSection";
 import AboutSection from "@/components/AboutSection";
 import PartnersSection from "@/components/PartnersSection";
 import FAQSection from "@/components/FAQSection";
-import CTASection from "@/components/CTASection";
+// import CTASection from "@/components/CTASection";
 import ContactSection from "@/components/ContactSection";
 import ChatWidget from "@/components/ChatWidget";
 import Footer from "@/components/Footer";
@@ -60,9 +60,6 @@ export default function Home() {
 
       {/* 13. Remove objections */}
       <FAQSection />
-
-      {/* 14. Action banner */}
-      <CTASection />
 
       {/* 15. Lead capture */}
       <ContactSection />

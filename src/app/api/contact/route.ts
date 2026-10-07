@@ -71,6 +71,15 @@ export async function POST(request: Request) {
     const name  = sanitize(body.name,  100);
     const email  = sanitize(body.email, 200);
     const rawPhone = sanitize(body.phone, 30);
+    const preferredDate = sanitize(body.preferredDate, 30);
+    const preferredTime = sanitize(body.preferredTime, 30);
+    const rawSource = sanitize(body.source, 50).toLowerCase();
+    const rawType = sanitize(body.type, 50).toLowerCase();
+    const isDemo =
+      rawSource === 'demo-booking' ||
+      rawType === 'demo' ||
+      Boolean(preferredDate) ||
+      Boolean(preferredTime);
 
     if (name.length < 2 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return NextResponse.json(
@@ -79,11 +88,18 @@ export async function POST(request: Request) {
       );
     }
 
-    // Validate phone if provided (7–15 digits after stripping formatting)
+    // Validate phone if provided (10–15 digits after stripping formatting)
     const digitsOnly = rawPhone.replace(/[\s\-().+]/g, '');
-    if (rawPhone && (!/^\d+$/.test(digitsOnly) || digitsOnly.length < 7 || digitsOnly.length > 15)) {
+    if (isDemo && !rawPhone) {
       return NextResponse.json(
-        { error: 'Please enter a valid phone number (7–15 digits).' },
+        { error: 'Please enter a phone number to book a demo.' },
+        { status: 400 }
+      );
+    }
+
+    if (rawPhone && (!/^\d+$/.test(digitsOnly) || digitsOnly.length < 10 || digitsOnly.length > 15)) {
+      return NextResponse.json(
+        { error: 'Please enter a valid phone number (10–15 digits).' },
         { status: 400 }
       );
     }
@@ -96,17 +112,6 @@ export async function POST(request: Request) {
       );
     }
 
-    const preferredDate = sanitize(body.preferredDate, 30);
-    const preferredTime = sanitize(body.preferredTime, 30);
-    const rawSource = sanitize(body.source, 50).toLowerCase();
-    const rawType = sanitize(body.type, 50).toLowerCase();
-
-    const isDemo =
-      rawSource === 'demo-booking' ||
-      rawType === 'demo' ||
-      Boolean(preferredDate) ||
-      Boolean(preferredTime);
-
     const isChat =
       rawSource === 'chat' ||
       rawSource === 'ai-chat' ||
@@ -114,6 +119,10 @@ export async function POST(request: Request) {
       rawSource.includes('chat');
 
     const targetTab = isDemo ? 'Demo Requests' : isChat ? 'Chat Leads' : 'Leads';
+
+    // All website lead forms intentionally use this single server endpoint.
+    // The Apps Script webhook decides the Google Sheet tab from targetTab.
+
 
     const payload = {
       timestamp: new Date().toISOString(),

@@ -60,7 +60,7 @@ export default function NursePathSection() {
             </h2>
             <p className="section-copy">
               {t(
-                "We don't just teach German — we prepare you for TELC Deutsch B1-B2 Pflege / Goethe exams and connect you directly with German hospital employers with zero placement fees.",
+                "We don't just teach German we prepare you for TELC Deutsch B1-B2 Pflege / Goethe exams and connect you directly with German hospital employers with zero placement fees.",
               )}
             </p>
 
@@ -92,12 +92,6 @@ export default function NursePathSection() {
               >
                 {t("Explore Nursing & TELC Guide")}
                 <FaArrowRight className="text-xs" />
-              </Link>
-              <Link
-                href="/#contact"
-                className="inline-flex items-center gap-2 rounded-xl border border-[#0b192c]/20 bg-white px-5 py-3 text-sm font-bold text-[#0b192c] transition hover:bg-[#f7f4ef]"
-              >
-                {t("Book Free Demo")}
               </Link>
             </div>
           </div>

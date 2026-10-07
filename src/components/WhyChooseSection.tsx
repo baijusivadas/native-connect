@@ -5,7 +5,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 const features = [
   [FaUserTie, 'Native Tutors', 'Learn pronunciation, expressions and culture from people who actually use the language every day.'],
-  [FaBullseye, 'Goal-led Learning', 'Lessons are shaped around your reason for learning — career, school, relocation or conversation.'],
+  [FaBullseye, 'Goal-led Learning', 'Lessons are shaped around your reason for learning career, school, relocation or conversation.'],
   [FaCalendarAlt, 'Flexible Schedule', 'Fit lessons around work, school and family without giving up consistency.'],
   [FaChartLine, 'Visible Progress', 'Know what you have learned and what to focus on next.'],
   [FaComments, 'Real Conversation', 'Practice the situations you will actually face outside a classroom.'],

@@ -1,6 +1,12 @@
 export const SITE_NAME = 'Native Connects';
-export const LEGAL_ENTITY_NAME = 'Native Connects';
+export const LEGAL_ENTITY_NAME = 'Native Connects promoted by Brahmas';
 export const TRADE_NAME = 'Native Connects';
+
+export const PARENT_ORGANIZATION = {
+  name: 'Brahmas',
+  url: 'https://brahmas.org/',
+};
+
 
 export const SITE_DESCRIPTION =
   'Personalized online language courses, certified exam preparation (Goethe & TELC Pflege), and fast-track international career placement for nurses and professionals in Germany and Europe.';
@@ -17,8 +23,8 @@ export const CONTACT_DETAILS = {
   supportEmail: 'support@nativeconnects.com',
   admissionsEmail: 'admissions@nativeconnects.com',
   grievanceEmail: 'grievance@nativeconnects.com',
-  phone: '+91 94008 12345',
-  whatsapp: '+91 94008 12345',
+  phone: '+91 8590832484',
+  whatsapp: '+91 8590832484',
   registeredOffice: {
     line1: 'Level 4, Infopark Technology Centre, Infopark Phase II',
     city: 'Kochi',

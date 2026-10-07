@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FaLanguage, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from 'react-icons/fa';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { CONTACT_DETAILS, LEGAL_ENTITY_NAME } from '@/constants/site';
+import { CONTACT_DETAILS, LEGAL_ENTITY_NAME, PARENT_ORGANIZATION } from '@/constants/site';
 
 export default function Footer() {
   const { t } = useLanguage();
@@ -29,7 +29,15 @@ export default function Footer() {
               )}
             </p>
             <div className="pt-2 text-[11px] text-[#f7f4ef]/45 space-y-1">
-              <p className="font-semibold text-[#c19a68]">{LEGAL_ENTITY_NAME}</p>
+              <p className="font-semibold text-[#c19a68]"> Native Connects promoted by{' '}
+                <a
+                  href={PARENT_ORGANIZATION.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:opacity-80 transition-opacity"
+                >
+                  {PARENT_ORGANIZATION.name}
+                </a></p>
               <p className="flex items-start gap-1.5">
                 <FaMapMarkerAlt className="mt-0.5 shrink-0 text-[#c19a68]" />
                 <span>{CONTACT_DETAILS.registeredOffice.city}, {CONTACT_DETAILS.registeredOffice.state}, India</span>

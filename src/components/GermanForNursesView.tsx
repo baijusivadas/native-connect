@@ -112,7 +112,7 @@ export default function GermanForNursesView() {
 
             <p className="mt-4 max-w-3xl text-sm leading-relaxed text-white/75 sm:text-base sm:leading-7">
               {t(
-                "We don't just teach German — we provide a complete pathway. Intensive clinical training, dedicated preparation for TELC Deutsch B1-B2 Pflege & Goethe exams, and direct hospital recruitment with zero placement fees.",
+                "We don't just teach German we provide a complete pathway. Intensive clinical training, dedicated preparation for TELC Deutsch B1-B2 Pflege & Goethe exams, and direct hospital recruitment with zero placement fees.",
               )}
             </p>
 

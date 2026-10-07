@@ -32,7 +32,7 @@ const Hero = () => {
             </h1>
 
             <p className="mt-7 max-w-2xl text-base leading-8 text-[#f7f4ef]/78 sm:text-lg">
-              {t('Personalized language training with native speakers and complete career pathways — from A1 to TELC/Goethe certification and direct hospital placement in Germany.')}
+              {t('Personalized language training with native speakers and complete career pathways from A1 to TELC/Goethe certification and direct hospital placement in Germany.')}
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">

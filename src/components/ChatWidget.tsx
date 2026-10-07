@@ -127,6 +127,38 @@ export default function ChatWidget() {
   const [captureLoading, setCaptureLoading] = useState(false);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const chatBoxRef = useRef<HTMLDivElement>(null);
+  const launcherButtonRef = useRef<HTMLButtonElement>(null);
+
+  // Close chatbox when clicking outside or pressing Escape
+  useEffect(() => {
+    if (!open) return;
+
+    function handleClickOutside(event: MouseEvent) {
+      const target = event.target as Node;
+      if (
+        chatBoxRef.current &&
+        !chatBoxRef.current.contains(target) &&
+        launcherButtonRef.current &&
+        !launcherButtonRef.current.contains(target)
+      ) {
+        setOpen(false);
+      }
+    }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [open]);
 
   function scrollToBottom() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -224,6 +256,7 @@ export default function ChatWidget() {
     <>
       {open && (
         <div
+          ref={chatBoxRef}
           className="fixed bottom-24 right-4 z-[70] flex w-[calc(100vw-2rem)] max-w-[390px] flex-col overflow-hidden rounded-3xl border border-[#0b192c]/10 bg-[#f7f4ef] shadow-2xl sm:right-6"
           role="dialog"
           aria-label={t("Native Connects Assistant")}
@@ -349,6 +382,7 @@ export default function ChatWidget() {
       )}
 
       <button
+        ref={launcherButtonRef}
         type="button"
         onClick={() => setOpen((value) => !value)}
         className="fixed bottom-5 right-4 z-[70] flex h-14 w-14 items-center justify-center rounded-full bg-[#9b1c31] text-white shadow-xl shadow-[#0b192c]/20 transition hover:-translate-y-0.5 hover:bg-[#85172a] sm:right-6"

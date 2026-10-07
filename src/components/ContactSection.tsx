@@ -67,11 +67,17 @@ export default function ContactSection() {
     setError("");
 
     // Client-side phone validation
-    if (form.phone) {
+    if (mode === "demo" && !form.phone.trim()) {
+      setStatus("error");
+      setError("Please enter a phone number to book a demo.");
+      return;
+    }
+
+    if (form.phone.trim()) {
       const digits = form.phone.replace(/[\s\-().+]/g, "");
-      if (!/^\d+$/.test(digits) || digits.length < 7 || digits.length > 15) {
+      if (!/^\d+$/.test(digits) || digits.length < 10 || digits.length > 15) {
         setStatus("error");
-        setError("Please enter a valid phone number (7–15 digits).");
+        setError("Please enter a valid phone number (10–15 digits).");
         return;
       }
     }
@@ -171,7 +177,7 @@ export default function ContactSection() {
                   <FaCheck />
                 </div>
                 <h3 className="mt-5 text-2xl font-semibold text-[#0b192c]">
-                  {t("Thanks — we received your details.")}
+                  {t("Thanks we received your details.")}
                 </h3>
                 <p className="mx-auto mt-3 max-w-md text-sm leading-7 text-[#0b192c]/55">
                   {t(
@@ -232,9 +238,11 @@ export default function ContactSection() {
                 <label>
                   <span className="mb-2 block text-xs font-bold uppercase tracking-wider text-[#0b192c]/55">
                     {t("Phone")}
+                    {mode === "demo" && <span> *</span>}
                   </span>
                   <input
                     type="tel"
+                    required={mode === "demo"}
                     value={form.phone}
                     onChange={(e) =>
                       setForm({ ...form, phone: e.target.value })

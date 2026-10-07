@@ -60,6 +60,37 @@ When appropriate, end with a helpful next step such as:
 "Would you like to book a demo session with the Native Connects team?"
 `;
 
+function asRecord(value: unknown): Record<string, unknown> | null {
+  return value !== null && typeof value === 'object' && !Array.isArray(value)
+    ? value as Record<string, unknown>
+    : null;
+}
+
+async function callProvider(
+  apiUrl: string,
+  body: string,
+  headers: Record<string, string>
+): Promise<Response> {
+  let response = await fetch(apiUrl, {
+    method: 'POST',
+    headers,
+    body,
+    signal: AbortSignal.timeout(20_000),
+  });
+
+  if (response.status === 429 || response.status === 503) {
+    await new Promise((resolve) => setTimeout(resolve, 1_000));
+    response = await fetch(apiUrl, {
+      method: 'POST',
+      headers,
+      body,
+      signal: AbortSignal.timeout(20_000),
+    });
+  }
+
+  return response;
+}
+
 function getClientKey(request: Request): string {
   const forwardedFor = request.headers.get('x-forwarded-for');
 
@@ -68,28 +99,6 @@ function getClientKey(request: Request): string {
   }
 
   return request.headers.get('x-real-ip') || 'unknown';
-}
-
-/** Retry the LLM fetch once on 429 / 503 (provider overload). */
-async function callLLM(
-  apiUrl: string,
-  body: string,
-  headers: Record<string, string>,
-  retries = 1
-): Promise<Response> {
-  const response = await fetch(apiUrl, {
-    method: 'POST',
-    headers,
-    body,
-    signal: AbortSignal.timeout(20_000),
-  });
-
-  if ((response.status === 503 || response.status === 429) && retries > 0) {
-    await new Promise((r) => setTimeout(r, 2_000));
-    return callLLM(apiUrl, body, headers, retries - 1);
-  }
-
-  return response;
 }
 
 function rateLimited(key: string): boolean {
@@ -114,19 +123,28 @@ function rateLimited(key: string): boolean {
   return false;
 }
 
-function getEnvironmentVariables() {
+type ChatProviderConfig =
+  | { provider: 'openai-compatible'; apiKey: string; apiUrl: string; model: string }
+  | { provider: 'gemini'; apiKey: string; model: string };
+
+function getEnvironmentVariables(): ChatProviderConfig {
   const apiKey = process.env.LLM_API_KEY;
+  const apiUrl = process.env.LLM_API_URL;
+  const model = process.env.LLM_MODEL;
 
-  const apiUrl =
-    process.env.LLM_API_URL ;
-
-  const model =
-    process.env.LLM_MODEL;
+  if (apiKey || apiUrl || model) {
+    return {
+      provider: 'openai-compatible',
+      apiKey: apiKey ?? '',
+      apiUrl: apiUrl ?? '',
+      model: model ?? '',
+    };
+  }
 
   return {
-    apiKey,
-    apiUrl,
-    model,
+    provider: 'gemini',
+    apiKey: process.env.GEMINI_API_KEY ?? '',
+    model: process.env.GEMINI_MODEL || 'gemini-2.5-flash',
   };
 }
 
@@ -276,15 +294,13 @@ export async function POST(request: Request) {
      * ---------------------------------------------------------
      */
 
-    const {
-      apiKey,
-      apiUrl,
-      model,
-    } = getEnvironmentVariables();
+    const config = getEnvironmentVariables();
 
-    if (!apiKey) {
+    if (!config.apiKey) {
       console.error(
-        'LLM_API_KEY is not configured.'
+        config.provider === 'openai-compatible'
+          ? 'LLM_API_KEY is not configured.'
+          : 'GEMINI_API_KEY is not configured.'
       );
 
       return NextResponse.json(
@@ -298,10 +314,8 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!apiUrl) {
-      console.error(
-        'LLM_API_URL is not configured.'
-      );
+    if (config.provider === 'openai-compatible' && !config.apiUrl) {
+      console.error('LLM_API_URL is not configured.');
 
       return NextResponse.json(
         {
@@ -314,15 +328,16 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!model) {
+    if (!config.model) {
       console.error(
-        'LLM_MODEL is not configured.'
+        config.provider === 'openai-compatible'
+          ? 'LLM_MODEL is not configured.'
+          : 'GEMINI_MODEL is not configured.'
       );
 
       return NextResponse.json(
         {
-          error:
-            'The AI model is not configured.',
+          error: 'The AI model is not configured.',
         },
         {
           status: 503,
@@ -332,7 +347,7 @@ export async function POST(request: Request) {
 
     /*
      * ---------------------------------------------------------
-     * 6. Call Gemini
+     * 6. Call the configured LLM provider
      * ---------------------------------------------------------
      */
 
@@ -343,65 +358,113 @@ The user has selected the website language: ${targetLanguage}.
 You MUST respond entirely, naturally, and fluently in ${targetLanguage}.
 All greetings, explanations, lists, advice, and closing questions (such as asking if they want to book a demo) MUST be written in ${targetLanguage}.`;
 
+    let lastError: { status: number; message: string } | null = null;
+    let extractedMessage: string | null = null;
     const candidateModels = [
-      model,
+      config.model,
       'gemini-flash-latest',
       'gemini-3.7-flash',
       'gemini-3.1-flash-lite',
-    ].filter((m, i, arr): m is string => Boolean(m) && arr.indexOf(m) === i);
-
-    let lastError: { status: number; message: string } | null = null;
-    let extractedMessage: string | null = null;
+    ].filter((model, index, models) => models.indexOf(model) === index);
 
     for (const currentModel of candidateModels) {
       try {
-        const response = await fetch(apiUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${apiKey}`,
-          },
-          body: JSON.stringify({
+      const isOpenAiCompatible = config.provider === 'openai-compatible';
+      const apiUrl = isOpenAiCompatible
+        ? config.apiUrl
+        : `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(currentModel)}:generateContent?key=${encodeURIComponent(config.apiKey)}`;
+      const requestBody = isOpenAiCompatible
+        ? {
             model: currentModel,
             temperature: 0.3,
             messages: [
               { role: 'system', content: dynamicSystemPrompt },
               ...safeMessages,
             ],
-          }),
-          signal: AbortSignal.timeout(15_000),
-        });
-
-        const data: any = await response.json().catch(() => null);
-
-        if (!response.ok) {
-          const errObj = Array.isArray(data) ? data[0]?.error : data?.error;
-          const errMsg = errObj?.message || `Provider returned HTTP ${response.status}`;
-          console.warn(`Model ${currentModel} returned ${response.status}: ${errMsg}. Attempting fallback...`);
-
-          lastError = {
-            status: response.status,
-            message: errMsg,
+          }
+        : {
+            systemInstruction: { parts: [{ text: dynamicSystemPrompt }] },
+            contents: safeMessages.map((message) => ({
+              role: message.role === 'assistant' ? 'model' : 'user',
+              parts: [{ text: message.content }],
+            })),
+            generationConfig: {
+              temperature: 0.3,
+              maxOutputTokens: 1000,
+            },
           };
 
-          // If high demand (503) or rate limit (429), continue to next fallback model
-          if (response.status === 503 || response.status === 429 || response.status === 404) {
-            continue;
-          }
+      const response = await callProvider(
+        apiUrl,
+        JSON.stringify(requestBody),
+        {
+          'Content-Type': 'application/json',
+          ...(isOpenAiCompatible
+            ? { Authorization: `Bearer ${config.apiKey}` }
+            : {}),
+        }
+      );
+
+      const data: unknown = await response.json().catch(() => null);
+
+      if (!response.ok) {
+        const errorContainer = Array.isArray(data)
+          ? asRecord(data[0])?.error
+          : asRecord(data)?.error;
+        const providerError = asRecord(errorContainer)?.message;
+        const errMsg =
+          typeof providerError === 'string'
+            ? providerError
+            : `Provider returned HTTP ${response.status}`;
+        console.warn(`Chat provider returned ${response.status}: ${errMsg}`);
+
+        lastError = { status: response.status, message: errMsg };
+        if (
+          response.status === 404 ||
+          response.status === 429 ||
+          response.status === 503
+        ) {
+          continue;
+        }
+      } else {
+        const dataRecord = asRecord(data);
+        const choiceMsg = isOpenAiCompatible
+          ? asRecord(
+              Array.isArray(dataRecord?.choices) ? dataRecord.choices[0] : null
+            )?.message
+          : asRecord(
+              Array.isArray(dataRecord?.candidates)
+                ? dataRecord.candidates[0]
+                : null
+            )?.content;
+        const output = isOpenAiCompatible
+          ? asRecord(choiceMsg)?.content
+          : (() => {
+              const parts = asRecord(choiceMsg)?.parts;
+              return Array.isArray(parts)
+                ? parts
+                    .map((part) => asRecord(part)?.text)
+                    .filter((text): text is string => typeof text === 'string')
+                    .join('')
+                : null;
+            })();
+
+        if (typeof output === 'string' && output.trim().length > 0) {
+          extractedMessage = output.trim().slice(0, MAX_RESPONSE_LENGTH);
           break;
         }
 
-        const choiceMsg = data?.choices?.[0]?.message?.content;
-        if (typeof choiceMsg === 'string' && choiceMsg.trim().length > 0) {
-          extractedMessage = choiceMsg.trim().slice(0, MAX_RESPONSE_LENGTH);
-          break;
-        }
-      } catch (err: any) {
-        console.warn(`Attempt with ${currentModel} failed:`, err?.message);
+        lastError = { status: 502, message: 'The AI provider returned an empty response.' };
+        break;
+      }
+      } catch (err) {
+        const errorMessage = err instanceof Error ? err.message : 'Connection error';
+        console.warn('Chat provider request failed:', errorMessage);
         lastError = {
-          status: 503,
-          message: err?.message || 'Connection error',
+          status: 502,
+          message: 'Unable to reach the AI service. Please try again later.',
         };
+        break;
       }
     }
 

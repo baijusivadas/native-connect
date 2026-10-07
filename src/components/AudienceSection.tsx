@@ -36,7 +36,7 @@ const audiences = [
     eyebrow: "For movers & learners",
     title: "Prepare for life in Europe",
     description:
-      "Learn to communicate beyond textbooks — from introductions and appointments to confident real-world conversations.",
+      "Learn to communicate beyond textbooks from introductions and appointments to confident real-world conversations.",
   },
 ];
 

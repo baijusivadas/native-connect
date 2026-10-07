@@ -96,7 +96,7 @@ export default function Navbar() {
             <LanguageSwitcher />
             {/* <Link href="#contact" onClick={(event) => handleNavigation(event, '#contact')} className="hidden px-2 py-2 text-sm font-semibold text-[#0b192c]/65 transition hover:text-[#9b1c31] lg:inline-flex">Log in</Link> */}
             {/* <Link href="#contact" onClick={(event) => handleNavigation(event, '#contact')} className="hidden rounded-xl border border-[#0b192c]/15 px-4 py-2.5 text-sm font-bold text-[#0b192c] transition hover:border-[#9b1c31] hover:text-[#9b1c31] sm:inline-flex">Sign up</Link> */}
-            <Link
+            {/* <Link
               href={isHome ? "#contact" : "/#contact"}
               onClick={(event) => {
                 if (isHome) {
@@ -111,7 +111,7 @@ export default function Navbar() {
               className="hidden rounded-xl bg-[#9b1c31] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#85172a] sm:inline-flex"
             >
               {t("Book a Demo")}
-            </Link>
+            </Link> */}
             <button
               type="button"
               onClick={() => setMobileOpen(!mobileOpen)}

@@ -41,7 +41,7 @@ export interface ExamComparisonItem {
 }
 
 export const WHY_GERMAN_POINTS: string[] = [
-  'End-to-end support: We don’t just train in German — we guide your TELC/Goethe exam prep and connect you directly to verified German hospital employers.',
+  'End-to-end support: We don’t just train in German we guide your TELC/Goethe exam prep and connect you directly to verified German hospital employers.',
   'Dual Exam Preparation: Aligned with both TELC Deutsch B1-B2 Pflege and Goethe-Zertifikat standards based on your individual career pathway.',
   'TELC Pflege Advantage: Combined B1-B2 exam structure provides a built-in safety net and hospital-specific clinical terminology.',
   'Transparent Placement: 0 placement fee charges for nursing candidates placed with our partner hospital network in Germany.',
@@ -201,7 +201,7 @@ export const TRAINER_PROFILES: TrainerProfile[] = [
     ],
     education: [
       'C1 Certificate & ÖSD Certificate (Native-level proficiency)',
-      'Tax Analyst Diploma & Certificate — University of Lucerne, Switzerland',
+      'Tax Analyst Diploma & Certificate University of Lucerne, Switzerland',
       'DACH professional culture & healthcare workplace communication',
     ],
     linkedin: '',
@@ -210,7 +210,7 @@ export const TRAINER_PROFILES: TrainerProfile[] = [
   {
     name: 'Sony S',
     role: 'German Language Tutor',
-    certification: 'German Certified (A1–B2 Pursuing)',
+    certification: 'German Certified (B1 Completed – B2 Pursuing)',
     summary:
       'Sony is a dedicated German language educator with strong multilingual competence (English, Malayalam, Tamil, Hindi) focused on guiding nursing professionals and beginners through foundational to intermediate German with customized pacing.',
     experience: [
@@ -219,8 +219,8 @@ export const TRAINER_PROFILES: TrainerProfile[] = [
       'Structured communicative pacing and individual student performance tracking',
     ],
     education: [
-      'M.C.A. — Maharaja College for Women, Bharathiyar University (80%)',
-      'B.C.A. — S.A.S. SNDP Yogam College, Mahatma Gandhi University (74%)',
+      'M.C.A. Maharaja College for Women, Bharathiyar University (80%)',
+      'B.C.A. S.A.S. SNDP Yogam College, Mahatma Gandhi University (74%)',
       'German Language Certification (A1, A2, B1, B2 Pursuing)',
     ],
     linkedin: '',
