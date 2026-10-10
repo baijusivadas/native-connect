@@ -32,10 +32,13 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
-
-# vercel
-.vercel
+!.env.example
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# GCP / Docker
+.gcloud/
+gcloud-service-key.json
+*.key.json

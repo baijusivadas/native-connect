@@ -1,0 +1,29 @@
+﻿# Version control
+.git
+.gitignore
+
+# Node modules (installed fresh inside Docker)
+node_modules
+.pnpm-store
+
+# Next.js build output (rebuilt inside Docker)
+.next
+out
+build
+
+# Local env files — inject secrets via Cloud Run Secret Manager at runtime
+.env
+.env.*
+!.env.example
+
+# Dev / editor artefacts
+.DS_Store
+*.pem
+*.tsbuildinfo
+*.log
+.vscode
+.idea
+
+# CI & docs
+README.md
+AGENTS.md
