@@ -1,6 +1,15 @@
 export const SITE_NAME = 'Native Connects';
 export const LEGAL_ENTITY_NAME = 'Native Connects promoted by Brahmas';
 export const TRADE_NAME = 'Native Connects';
+export const CALENDLY_DEMO_URL =
+  'https://calendly.com/nativeconnects/free-demo-session';
+
+export function getCalendlyDemoUrl(prefill: { name?: string; email?: string } = {}) {
+  const url = new URL(CALENDLY_DEMO_URL);
+  if (prefill.name?.trim()) url.searchParams.set('name', prefill.name.trim());
+  if (prefill.email?.trim()) url.searchParams.set('email', prefill.email.trim());
+  return url.toString();
+}
 
 export const PARENT_ORGANIZATION = {
   name: 'Brahmas',

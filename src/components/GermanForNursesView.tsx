@@ -6,8 +6,6 @@ import Link from "next/link";
 import {
   FaArrowRight,
   FaCheck,
-  FaChevronLeft,
-  FaChevronRight,
   FaEuroSign,
   FaFileAlt,
   FaGraduationCap,

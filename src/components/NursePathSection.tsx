@@ -3,41 +3,7 @@
 import Link from "next/link";
 import { FaArrowRight, FaClock, FaUsers, FaUserNurse, FaHospital, FaCheck } from "react-icons/fa";
 import { useLanguage } from "@/contexts/LanguageContext";
-
-const stages = [
-  {
-    level: "A1-A2",
-    title: "Foundations for care",
-    description: "Build essential German for introductions, ward routines, anatomy, and everyday life in Germany.",
-    size: "6-8 learners",
-    time: "3-4 hrs / wk",
-    badge: "Native Tutors",
-  },
-  {
-    level: "B1",
-    title: "Clinical communication",
-    description: "Practise patient history taking, handovers, documentation, vital signs, and initial dossier review.",
-    size: "4-6 learners",
-    time: "4-5 hrs / wk",
-    badge: "Ward Roleplays",
-  },
-  {
-    level: "B2 / TELC Pflege",
-    title: "TELC Pflege & Goethe prep",
-    description: "Master specialized healthcare terminology, doctor discussions, and dual-level safety net exam tactics.",
-    size: "3-5 learners",
-    time: "5-6 hrs / wk",
-    badge: "Combined B1-B2 Safety Net",
-  },
-  {
-    level: "Placement",
-    title: "Hospital hiring & relocation",
-    description: "Direct interviews with German hospital employers, Defizitbescheid tracking, and fast-track work visa filing.",
-    size: "Direct Hiring",
-    time: "0 Placement Fee",
-    badge: "Verified German Hospitals",
-  },
-];
+import { NURSE_PATH_STAGES } from "@/constants/pageContent";
 
 export default function NursePathSection() {
   const { t } = useLanguage();
@@ -97,7 +63,7 @@ export default function NursePathSection() {
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2">
-            {stages.map((stage) => (
+            {NURSE_PATH_STAGES.map((stage) => (
               <article
                 key={stage.level}
                 className="rounded-2xl border border-[#0b192c]/10 bg-white p-4 sm:p-5 shadow-sm transition hover:border-[#c19a68]/60 hover:shadow-md"
@@ -134,4 +100,3 @@ export default function NursePathSection() {
     </section>
   );
 }
-

@@ -3,17 +3,7 @@
 import { FaHandshake, FaUserTie } from 'react-icons/fa';
 import Image from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
-
-const directors = [
-  {
-    name: 'Manoj Kumar',
-    image: '/img/manojkumar.jpeg',
-  },
-  {
-    name: 'Biju Sakaria',
-    image: '/img/bijuSakaria.jpeg',
-  },
-];
+import { PARTNER_DIRECTORS } from '@/constants/pageContent';
 
 export default function PartnersSection() {
   const { t } = useLanguage();
@@ -48,7 +38,7 @@ export default function PartnersSection() {
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
-              {directors.map((director) => (
+              {PARTNER_DIRECTORS.map((director) => (
                 <article
                   key={director.name}
                   className="rounded-2xl border border-[#0b192c]/10 bg-[#f7f4ef] p-5 text-[#0b192c] sm:p-6"

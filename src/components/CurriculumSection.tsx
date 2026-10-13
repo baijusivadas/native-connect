@@ -2,14 +2,7 @@
 
 import { FaCertificate, FaClock, FaUsers } from "react-icons/fa";
 import { useLanguage } from "@/contexts/LanguageContext";
-
-const levels = [
-  ["A1", "Starter", "60 hours", "4-6 learners", "Foundations"],
-  ["A2", "Everyday basics", "70 hours", "4-6 learners", "Progress certificate"],
-  ["B1", "Independent", "80 hours", "4-6 learners", "B1 exam preparation"],
-  ["B2", "Professional", "90 hours", "3-5 learners", "B2 exam preparation"],
-  ["C1", "Advanced", "100 hours", "1-4 learners", "C1 exam preparation"],
-];
+import { CURRICULUM_LEVELS } from "@/constants/pageContent";
 
 export default function CurriculumSection() {
   const { t } = useLanguage();
@@ -37,7 +30,7 @@ export default function CurriculumSection() {
                 <span>{t("Class size")}</span>
                 <span>{t("Certificate / exam")}</span>
               </div>
-              {levels.map(([level, name, hours, size, certificate]) => (
+              {CURRICULUM_LEVELS.map(([level, name, hours, size, certificate]) => (
                 <div
                   key={level}
                   className="grid grid-cols-[.7fr_1.3fr_1fr_1fr_1.3fr] items-center gap-4 border-b border-[#f7f4ef]/8 px-5 py-3.5 sm:py-4 last:border-0"

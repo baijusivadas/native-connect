@@ -1,3 +1,5 @@
+import { ADDITIONAL_TRANSLATIONS } from "./pageTranslations";
+
 export const SHARED_UI_TEXT: Record<string, string> = {
   "Native Connects": "Native Connects",
   "Languages": "Languages",
@@ -612,6 +614,7 @@ export const SHARED_UI_TEXT: Record<string, string> = {
 export const LOCAL_TRANSLATIONS: Record<string, Record<string, string>> = {
   fr: {
     ...SHARED_UI_TEXT,
+    ...ADDITIONAL_TRANSLATIONS.fr,
     "Tutor": "Tuteur",
     "Instant Calendar Invite": "Invitation calendrier instantanée",
     "Prefer to pick a live slot right now? Connect directly via Calendly for an instant Google Calendar & Meet invitation.": "Vous préférez choisir un créneau en direct ? Réservez via Calendly pour une invitation Google Calendar & Meet instantanée.",
@@ -1164,6 +1167,7 @@ export const LOCAL_TRANSLATIONS: Record<string, Record<string, string>> = {
   },
   it: {
     ...SHARED_UI_TEXT,
+    ...ADDITIONAL_TRANSLATIONS.it,
     "Tutor": "Tutor",
     "Instant Calendar Invite": "Invito calendario istantaneo",
     "Prefer to pick a live slot right now? Connect directly via Calendly for an instant Google Calendar & Meet invitation.": "Preferisci scegliere subito uno slot in tempo reale? Prenota con Calendly per un invito istantaneo su Google Calendar & Meet.",
@@ -1602,6 +1606,7 @@ export const LOCAL_TRANSLATIONS: Record<string, Record<string, string>> = {
   },
   de: {
     ...SHARED_UI_TEXT,
+    ...ADDITIONAL_TRANSLATIONS.de,
     "Tutor": "Tutor",
     "Instant Calendar Invite": "Sofortige Kalendereinladung",
     "Prefer to pick a live slot right now? Connect directly via Calendly for an instant Google Calendar & Meet invitation.": "Möchtest du direkt einen freien Termin wählen? Buche über Calendly für eine sofortige Google Calendar- & Meet-Einladung.",
@@ -2047,6 +2052,7 @@ export const LOCAL_TRANSLATIONS: Record<string, Record<string, string>> = {
   },
   ro: {
     ...SHARED_UI_TEXT,
+    ...ADDITIONAL_TRANSLATIONS.ro,
     "Tutor": "Tutor",
     "Instant Calendar Invite": "Invitație instantanee în calendar",
     "Prefer to pick a live slot right now? Connect directly via Calendly for an instant Google Calendar & Meet invitation.": "Preferi să alegi un interval live acum? Conectează-te prin Calendly pentru o invitație instantanee pe Google Calendar & Meet.",

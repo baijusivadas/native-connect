@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { FaArrowRight, FaCheck } from 'react-icons/fa';
 import VideoBackground from './VideoBackground';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { HERO_GOALS, HERO_HIGHLIGHTS } from '@/constants/pageContent';
 
 const Hero = () => {
   const { t } = useLanguage();
@@ -46,7 +47,7 @@ const Hero = () => {
             </div>
 
             <div className="mt-6 grid max-w-2xl grid-cols-1 gap-2.5 sm:grid-cols-3">
-              {['Native-speaking tutors', 'TELC Pflege & Goethe Prep', '0-Fee Placement in Germany'].map((item) => (
+              {HERO_HIGHLIGHTS.map((item) => (
                 <div key={item} className="flex items-center gap-2 text-xs sm:text-sm text-[#f7f4ef]/85">
                   <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#c19a68]/20 text-[#c19a68]"><FaCheck className="text-[9px]" /></span>
                   {t(item)}
@@ -63,28 +64,7 @@ const Hero = () => {
                   <span className="rounded-full bg-[#9b1c31] px-3 py-1 text-[10px] font-bold text-white">Native Connects</span>
                 </div>
                 <div className="mt-4 space-y-2.5">
-                  {[
-                    {
-                      icon: '🇩🇪',
-                      label: 'Work as a Nurse in Germany',
-                      href: '/german-for-nurses',
-                    },
-                    {
-                      icon: '🎓',
-                      label: 'Study or Work in Europe',
-                      goal: 'Study or Work in Europe',
-                    },
-                    {
-                      icon: '👩‍👦',
-                      label: 'Language for my child',
-                      goal: 'Language for my child',
-                    },
-                    {
-                      icon: '💬',
-                      label: 'Speak confidently with Natives',
-                      goal: 'Speak confidently with Natives',
-                    },
-                  ].map((item) =>
+                  {HERO_GOALS.map((item) =>
                     item.href ? (
                       <Link
                         key={item.label}

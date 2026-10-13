@@ -8,6 +8,7 @@ import {
   FaSpinner,
 } from "react-icons/fa";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { getCalendlyDemoUrl } from "@/constants/site";
 
 type FormState = {
   name: string;
@@ -40,6 +41,7 @@ export default function ContactSection() {
   >("idle");
   const [error, setError] = useState("");
   const [website, setWebsite] = useState("");
+  const [bookingUrl, setBookingUrl] = useState(getCalendlyDemoUrl());
 
   useEffect(() => {
     const handler = (event: Event) => {
@@ -82,7 +84,7 @@ export default function ContactSection() {
     // Client-side phone validation
     if (mode === "demo" && !form.phone.trim()) {
       setStatus("error");
-      setError("Please enter a phone number to book a demo.");
+      setError(t("Please enter a phone number to book a demo."));
       return;
     }
 
@@ -90,7 +92,7 @@ export default function ContactSection() {
       const digits = form.phone.replace(/[\s\-().+]/g, "");
       if (!/^\d+$/.test(digits) || digits.length < 10 || digits.length > 15) {
         setStatus("error");
-        setError("Please enter a valid phone number (10–15 digits).");
+        setError(t("Please enter a valid phone number (10–15 digits)."));
         return;
       }
     }
@@ -106,13 +108,20 @@ export default function ContactSection() {
         }),
       });
       const data = await response.json();
-      if (!response.ok) throw new Error(data.error || "Something went wrong.");
+      if (!response.ok) {
+        throw new Error(
+          typeof data.error === "string"
+            ? t(data.error)
+            : t("Something went wrong."),
+        );
+      }
 
+      setBookingUrl(getCalendlyDemoUrl(form));
       setStatus("success");
       setForm(emptyForm);
     } catch (err) {
       setStatus("error");
-      setError(err instanceof Error ? err.message : "Please try again.");
+      setError(err instanceof Error ? err.message : t("Please try again."));
     }
   }
 
@@ -198,7 +207,7 @@ export default function ContactSection() {
                   </p>
                 </div>
                 <a
-                  href={`https://calendly.com/nativeconnects/free-demo-session${form.name ? `?name=${encodeURIComponent(form.name)}` : ""}${form.email ? `&email=${encodeURIComponent(form.email)}` : ""}`}
+                  href={getCalendlyDemoUrl(form)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-[#9b1c31] px-3.5 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-[#85172a]"
@@ -210,7 +219,7 @@ export default function ContactSection() {
             )}
 
             {status === "success" ? (
-              <div className="py-12 text-center">
+              <div className="py-12 text-center" role="region" aria-live="polite">
                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#9b1c31]/10 text-[#9b1c31]">
                   <FaCheck />
                 </div>
@@ -232,7 +241,7 @@ export default function ContactSection() {
                   </button>
                   {mode === "demo" && (
                     <a
-                      href="https://calendly.com/nativeconnects/free-demo-session"
+                      href={bookingUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 rounded-xl bg-[#9b1c31] px-4 py-2.5 text-xs sm:text-sm font-bold text-white transition hover:bg-[#85172a]"
@@ -246,6 +255,7 @@ export default function ContactSection() {
             ) : (
               <form
                 onSubmit={submit}
+                noValidate
                 className="mt-5 grid gap-3.5 sm:grid-cols-2"
               >
                 <input
@@ -314,12 +324,12 @@ export default function ContactSection() {
                     className="w-full rounded-xl border border-[#0b192c]/12 bg-[#f7f4ef]/45 px-3.5 py-2.5 text-xs sm:text-sm outline-none focus:border-[#9b1c31]/60"
                   >
                     <option value="">{t("Select a language")}</option>
-                    <option>{t("German")}</option>
-                    <option>{t("French")}</option>
-                    <option>{t("Italian")}</option>
-                    <option>{t("Spanish")}</option>
-                    <option>{t("English")}</option>
-                    <option>{t("Other")}</option>
+                    <option value="German">{t("German")}</option>
+                    <option value="French">{t("French")}</option>
+                    <option value="Italian">{t("Italian")}</option>
+                    <option value="Spanish">{t("Spanish")}</option>
+                    <option value="English">{t("English")}</option>
+                    <option value="Other">{t("Other")}</option>
                   </select>
                 </label>
                 {mode === "demo" && (
@@ -386,7 +396,7 @@ export default function ContactSection() {
                 </label>
 
                 {status === "error" && (
-                  <p className="sm:col-span-2 text-xs sm:text-sm text-[#9b1c31]">
+                  <p role="alert" className="sm:col-span-2 text-xs sm:text-sm text-[#9b1c31]">
                     {error}
                   </p>
                 )}
@@ -405,8 +415,8 @@ export default function ContactSection() {
                     : t("Send Message")}
                 </button>
                 <p className="sm:col-span-2 text-[11px] leading-relaxed text-[#0b192c]/45">
-                  By submitting, you agree Native Connects may contact you. Your data is handled per our{" "}
-                  <a href="/privacy-policy" className="underline hover:text-[#9b1c31] transition-colors">Privacy Policy</a>.
+                  {t("By submitting, you agree Native Connects may contact you. Your data is handled per our")}{" "}
+                  <a href="/privacy-policy" className="underline hover:text-[#9b1c31] transition-colors">{t("Privacy Policy")}</a>.
                 </p>
               </form>
             )}

@@ -3,13 +3,7 @@
 import Link from 'next/link';
 import { FaArrowRight } from 'react-icons/fa';
 import { useLanguage } from '@/contexts/LanguageContext';
-
-const languages = [
-  { name: 'German', description: 'Build your career, study and everyday confidence in Germany.', icon: '🇩🇪', featured: true },
-  { name: 'French', description: 'Speak naturally in everyday situations and connect with French culture.', icon: '🇫🇷' },
-  { name: 'Italian', description: 'Learn the language of travel, culture, food and connection.', icon: '🇮🇹' },
-  { name: 'Romanian', description: 'Start a practical and rewarding journey with a rich language.', icon: '🇷🇴' },
-];
+import { LANGUAGE_OPTIONS } from '@/constants/pageContent';
 
 export default function LanguagesSection() {
   const { t } = useLanguage();
@@ -34,7 +28,7 @@ export default function LanguagesSection() {
             <p className="max-w-md text-xs sm:text-sm leading-relaxed text-[#f7f4ef]/60">{t('Choose a language, tell us your goal, and build practical confidence with native-speaking tutors.')}</p>
           </div>
           <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {languages.map((lang) => (
+            {LANGUAGE_OPTIONS.map((lang) => (
               <article key={lang.name} className={`group flex flex-col justify-between rounded-[1.5rem] border p-5 sm:p-6 transition duration-300 hover:-translate-y-1 ${lang.featured ? 'border-[#c19a68]/55 bg-[#c19a68]/10' : 'border-[#f7f4ef]/10 bg-[#f7f4ef]/5 hover:border-[#c19a68]/40'}`}>
                 <div>
                   <div className="flex items-start justify-between">

@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { NAV_LINKS } from "@/constants/pageContent";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 const Logo = () => (
@@ -35,14 +36,15 @@ export default function Navbar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const { t } = useLanguage();
-  const navLinks = [
-    { href: "/german-for-nurses", label: t("German for nurses"), isPage: true },
-    { href: "#languages", label: t("Languages") },
-    { href: "#offer", label: t("How learning works") },
-    { href: "#pricing", label: t("Learning plans") },
-    { href: "#about", label: t("About") },
-    { href: "#contact", label: t("Contact") },
-  ];
+
+  // Close mobile navigation on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   const handleNavigation = (
     event: React.MouseEvent<HTMLAnchorElement>,
@@ -65,28 +67,26 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-20">
           <Logo />
           <div className="hidden items-center gap-7 md:flex">
-            {navLinks.map((link) => {
+            {NAV_LINKS.map((link) => {
               const isActive = link.isPage ? pathname === link.href : false;
               return (
                 <Link
                   key={link.href}
-                  href={link.isPage ? link.href : (isHome ? link.href : `/${link.href}`)}
+                  href={link.isPage ? link.href : isHome ? link.href : `/${link.href}`}
                   onClick={
                     link.isPage
                       ? () => setMobileOpen(false)
                       : isHome
-                      ? (event) => handleNavigation(event, link.href)
-                      : () => setMobileOpen(false)
+                        ? (event) => handleNavigation(event, link.href)
+                        : () => setMobileOpen(false)
                   }
-                  className={`group relative py-2 text-sm font-medium transition ${
-                    isActive ? "text-[#9b1c31] font-semibold" : "text-[#0b192c]/65 hover:text-[#0b192c]"
-                  }`}
-                >
-                  <span>{link.label}</span>
-                  <span
-                    className={`absolute bottom-0 left-0 h-0.5 bg-[#9b1c31] transition-all ${
-                      isActive ? "w-full" : "w-0 group-hover:w-full"
+                  className={`group relative py-2 text-sm font-medium transition-colors ${isActive ? "text-[#9b1c31] font-semibold" : "text-[#0b192c]/65 hover:text-[#0b192c]"
                     }`}
+                >
+                  <span>{t(link.label)}</span>
+                  <span
+                    className={`absolute bottom-0 left-0 h-0.5 bg-[#9b1c31] transition-all duration-200 ${isActive ? "w-full" : "w-0 group-hover:w-full"
+                      }`}
                   />
                 </Link>
               );
@@ -97,8 +97,8 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="rounded-lg p-2 text-[#0b192c] md:hidden"
-              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              className="rounded-lg p-2 text-[#0b192c] hover:bg-[#0b192c]/5 transition-colors md:hidden cursor-pointer"
+              aria-label={mobileOpen ? t("Close menu") : t("Open menu")}
               aria-expanded={mobileOpen}
               aria-controls="mobile-navigation"
             >
@@ -106,29 +106,30 @@ export default function Navbar() {
             </button>
           </div>
         </div>
+
         <div
           id="mobile-navigation"
-          className={`md:hidden overflow-hidden border-t border-[#0b192c]/10 bg-[#f7f4ef] transition-all duration-300 ${mobileOpen ? "max-h-112 opacity-100" : "max-h-0 opacity-0"}`}
+          className={`md:hidden overflow-hidden border-t border-[#0b192c]/10 bg-[#f7f4ef] transition-all duration-300 ${mobileOpen ? "max-h-112 opacity-100" : "max-h-0 opacity-0"
+            }`}
         >
           <div className="space-y-1 px-5 py-5 sm:px-8">
-            {navLinks.map((link) => {
+            {NAV_LINKS.map((link) => {
               const isActive = link.isPage ? pathname === link.href : false;
               return (
                 <Link
                   key={link.href}
-                  href={link.isPage ? link.href : (isHome ? link.href : `/${link.href}`)}
+                  href={link.isPage ? link.href : isHome ? link.href : `/${link.href}`}
                   onClick={
                     link.isPage
                       ? () => setMobileOpen(false)
                       : isHome
-                      ? (event) => handleNavigation(event, link.href)
-                      : () => setMobileOpen(false)
+                        ? (event) => handleNavigation(event, link.href)
+                        : () => setMobileOpen(false)
                   }
-                  className={`block border-b border-[#0b192c]/8 py-3 text-sm font-medium transition ${
-                    isActive ? "text-[#9b1c31] font-bold" : "text-[#0b192c]/70"
-                  }`}
+                  className={`block border-b border-[#0b192c]/8 py-3 text-sm font-medium transition-colors ${isActive ? "text-[#9b1c31] font-bold" : "text-[#0b192c]/70 hover:text-[#0b192c]"
+                    }`}
                 >
-                  {link.label}
+                  {t(link.label)}
                 </Link>
               );
             })}
@@ -143,7 +144,7 @@ export default function Navbar() {
                     setMobileOpen(false);
                   }
                 }}
-                className="block rounded-xl bg-[#9b1c31] px-5 py-3 text-center text-sm font-bold text-white"
+                className="block rounded-xl bg-[#9b1c31] px-5 py-3 text-center text-sm font-bold text-white hover:bg-[#85172a] transition-colors"
               >
                 {t("Book a Demo")}
               </Link>
