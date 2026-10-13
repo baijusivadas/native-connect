@@ -16,16 +16,16 @@ export default function PrivacyPolicyPage() {
       <Navbar />
 
       {/* Header */}
-      <section className="bg-[#0b192c] py-16 text-white sm:py-20">
+      <section className="bg-[#0b192c] py-10 text-white sm:py-14">
         <div className="w-full px-5 sm:px-8 lg:px-12">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full bg-[#9b1c31]/30 px-3 py-1 text-xs font-bold text-[#c19a68] border border-[#9b1c31]/50">
               <FaShieldAlt /> Legal & Compliance
             </div>
-            <h1 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-5xl">
+            <h1 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
               Privacy Policy
             </h1>
-            <p className="mt-3 text-sm leading-relaxed text-white/75 sm:text-base">
+            <p className="mt-2 text-xs sm:text-sm leading-relaxed text-white/75 sm:text-base">
               Last Updated: October 2026. This policy outlines how {LEGAL_ENTITY_NAME} (&ldquo;{SITE_NAME}&rdquo;, &ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;us&rdquo;) collects, uses, protects, and handles your personal data across our language education, exam preparation, and placement services.
             </p>
           </div>
@@ -33,11 +33,11 @@ export default function PrivacyPolicyPage() {
       </section>
 
       {/* Content */}
-      <section className="py-14 sm:py-20">
+      <section className="py-10 sm:py-14">
         <div className="w-full px-5 sm:px-8 lg:px-12">
-          <div className="grid gap-12 lg:grid-cols-[1fr_340px]">
+          <div className="grid gap-8 lg:grid-cols-[1fr_340px]">
             {/* Main Policy Text */}
-            <div className="space-y-10 rounded-3xl border border-[#0b192c]/10 bg-white p-7 shadow-sm sm:p-10">
+            <div className="space-y-7 rounded-3xl border border-[#0b192c]/10 bg-white p-5 shadow-sm sm:p-8">
               
               {/* Entity Overview */}
               <div>

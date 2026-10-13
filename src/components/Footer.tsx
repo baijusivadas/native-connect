@@ -12,23 +12,23 @@ export default function Footer() {
   const sectionHref = (href: string) => (pathname === '/' ? href : `/${href}`);
 
   return (
-    <footer className="border-t border-[#f7f4ef]/10 bg-[#0b192c] py-14 text-[#f7f4ef]">
+    <footer className="border-t border-[#f7f4ef]/10 bg-[#0b192c] py-10 sm:py-12 text-[#f7f4ef]">
       <div className="w-full px-5 sm:px-8 lg:px-12">
-        <div className="grid items-start gap-10 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid items-start gap-7 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           {/* Brand & Registered Entity */}
-          <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-3 text-xl font-bold">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#9b1c31] text-[#c19a68]">
+          <div className="space-y-3">
+            <Link href="/" className="flex items-center gap-3 text-lg sm:text-xl font-bold">
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#9b1c31] text-[#c19a68]">
                 <FaLanguage />
               </span>
               Native <span className="text-[#c19a68]">Connects</span>
             </Link>
-            <p className="max-w-sm text-xs leading-6 text-[#f7f4ef]/60">
+            <p className="max-w-sm text-xs leading-relaxed text-[#f7f4ef]/60">
               {t(
                 'Personalized language learning with native speakers. Clinical German training, TELC/Goethe exam prep, and direct nursing recruitment in Germany.',
               )}
             </p>
-            <div className="pt-2 text-[11px] text-[#f7f4ef]/45 space-y-1">
+            <div className="pt-1.5 text-[11px] text-[#f7f4ef]/45 space-y-0.5">
               <p className="font-semibold text-[#c19a68]"> Native Connects promoted by{' '}
                 <a
                   href={PARENT_ORGANIZATION.url}
@@ -50,7 +50,7 @@ export default function Footer() {
             <p className="text-xs font-bold uppercase tracking-[.18em] text-[#c19a68]">
               {t('Programs & Pathways')}
             </p>
-            <div className="mt-5 space-y-2.5 text-sm text-[#f7f4ef]/70">
+            <div className="mt-3.5 space-y-2 text-xs sm:text-sm text-[#f7f4ef]/70">
               <Link className="block hover:text-[#c19a68] transition" href="/german-for-nurses">
                 {t('German for Nurses (A1–B2)')}
               </Link>
@@ -74,7 +74,7 @@ export default function Footer() {
             <p className="text-xs font-bold uppercase tracking-[.18em] text-[#c19a68]">
               {t('Support & Contact')}
             </p>
-            <div className="mt-5 space-y-3 text-xs sm:text-sm text-[#f7f4ef]/70">
+            <div className="mt-3.5 space-y-2 text-xs sm:text-sm text-[#f7f4ef]/70">
               <a
                 href={`mailto:${CONTACT_DETAILS.supportEmail}`}
                 className="flex items-center gap-2 hover:text-[#c19a68] transition"
@@ -86,7 +86,7 @@ export default function Footer() {
                 <FaPhoneAlt className="shrink-0 text-[#c19a68]" />
                 <span>{CONTACT_DETAILS.phone}</span>
               </div>
-              <Link className="block hover:text-[#c19a68] transition pt-1" href={sectionHref('#faq')}>
+              <Link className="block hover:text-[#c19a68] transition pt-0.5" href={sectionHref('#faq')}>
                 {t('Frequently Asked Questions')}
               </Link>
               <Link className="block hover:text-[#c19a68] transition" href={sectionHref('#contact')}>
@@ -100,7 +100,7 @@ export default function Footer() {
             <p className="text-xs font-bold uppercase tracking-[.18em] text-[#c19a68]">
               {t('Legal & Policies')}
             </p>
-            <div className="mt-5 space-y-2.5 text-sm text-[#f7f4ef]/70">
+            <div className="mt-3.5 space-y-2 text-xs sm:text-sm text-[#f7f4ef]/70">
               <Link className="block hover:text-[#c19a68] transition" href="/privacy-policy">
                 {t('Privacy Policy')}
               </Link>
@@ -118,8 +118,8 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 flex flex-col gap-4 border-t border-[#f7f4ef]/10 pt-6 pb-4 sm:pb-0 text-xs text-[#f7f4ef]/40 sm:flex-row sm:items-center sm:justify-between sm:pr-20">
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+        <div className="mt-8 flex flex-col gap-3 border-t border-[#f7f4ef]/10 pt-4 pb-2 sm:pb-0 text-xs text-[#f7f4ef]/40 sm:flex-row sm:items-center sm:justify-between sm:pr-20">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5">
             <span>© {new Date().getFullYear()} {LEGAL_ENTITY_NAME}. {t('All rights reserved.')}</span>
             <Link href="/privacy-policy" className="hover:text-white transition underline">
               {t('Privacy')}
