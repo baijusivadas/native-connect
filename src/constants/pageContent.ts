@@ -49,19 +49,19 @@ export const HERO_GOALS = [
   {
     icon: "🎓",
     label: "Study or Work in Europe",
-    href: undefined,
+    href: "#nurses",
     goal: "Study or Work in Europe",
   },
   {
     icon: "👩‍👦",
     label: "Language for my child",
-    href: undefined,
+    href: "#offer",
     goal: "Language for my child",
   },
   {
     icon: "💬",
     label: "Speak confidently with Natives",
-    href: undefined,
+    href: "/german-for-nurses#trainers",
     goal: "Speak confidently with Natives",
   },
 ] as const;

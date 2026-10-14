@@ -55,17 +55,7 @@ export default function GermanForNursesView() {
     setTimeout(() => {
       setCurrentTrainerIdx(newIndex);
       setIsFading(false);
-    }, 220);
-  };
-
-  const nextTrainer = () => {
-    const next = (currentTrainerIdx + 1) % TRAINER_PROFILES.length;
-    changeTrainer(next);
-  };
-
-  const prevTrainer = () => {
-    const prev = (currentTrainerIdx - 1 + TRAINER_PROFILES.length) % TRAINER_PROFILES.length;
-    changeTrainer(prev);
+    }, 300);
   };
 
   useEffect(() => {
@@ -75,8 +65,8 @@ export default function GermanForNursesView() {
       setTimeout(() => {
         setCurrentTrainerIdx((prev) => (prev + 1) % TRAINER_PROFILES.length);
         setIsFading(false);
-      }, 220);
-    }, 7000);
+      }, 300);
+    }, 3000);
     return () => clearInterval(interval);
   }, [isPaused]);
 
@@ -116,7 +106,7 @@ export default function GermanForNursesView() {
 
             <div className="mt-5 flex flex-wrap items-center gap-3">
               <Link
-                href="/#contact"
+                href="/?demo=true#contact"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#9b1c31] px-5 py-2.5 text-xs sm:text-sm font-bold text-white shadow-lg shadow-[#9b1c31]/30 transition hover:bg-[#85172a] focus:outline-none focus:ring-2 focus:ring-[#c19a68]"
               >
                 {t("Book a Free Demo & Assessment")}
@@ -561,7 +551,8 @@ export default function GermanForNursesView() {
 
       {/* TRAINER PROFILES CAROUSEL / TRANSITION */}
       <section
-        className="bg-white py-10 sm:py-14"
+        id="trainers"
+        className="scroll-mt-24 bg-white py-10 sm:py-14"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
@@ -591,7 +582,7 @@ export default function GermanForNursesView() {
                   key={trainer.name}
                   type="button"
                   onClick={() => changeTrainer(idx)}
-                  className={`flex items-center gap-3 rounded-2xl p-3 text-left transition-all duration-300 ${
+                  className={`relative flex items-center gap-3 rounded-2xl p-3 text-left overflow-hidden transition-all duration-300 ${
                     isSelected
                       ? "border-2 border-[#9b1c31] bg-[#f7f4ef] shadow-md ring-2 ring-[#9b1c31]/10"
                       : "border border-[#0b192c]/10 bg-white hover:bg-[#f7f4ef]/60 hover:border-[#c19a68]/40"
@@ -618,6 +609,14 @@ export default function GermanForNursesView() {
                   {isSelected && (
                     <span className="h-2 w-2 rounded-full bg-[#9b1c31] shrink-0" />
                   )}
+                  {isSelected && (
+                    <div className="absolute bottom-0 left-0 right-0 h-1 overflow-hidden bg-[#9b1c31]/20">
+                      <div
+                        key={`progress-${idx}-${currentTrainerIdx}`}
+                        className={`h-full bg-[#9b1c31] ${!isPaused ? 'animate-progress-3s' : 'w-full'}`}
+                      />
+                    </div>
+                  )}
                 </button>
               );
             })}
@@ -626,10 +625,10 @@ export default function GermanForNursesView() {
           {/* Featured Active Trainer Profile Card with Transition */}
           <div className="mt-5">
             <article
-              className={`grid overflow-hidden rounded-[1.75rem] border border-[#0b192c]/10 bg-[#f7f4ef] shadow-md lg:grid-cols-[.75fr_1.25fr] transition-all duration-300 ease-out ${
+              className={`grid overflow-hidden rounded-[1.75rem] border border-[#0b192c]/10 bg-[#f7f4ef] shadow-md lg:grid-cols-[.75fr_1.25fr] transition-all duration-500 ease-in-out ${
                 isFading
-                  ? "opacity-0 translate-y-2 scale-[0.995]"
-                  : "opacity-100 translate-y-0 scale-100"
+                  ? "opacity-40 translate-x-3 scale-[0.995]"
+                  : "opacity-100 translate-x-0 scale-100"
               }`}
             >
               {/* Photo & Badge */}
@@ -730,7 +729,7 @@ export default function GermanForNursesView() {
                   ) : null}
 
                   <Link
-                    href="/#contact"
+                    href="/?demo=true#contact"
                     className="inline-flex items-center gap-2 rounded-xl bg-[#9b1c31] px-5 py-3 text-sm font-bold text-white shadow-md transition hover:bg-[#85172a] focus:outline-none focus:ring-2 focus:ring-[#c19a68]"
                   >
                     {t("Book a Session with Native Connects")}
@@ -929,7 +928,7 @@ export default function GermanForNursesView() {
             </p>
 
             <Link
-              href="/#contact"
+              href="/?demo=true#contact"
               className="mt-4 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-xs sm:text-sm font-bold text-[#0b192c] shadow-lg transition hover:bg-[#f7f4ef] focus:outline-none focus:ring-2 focus:ring-white"
             >
               Book a Free Demo

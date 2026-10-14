@@ -58,6 +58,14 @@ body {
 }
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 
+@keyframes progress3s {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+.animate-progress-3s {
+  animation: progress3s 3s linear infinite;
+}
+
 
 /* Responsive safeguards */
 html, body { width: 100%; max-width: 100%; overflow-x: hidden; }

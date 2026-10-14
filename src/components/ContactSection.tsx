@@ -68,7 +68,7 @@ export default function ContactSection() {
     if (target) {
       const navbarHeight = 80;
       const targetTop = target.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({ top: targetTop - navbarHeight, behavior: "smooth" });
+      window.scrollTo({ top: Math.max(0, targetTop - navbarHeight), behavior: "smooth" });
     }
     window.setTimeout(
       () => document.getElementById("contact-name")?.focus(),
@@ -186,6 +186,7 @@ export default function ContactSection() {
                 onClick={() => {
                   setMode("demo");
                   setStatus("idle");
+                  window.history.pushState(null, "", "#contact");
                 }}
                 className={`flex-1 rounded-lg px-4 py-2 text-xs sm:text-sm font-bold transition cursor-pointer ${mode === "demo" ? "bg-white text-[#0b192c] shadow-sm" : "text-[#0b192c]/50"}`}
               >
@@ -227,9 +228,7 @@ export default function ContactSection() {
                   {t("Thank you! We have received your details.")}
                 </h3>
                 <p className="mx-auto mt-2 max-w-md text-xs sm:text-sm leading-relaxed text-[#0b192c]/55">
-                  {t(
-                    "We’ll review your request and get back to you about the next step.",
-                  )}
+                  {t("We will connect with you shortly")}
                 </p>
                 <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
                   <button
@@ -332,36 +331,6 @@ export default function ContactSection() {
                     <option value="Other">{t("Other")}</option>
                   </select>
                 </label>
-                {mode === "demo" && (
-                  <>
-                    <label>
-                      <span className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-[#0b192c]/55">
-                        {t("Preferred date")}
-                      </span>
-                      <input
-                        type="date"
-                        value={form.preferredDate}
-                        onChange={(e) =>
-                          setForm({ ...form, preferredDate: e.target.value })
-                        }
-                        className="w-full rounded-xl border border-[#0b192c]/12 bg-[#f7f4ef]/45 px-3.5 py-2.5 text-xs sm:text-sm outline-none focus:border-[#9b1c31]/60"
-                      />
-                    </label>
-                    <label>
-                      <span className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-[#0b192c]/55">
-                        {t("Preferred time")}
-                      </span>
-                      <input
-                        type="time"
-                        value={form.preferredTime}
-                        onChange={(e) =>
-                          setForm({ ...form, preferredTime: e.target.value })
-                        }
-                        className="w-full rounded-xl border border-[#0b192c]/12 bg-[#f7f4ef]/45 px-3.5 py-2.5 text-xs sm:text-sm outline-none focus:border-[#9b1c31]/60"
-                      />
-                    </label>
-                  </>
-                )}
 
                 <label className="sm:col-span-2">
                   <span className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-[#0b192c]/55">
@@ -411,7 +380,7 @@ export default function ContactSection() {
                     <FaArrowRight className="text-xs" />
                   )}
                   {mode === "demo"
-                    ? t("Request Demo Session")
+                    ? t("Schedule Demo Session")
                     : t("Send Message")}
                 </button>
                 <p className="sm:col-span-2 text-[11px] leading-relaxed text-[#0b192c]/45">
