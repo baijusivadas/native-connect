@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import {
   FaArrowRight,
   FaCalendarAlt,
@@ -8,7 +8,6 @@ import {
   FaSpinner,
 } from "react-icons/fa";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { getCalendlyDemoUrl } from "@/constants/site";
 
 type FormState = {
   name: string;
@@ -33,7 +32,7 @@ const emptyForm: FormState = {
 };
 
 export default function ContactSection() {
-  const { t } = useLanguage();
+  const { locale, t } = useLanguage();
   const [form, setForm] = useState<FormState>(emptyForm);
   const [mode, setMode] = useState<"contact" | "demo">("contact");
   const [status, setStatus] = useState<
@@ -41,7 +40,13 @@ export default function ContactSection() {
   >("idle");
   const [error, setError] = useState("");
   const [website, setWebsite] = useState("");
-  const [bookingUrl, setBookingUrl] = useState(getCalendlyDemoUrl());
+  const [booking, setBooking] = useState<{
+    startTime: string;
+    meetingLink: string | null;
+  } | null>(null);
+  const bookingRequest = useRef<{ key: string; fingerprint: string } | null>(
+    null,
+  );
 
   useEffect(() => {
     const handler = (event: Event) => {
@@ -57,6 +62,7 @@ export default function ContactSection() {
     setMode("demo");
     setStatus("idle");
     setError("");
+    setBooking(null);
     if (prefilledGoal !== undefined || prefilledLanguage !== undefined) {
       setForm((prev) => ({
         ...prev,
@@ -98,6 +104,17 @@ export default function ContactSection() {
     }
 
     try {
+      const bookingFingerprint = JSON.stringify(form);
+      if (
+        mode === "demo" &&
+        bookingRequest.current?.fingerprint !== bookingFingerprint
+      ) {
+        bookingRequest.current = {
+          key: window.crypto.randomUUID(),
+          fingerprint: bookingFingerprint,
+        };
+      }
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -105,9 +122,15 @@ export default function ContactSection() {
           ...form,
           source: mode === "demo" ? "demo-booking" : "contact-form",
           website,
+          ...(mode === "demo"
+            ? { idempotencyKey: bookingRequest.current?.key }
+            : {}),
         }),
       });
-      const data = await response.json();
+      const data = (await response.json()) as {
+        error?: unknown;
+        booking?: { startTime?: unknown; meetingLink?: unknown };
+      };
       if (!response.ok) {
         throw new Error(
           typeof data.error === "string"
@@ -116,7 +139,20 @@ export default function ContactSection() {
         );
       }
 
-      setBookingUrl(getCalendlyDemoUrl(form));
+      if (mode === "demo") {
+        if (
+          typeof data.booking?.startTime !== "string" ||
+          (data.booking.meetingLink !== null &&
+            typeof data.booking.meetingLink !== "string")
+        ) {
+          throw new Error(t("Could not confirm your demo booking. Please try again."));
+        }
+        setBooking({
+          startTime: data.booking.startTime,
+          meetingLink: data.booking.meetingLink,
+        });
+      }
+      bookingRequest.current = null;
       setStatus("success");
       setForm(emptyForm);
     } catch (err) {
@@ -195,27 +231,18 @@ export default function ContactSection() {
             </div>
 
             {mode === "demo" && (
-              <div className="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-2xl border border-[#c19a68]/40 bg-[#c19a68]/10 p-3.5">
+              <div className="mt-4 rounded-2xl border border-[#c19a68]/40 bg-[#c19a68]/10 p-3.5">
                 <div className="space-y-0.5">
                   <div className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-[#9b1c31] animate-pulse" />
+                    <span className="h-2 w-2 rounded-full bg-[#9b1c31]" />
                     <span className="text-[11px] font-bold uppercase tracking-wider text-[#9b1c31]">
-                      {t("Instant Calendar Invite")}
+                      {t("Automatic demo booking")}
                     </span>
                   </div>
                   <p className="text-xs text-[#0b192c]/75">
-                    {t("Prefer to pick a live slot right now? Connect directly via Calendly for an instant Google Calendar & Meet invitation.")}
+                    {t("Submitting this form automatically books the next available 30-minute slot. A Google Meet calendar invitation will be emailed to you and contactus@brahmas.org.")}
                   </p>
                 </div>
-                <a
-                  href={getCalendlyDemoUrl(form)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-[#9b1c31] px-3.5 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-[#85172a]"
-                >
-                  <FaCalendarAlt className="text-xs" />
-                  <span>{t("Schedule with Calendly")}</span>
-                </a>
               </div>
             )}
 
@@ -225,11 +252,37 @@ export default function ContactSection() {
                   <FaCheck />
                 </div>
                 <h3 className="mt-4 text-xl sm:text-2xl font-semibold text-[#0b192c]">
-                  {t("Thank you! We have received your details.")}
+                  {t(mode === "demo" ? "Your demo is booked!" : "Thank you! We have received your details.")}
                 </h3>
                 <p className="mx-auto mt-2 max-w-md text-xs sm:text-sm leading-relaxed text-[#0b192c]/55">
-                  {t("We will connect with you shortly")}
+                  {t(mode === "demo" ? "Your Google Meet invitation has been sent to your email and contactus@brahmas.org." : "We will connect with you shortly")}
                 </p>
+                {booking && (
+                  <>
+                    <p className="mt-3 text-sm font-semibold text-[#0b192c]">
+                      {new Intl.DateTimeFormat(locale, {
+                        dateStyle: "full",
+                        timeStyle: "short",
+                        timeZone: "Asia/Kolkata",
+                        }).format(new Date(booking.startTime))}{" "}
+                      (IST)
+                    </p>
+                    {booking.meetingLink ? (
+                      <a
+                        href={booking.meetingLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-4 inline-flex rounded-xl bg-[#9b1c31] px-4 py-2.5 text-xs sm:text-sm font-bold text-white transition hover:bg-[#85172a]"
+                      >
+                        {t("Join Google Meet")}
+                      </a>
+                    ) : (
+                      <p className="mt-3 text-xs text-[#0b192c]/60">
+                        {t("The Google Meet link is being prepared and will be added to your calendar invitation.")}
+                      </p>
+                    )}
+                  </>
+                )}
                 <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
                   <button
                     type="button"
@@ -238,17 +291,6 @@ export default function ContactSection() {
                   >
                     {t("Send another request")}
                   </button>
-                  {mode === "demo" && (
-                    <a
-                      href={bookingUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-xl bg-[#9b1c31] px-4 py-2.5 text-xs sm:text-sm font-bold text-white transition hover:bg-[#85172a]"
-                    >
-                      <FaCalendarAlt className="text-xs" />
-                      {t("Reserve slot on Calendly")}
-                    </a>
-                  )}
                 </div>
               </div>
             ) : (

@@ -97,18 +97,6 @@ export default function Navbar() {
             })}
           </div>
           <div className="flex items-center gap-2.5">
-            <Link
-              href={isHome ? "#contact" : "/?demo=true#contact"}
-              onClick={(event) => {
-                if (isHome) {
-                  handleNavigation(event, "#contact");
-                  window.dispatchEvent(new CustomEvent("native-connects:open-demo"));
-                }
-              }}
-              className="hidden sm:inline-flex items-center justify-center rounded-xl bg-[#9b1c31] px-4 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-[#85172a] hover:-translate-y-0.5 cursor-pointer"
-            >
-              {t("Book a Demo")}
-            </Link>
             <LanguageSwitcher />
             <button
               type="button"

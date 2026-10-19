@@ -11,6 +11,9 @@ export const ADDITIONAL_TRANSLATIONS: Record<
     "Native Connect combines native-speaker guidance, real-world conversation practice, flexible online learning, and cultural immersion.":
       "Native Connect associe l'accompagnement de locuteurs natifs, la pratique de conversations réelles, des cours en ligne flexibles et une immersion culturelle.",
     "Tailored Learning Pathways": "Des parcours d'apprentissage adaptés",
+    "Learn German with structured, practical guidance.":
+      "Apprenez l’allemand grâce à un accompagnement structuré et pratique.",
+    "Book a Free Demo": "Réserver une démonstration gratuite",
     "Your Goals, Your Language Learning Journey.": "Vos objectifs, votre parcours linguistique.",
     "Choose the personalized program built for your specific ambitions and schedule. We fit your life, not the other way around.":
       "Choisissez un programme personnalisé, conçu pour vos ambitions et votre emploi du temps. Il s'adapte à votre vie, et non l'inverse.",
@@ -18,6 +21,32 @@ export const ADDITIONAL_TRANSLATIONS: Record<
       "Veuillez saisir un numéro de téléphone pour réserver une démonstration.",
     "Please enter a valid phone number (10–15 digits).":
       "Veuillez saisir un numéro de téléphone valide (10 à 15 chiffres).",
+    "Automatic demo booking": "Réservation automatique de la démonstration",
+    "Submitting this form automatically books the next available 30-minute slot. A Google Meet calendar invitation will be emailed to you and contactus@brahmas.org.":
+      "L’envoi de ce formulaire réserve automatiquement le prochain créneau disponible de 30 minutes. Une invitation Google Meet sera envoyée par e-mail à vous et à contactus@brahmas.org.",
+    "Your demo is booked!": "Votre démonstration est réservée !",
+    "Your Google Meet invitation has been sent to your email and contactus@brahmas.org.":
+      "L’invitation Google Meet a été envoyée à votre adresse e-mail et à contactus@brahmas.org.",
+    "The Google Meet link is being prepared and will be added to your calendar invitation.":
+      "Le lien Google Meet est en cours de création et sera ajouté à votre invitation calendrier.",
+    "Join Google Meet": "Rejoindre Google Meet",
+    "Could not confirm your demo booking. Please try again.":
+      "La réservation de votre démonstration n’a pas pu être confirmée. Veuillez réessayer.",
+    "Could not identify this booking request. Please submit it again.":
+      "Impossible d’identifier cette demande de réservation. Veuillez la renvoyer.",
+    "Automatic demo booking is not configured yet. Please contact us to arrange a session.":
+      "La réservation automatique n’est pas encore configurée. Contactez-nous pour organiser une séance.",
+    "We could not connect to the calendar to schedule your demo. Please try again later.":
+      "Impossible de se connecter au calendrier pour réserver votre démonstration. Veuillez réessayer plus tard.",
+    "We could not check demo availability. Please try again later.":
+      "Impossible de vérifier les disponibilités. Veuillez réessayer plus tard.",
+    "There are no demo times available in the next 30 days. Please contact us to arrange a session.":
+      "Aucun créneau de démonstration n’est disponible dans les 30 prochains jours. Contactez-nous pour organiser une séance.",
+    "We could not check your booking status. Please try again later.":
+      "Impossible de vérifier l’état de votre réservation. Veuillez réessayer plus tard.",
+    "We could not create the meeting and calendar invitations. Please try again later.":
+      "Impossible de créer la réunion et les invitations calendrier. Veuillez réessayer plus tard.",
+    "Schedule Demo Session": "Planifier une séance de démonstration",
     "Something went wrong.": "Une erreur s'est produite.",
     "Please try again.": "Veuillez réessayer.",
     "By submitting, you agree Native Connects may contact you. Your data is handled per our":
@@ -226,6 +255,9 @@ export const ADDITIONAL_TRANSLATIONS: Record<
     "Native Connect combines native-speaker guidance, real-world conversation practice, flexible online learning, and cultural immersion.":
       "Native Connect unisce il supporto di madrelingua, la pratica di conversazioni reali, lezioni online flessibili e immersione culturale.",
     "Tailored Learning Pathways": "Percorsi di apprendimento su misura",
+    "Learn German with structured, practical guidance.":
+      "Impara il tedesco con un percorso strutturato e pratico.",
+    "Book a Free Demo": "Prenota una demo gratuita",
     "Your Goals, Your Language Learning Journey.": "I tuoi obiettivi, il tuo percorso linguistico.",
     "Choose the personalized program built for your specific ambitions and schedule. We fit your life, not the other way around.":
       "Scegli un programma personalizzato, pensato per le tue ambizioni e i tuoi impegni. È il corso ad adattarsi alla tua vita, non il contrario.",
@@ -233,6 +265,32 @@ export const ADDITIONAL_TRANSLATIONS: Record<
       "Inserisci un numero di telefono per prenotare una dimostrazione.",
     "Please enter a valid phone number (10–15 digits).":
       "Inserisci un numero di telefono valido (da 10 a 15 cifre).",
+    "Automatic demo booking": "Prenotazione automatica della demo",
+    "Submitting this form automatically books the next available 30-minute slot. A Google Meet calendar invitation will be emailed to you and contactus@brahmas.org.":
+      "Inviando il modulo verrà prenotato automaticamente il primo slot disponibile di 30 minuti. L’invito Google Meet sarà inviato via e-mail a te e a contactus@brahmas.org.",
+    "Your demo is booked!": "La tua demo è prenotata!",
+    "Your Google Meet invitation has been sent to your email and contactus@brahmas.org.":
+      "L’invito Google Meet è stato inviato alla tua e-mail e a contactus@brahmas.org.",
+    "The Google Meet link is being prepared and will be added to your calendar invitation.":
+      "Il link Google Meet è in preparazione e sarà aggiunto all’invito del calendario.",
+    "Join Google Meet": "Partecipa a Google Meet",
+    "Could not confirm your demo booking. Please try again.":
+      "Impossibile confermare la prenotazione della demo. Riprova.",
+    "Could not identify this booking request. Please submit it again.":
+      "Impossibile identificare questa richiesta di prenotazione. Inviala di nuovo.",
+    "Automatic demo booking is not configured yet. Please contact us to arrange a session.":
+      "La prenotazione automatica non è ancora configurata. Contattaci per organizzare una sessione.",
+    "We could not connect to the calendar to schedule your demo. Please try again later.":
+      "Impossibile connettersi al calendario per programmare la demo. Riprova più tardi.",
+    "We could not check demo availability. Please try again later.":
+      "Impossibile verificare la disponibilità della demo. Riprova più tardi.",
+    "There are no demo times available in the next 30 days. Please contact us to arrange a session.":
+      "Non ci sono orari disponibili per la demo nei prossimi 30 giorni. Contattaci per organizzare una sessione.",
+    "We could not check your booking status. Please try again later.":
+      "Impossibile verificare lo stato della prenotazione. Riprova più tardi.",
+    "We could not create the meeting and calendar invitations. Please try again later.":
+      "Impossibile creare la riunione e gli inviti del calendario. Riprova più tardi.",
+    "Schedule Demo Session": "Prenota una sessione dimostrativa",
     "Something went wrong.": "Si è verificato un errore.",
     "Please try again.": "Riprova.",
     "By submitting, you agree Native Connects may contact you. Your data is handled per our":
@@ -434,6 +492,9 @@ export const ADDITIONAL_TRANSLATIONS: Record<
     "Native Connect combines native-speaker guidance, real-world conversation practice, flexible online learning, and cultural immersion.":
       "Native Connect verbindet die Begleitung durch Muttersprachler, praxisnahe Gespräche, flexibles Online-Lernen und kulturelles Eintauchen.",
     "Tailored Learning Pathways": "Individuelle Lernwege",
+    "Learn German with structured, practical guidance.":
+      "Lerne Deutsch mit strukturiertem, praxisnahem Unterricht.",
+    "Book a Free Demo": "Kostenlose Demo buchen",
     "Your Goals, Your Language Learning Journey.": "Deine Ziele, dein Sprachlernweg.",
     "Choose the personalized program built for your specific ambitions and schedule. We fit your life, not the other way around.":
       "Wähle ein individuelles Programm, das zu deinen Zielen und deinem Zeitplan passt. Der Unterricht richtet sich nach deinem Leben, nicht umgekehrt.",
@@ -441,6 +502,32 @@ export const ADDITIONAL_TRANSLATIONS: Record<
       "Bitte gib eine Telefonnummer an, um eine Probestunde zu buchen.",
     "Please enter a valid phone number (10–15 digits).":
       "Bitte gib eine gültige Telefonnummer mit 10 bis 15 Ziffern ein.",
+    "Automatic demo booking": "Automatische Probestunden-Buchung",
+    "Submitting this form automatically books the next available 30-minute slot. A Google Meet calendar invitation will be emailed to you and contactus@brahmas.org.":
+      "Mit dem Absenden dieses Formulars wird automatisch der nächste verfügbare 30-Minuten-Termin gebucht. Die Google-Meet-Kalendereinladung wird dir und contactus@brahmas.org per E-Mail gesendet.",
+    "Your demo is booked!": "Deine Probestunde ist gebucht!",
+    "Your Google Meet invitation has been sent to your email and contactus@brahmas.org.":
+      "Die Google-Meet-Einladung wurde an deine E-Mail-Adresse und contactus@brahmas.org gesendet.",
+    "The Google Meet link is being prepared and will be added to your calendar invitation.":
+      "Der Google-Meet-Link wird erstellt und deiner Kalendereinladung hinzugefügt.",
+    "Join Google Meet": "Google Meet beitreten",
+    "Could not confirm your demo booking. Please try again.":
+      "Deine Probestunden-Buchung konnte nicht bestätigt werden. Bitte versuche es erneut.",
+    "Could not identify this booking request. Please submit it again.":
+      "Diese Buchungsanfrage konnte nicht zugeordnet werden. Bitte sende sie erneut.",
+    "Automatic demo booking is not configured yet. Please contact us to arrange a session.":
+      "Die automatische Buchung ist noch nicht eingerichtet. Bitte kontaktiere uns, um einen Termin zu vereinbaren.",
+    "We could not connect to the calendar to schedule your demo. Please try again later.":
+      "Wir konnten keine Verbindung zum Kalender herstellen. Bitte versuche es später erneut.",
+    "We could not check demo availability. Please try again later.":
+      "Wir konnten die Verfügbarkeit nicht prüfen. Bitte versuche es später erneut.",
+    "There are no demo times available in the next 30 days. Please contact us to arrange a session.":
+      "In den nächsten 30 Tagen sind keine Termine verfügbar. Bitte kontaktiere uns, um einen Termin zu vereinbaren.",
+    "We could not check your booking status. Please try again later.":
+      "Wir konnten den Buchungsstatus nicht prüfen. Bitte versuche es später erneut.",
+    "We could not create the meeting and calendar invitations. Please try again later.":
+      "Wir konnten das Meeting und die Kalendereinladungen nicht erstellen. Bitte versuche es später erneut.",
+    "Schedule Demo Session": "Probestunde vereinbaren",
     "Something went wrong.": "Etwas ist schiefgelaufen.",
     "Please try again.": "Bitte versuche es erneut.",
     "By submitting, you agree Native Connects may contact you. Your data is handled per our":
@@ -642,6 +729,9 @@ export const ADDITIONAL_TRANSLATIONS: Record<
     "Native Connect combines native-speaker guidance, real-world conversation practice, flexible online learning, and cultural immersion.":
       "Native Connect îmbină îndrumarea vorbitorilor nativi, conversațiile practice, învățarea online flexibilă și imersiunea culturală.",
     "Tailored Learning Pathways": "Parcursuri de învățare personalizate",
+    "Learn German with structured, practical guidance.":
+      "Învață limba germană cu îndrumare structurată și practică.",
+    "Book a Free Demo": "Programează o demonstrație gratuită",
     "Your Goals, Your Language Learning Journey.": "Obiectivele tale, parcursul tău lingvistic.",
     "Choose the personalized program built for your specific ambitions and schedule. We fit your life, not the other way around.":
       "Alege un program personalizat pentru obiectivele și programul tău. Programul se adaptează vieții tale, nu invers.",
@@ -649,6 +739,32 @@ export const ADDITIONAL_TRANSLATIONS: Record<
       "Introdu un număr de telefon pentru a rezerva o lecție demonstrativă.",
     "Please enter a valid phone number (10–15 digits).":
       "Introdu un număr de telefon valid (10–15 cifre).",
+    "Automatic demo booking": "Programare automată a demonstrației",
+    "Submitting this form automatically books the next available 30-minute slot. A Google Meet calendar invitation will be emailed to you and contactus@brahmas.org.":
+      "Trimiterea acestui formular rezervă automat următorul interval disponibil de 30 de minute. Invitația Google Meet va fi trimisă prin e-mail către tine și contactus@brahmas.org.",
+    "Your demo is booked!": "Demonstrația ta este rezervată!",
+    "Your Google Meet invitation has been sent to your email and contactus@brahmas.org.":
+      "Invitația Google Meet a fost trimisă la adresa ta de e-mail și la contactus@brahmas.org.",
+    "The Google Meet link is being prepared and will be added to your calendar invitation.":
+      "Linkul Google Meet este în curs de pregătire și va fi adăugat la invitația din calendar.",
+    "Join Google Meet": "Participă la Google Meet",
+    "Could not confirm your demo booking. Please try again.":
+      "Rezervarea demonstrației nu a putut fi confirmată. Te rugăm să încerci din nou.",
+    "Could not identify this booking request. Please submit it again.":
+      "Solicitarea de rezervare nu a putut fi identificată. Te rugăm să o trimiți din nou.",
+    "Automatic demo booking is not configured yet. Please contact us to arrange a session.":
+      "Programarea automată nu este configurată încă. Contactează-ne pentru a stabili o sesiune.",
+    "We could not connect to the calendar to schedule your demo. Please try again later.":
+      "Nu ne-am putut conecta la calendar pentru a programa demonstrația. Te rugăm să încerci mai târziu.",
+    "We could not check demo availability. Please try again later.":
+      "Nu am putut verifica disponibilitatea demonstrației. Te rugăm să încerci mai târziu.",
+    "There are no demo times available in the next 30 days. Please contact us to arrange a session.":
+      "Nu există intervale disponibile pentru demonstrație în următoarele 30 de zile. Contactează-ne pentru a stabili o sesiune.",
+    "We could not check your booking status. Please try again later.":
+      "Nu am putut verifica starea rezervării. Te rugăm să încerci mai târziu.",
+    "We could not create the meeting and calendar invitations. Please try again later.":
+      "Nu am putut crea întâlnirea și invitațiile în calendar. Te rugăm să încerci mai târziu.",
+    "Schedule Demo Session": "Programează o sesiune demonstrativă",
     "Something went wrong.": "A apărut o eroare.",
     "Please try again.": "Te rugăm să încerci din nou.",
     "By submitting, you agree Native Connects may contact you. Your data is handled per our":

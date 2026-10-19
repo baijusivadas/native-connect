@@ -1,4 +1,7 @@
 import { NextResponse } from 'next/server';
+import { bookNextDemo, DemoBookingError } from '@/lib/demoBooking';
+
+export const runtime = 'nodejs';
 
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const MAX_REQUESTS_PER_WINDOW = 5;
@@ -43,6 +46,7 @@ interface ContactRequestBody {
   type?: unknown;
   conversationSummary?: unknown;
   website?: unknown; // honeypot
+  idempotencyKey?: unknown;
 }
 
 export async function POST(request: Request) {
@@ -104,6 +108,12 @@ export async function POST(request: Request) {
       );
     }
 
+    const isChat =
+      rawSource === 'chat' ||
+      rawSource === 'ai-chat' ||
+      rawType === 'chat' ||
+      rawSource.includes('chat');
+
     const webhookUrl = process.env.CONTACT_WEBHOOK_URL;
     if (!webhookUrl) {
       return NextResponse.json(
@@ -112,11 +122,24 @@ export async function POST(request: Request) {
       );
     }
 
-    const isChat =
-      rawSource === 'chat' ||
-      rawSource === 'ai-chat' ||
-      rawType === 'chat' ||
-      rawSource.includes('chat');
+    let booking: Awaited<ReturnType<typeof bookNextDemo>> | null = null;
+    if (isDemo) {
+      const idempotencyKey = sanitize(body.idempotencyKey, 36);
+      if (!/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(idempotencyKey)) {
+        return NextResponse.json(
+          { error: 'Could not identify this booking request. Please submit it again.' },
+          { status: 400 }
+        );
+      }
+
+      booking = await bookNextDemo({
+        name,
+        email,
+        language: sanitize(body.language, 50),
+        goal: sanitize(body.goal, 500),
+        idempotencyKey,
+      });
+    }
 
     const targetTab = isDemo ? 'Demo Requests' : isChat ? 'Chat Leads' : 'Leads';
 
@@ -133,8 +156,19 @@ export async function POST(request: Request) {
       goal: sanitize(body.goal, 500),
       level: sanitize(body.level, 50),
       message: sanitize(body.message, 2000),
-      preferredDate,
-      preferredTime,
+      preferredDate: booking
+        ? new Date(booking.startTime).toLocaleDateString('en-CA', {
+            timeZone: 'Asia/Kolkata',
+          })
+        : preferredDate,
+      preferredTime: booking
+        ? new Date(booking.startTime).toLocaleTimeString('en-IN', {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true,
+            timeZone: 'Asia/Kolkata',
+          })
+        : preferredTime,
       source: sanitize(body.source, 50) || (isDemo ? 'demo-booking' : 'website'),
       conversationSummary: sanitize(body.conversationSummary, 2000),
       isDemo,
@@ -161,8 +195,18 @@ export async function POST(request: Request) {
       console.error('Webhook fetch error (non-fatal):', webhookErr);
     }
 
-    return NextResponse.json({ success: true });
+    if (!isDemo) {
+      return NextResponse.json({ success: true });
+    }
+
+    return NextResponse.json({ success: true, booking });
   } catch (err) {
+    if (err instanceof DemoBookingError) {
+      return NextResponse.json(
+        { error: err.message },
+        { status: err.status },
+      );
+    }
     console.error('Contact submission error:', err);
     return NextResponse.json(
       { error: 'Could not submit the form. Please try again.' },
