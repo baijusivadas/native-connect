@@ -32,19 +32,19 @@ body {
     text-transform: uppercase;
   }
   .section-title {
-    margin-top: .75rem;
+    margin-top: .5rem;
     color: var(--navy);
-    font-size: clamp(2.25rem, 5vw, 4rem);
-    line-height: 1.05;
-    letter-spacing: -.04em;
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: -.03em;
     font-weight: 600;
   }
   .section-copy {
-    margin-top: 1.25rem;
+    margin-top: .75rem;
     max-width: 42rem;
-    color: rgba(11, 25, 44, .62);
-    font-size: .98rem;
-    line-height: 1.9;
+    color: rgba(11, 25, 44, .65);
+    font-size: .95rem;
+    line-height: 1.7;
   }
 }
 
@@ -57,6 +57,14 @@ body {
   scrollbar-width: none;
 }
 .scrollbar-hide::-webkit-scrollbar { display: none; }
+
+@keyframes progress3s {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+.animate-progress-3s {
+  animation: progress3s 3s linear infinite;
+}
 
 
 /* Responsive safeguards */

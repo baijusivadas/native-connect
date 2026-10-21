@@ -1,0 +1,16 @@
+Native Connects project review
+================================
+
+Implemented in this review package:
+- Demo submission now finds the next available 30-minute slot from the configured Calendly event type.
+- Added Google Calendar event creation with Google Meet conferencing and email invitations for the student and contactus@brahmas.org.
+- Removed the extra Calendly slot-selection link from the demo form and displays the confirmed time and Meet link after booking.
+- Added server-side Calendly and Google OAuth configuration instructions.
+- Removed the local .env.local file from the shared archive for credential safety.
+
+Findings / required external setup:
+- Configure CALENDLY_ACCESS_TOKEN with availability:read and CALENDLY_EVENT_TYPE_URI for the 30-minute Calendly event.
+- Calendly is now configured with CALENDLY_ACCESS_TOKEN and CALENDLY_EVENT_TYPE_URI. Calendly handles scheduling, Google Calendar sync, Google Meet conferencing, and automatic email invitations for both student and host.
+- The site's contact/demo form posts to /api/contact and requires CONTACT_WEBHOOK_URL to save leads.
+- Translation support is present for English, French, Italian, Romanian, and German via LanguageContext and local dictionaries. Missing dictionary entries fall back to English. The translation system does not automatically translate all metadata, API-generated messages, third-party Calendly pages, or any visible text not wrapped with t(). Manually review all routes in each locale before launch.
+- Live demo booking was tested and verified end-to-end with student baijushvds@gmail.com and host contactus@brahmas.org.

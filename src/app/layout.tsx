@@ -63,6 +63,7 @@ export const metadata: Metadata = {
 };
 
 import ScrollToTop from '@/components/ScrollToTop';
+import NavigationHandler from '@/components/NavigationHandler';
 
 const organizationJsonLd = JSON.stringify(ORGANIZATION_SCHEMA).replace(
   /</g,
@@ -82,6 +83,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: organizationJsonLd }}
         />
         <LanguageProvider>
+          <NavigationHandler />
           {children}
           <ScrollToTop />
         </LanguageProvider>

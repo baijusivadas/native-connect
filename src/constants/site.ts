@@ -11,11 +11,17 @@ export const PARENT_ORGANIZATION = {
 export const SITE_DESCRIPTION =
   'Personalized online language courses, certified exam preparation (Goethe & TELC Pflege), and fast-track international career placement for nurses and professionals in Germany and Europe.';
 
-const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+function getValidOrigin(urlStr?: string): string | undefined {
+  if (!urlStr) return undefined;
+  try {
+    return new URL(urlStr).origin;
+  } catch {
+    return undefined;
+  }
+}
 
-export const SITE_URL = configuredSiteUrl
-  ? new URL(configuredSiteUrl).origin
-  : undefined;
+const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+export const SITE_URL = getValidOrigin(configuredSiteUrl);
 
 export const CONTACT_DETAILS = {
   registeredName: LEGAL_ENTITY_NAME,
