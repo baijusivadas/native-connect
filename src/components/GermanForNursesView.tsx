@@ -931,7 +931,7 @@ export default function GermanForNursesView() {
               href="/?demo=true#contact"
               className="mt-4 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-xs sm:text-sm font-bold text-[#0b192c] shadow-lg transition hover:bg-[#f7f4ef] focus:outline-none focus:ring-2 focus:ring-white"
             >
-              Book a Free Demo
+              {t("Book a Free Demo")}
               <FaArrowRight className="text-xs" />
             </Link>
           </div>

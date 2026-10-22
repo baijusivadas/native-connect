@@ -3,7 +3,6 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
 import {
   FaArrowRight,
-  FaCalendarAlt,
   FaCheck,
   FaSpinner,
 } from "react-icons/fa";
@@ -180,15 +179,6 @@ export default function ContactSection() {
               )}
             </p>
 
-            <button
-              type="button"
-              onClick={() => openDemo()}
-              className="mt-5 inline-flex items-center gap-2.5 rounded-xl bg-[#f7f4ef] px-5 py-2.5 text-xs sm:text-sm font-bold text-[#0b192c] transition hover:-translate-y-0.5 hover:bg-white cursor-pointer"
-            >
-              <FaCalendarAlt className="text-[#9b1c31]" />
-              {t("Book a Demo Session")}
-            </button>
-
             <div className="mt-6 space-y-2.5 text-xs sm:text-sm text-white/70">
               {[
                 "Personalized learning goals",
@@ -230,22 +220,6 @@ export default function ContactSection() {
               </button>
             </div>
 
-            {mode === "demo" && (
-              <div className="mt-4 rounded-2xl border border-[#c19a68]/40 bg-[#c19a68]/10 p-3.5">
-                <div className="space-y-0.5">
-                  <div className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-[#9b1c31]" />
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#9b1c31]">
-                      {t("Automatic demo booking")}
-                    </span>
-                  </div>
-                  <p className="text-xs text-[#0b192c]/75">
-                    {t("Submitting this form automatically books the next available 30-minute slot. A Google Meet calendar invitation will be emailed to you and contactus@brahmas.org.")}
-                  </p>
-                </div>
-              </div>
-            )}
-
             {status === "success" ? (
               <div className="py-12 text-center" role="region" aria-live="polite">
                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#9b1c31]/10 text-[#9b1c31]">
@@ -255,33 +229,17 @@ export default function ContactSection() {
                   {t(mode === "demo" ? "Your demo is booked!" : "Thank you! We have received your details.")}
                 </h3>
                 <p className="mx-auto mt-2 max-w-md text-xs sm:text-sm leading-relaxed text-[#0b192c]/55">
-                  {t(mode === "demo" ? "Your Google Meet invitation has been sent to your email and contactus@brahmas.org." : "We will connect with you shortly")}
+                  {t(mode === "demo" ? "Your Google Meet invitation has been sent to your email." : "We will connect with you shortly")}
                 </p>
                 {booking && (
-                  <>
-                    <p className="mt-3 text-sm font-semibold text-[#0b192c]">
-                      {new Intl.DateTimeFormat(locale, {
-                        dateStyle: "full",
-                        timeStyle: "short",
-                        timeZone: "Asia/Kolkata",
-                        }).format(new Date(booking.startTime))}{" "}
-                      (IST)
-                    </p>
-                    {booking.meetingLink ? (
-                      <a
-                        href={booking.meetingLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-4 inline-flex rounded-xl bg-[#9b1c31] px-4 py-2.5 text-xs sm:text-sm font-bold text-white transition hover:bg-[#85172a]"
-                      >
-                        {t("Join Google Meet")}
-                      </a>
-                    ) : (
-                      <p className="mt-3 text-xs text-[#0b192c]/60">
-                        {t("The Google Meet link is being prepared and will be added to your calendar invitation.")}
-                      </p>
-                    )}
-                  </>
+                  <p className="mt-3 text-sm font-semibold text-[#0b192c]">
+                    {new Intl.DateTimeFormat(locale, {
+                      dateStyle: "full",
+                      timeStyle: "short",
+                      timeZone: "Asia/Kolkata",
+                    }).format(new Date(booking.startTime))}{" "}
+                    (IST)
+                  </p>
                 )}
                 <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
                   <button

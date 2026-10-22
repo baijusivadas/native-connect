@@ -25,8 +25,8 @@ export const ADDITIONAL_TRANSLATIONS: Record<
     "Submitting this form automatically books the next available 30-minute slot. A Google Meet calendar invitation will be emailed to you and contactus@brahmas.org.":
       "L’envoi de ce formulaire réserve automatiquement le prochain créneau disponible de 30 minutes. Une invitation Google Meet sera envoyée par e-mail à vous et à contactus@brahmas.org.",
     "Your demo is booked!": "Votre démonstration est réservée !",
-    "Your Google Meet invitation has been sent to your email and contactus@brahmas.org.":
-      "L’invitation Google Meet a été envoyée à votre adresse e-mail et à contactus@brahmas.org.",
+    "Your Google Meet invitation has been sent to your email.":
+      "L’invitation Google Meet a été envoyée à votre adresse e-mail.",
     "The Google Meet link is being prepared and will be added to your calendar invitation.":
       "Le lien Google Meet est en cours de création et sera ajouté à votre invitation calendrier.",
     "Join Google Meet": "Rejoindre Google Meet",
@@ -269,8 +269,8 @@ export const ADDITIONAL_TRANSLATIONS: Record<
     "Submitting this form automatically books the next available 30-minute slot. A Google Meet calendar invitation will be emailed to you and contactus@brahmas.org.":
       "Inviando il modulo verrà prenotato automaticamente il primo slot disponibile di 30 minuti. L’invito Google Meet sarà inviato via e-mail a te e a contactus@brahmas.org.",
     "Your demo is booked!": "La tua demo è prenotata!",
-    "Your Google Meet invitation has been sent to your email and contactus@brahmas.org.":
-      "L’invito Google Meet è stato inviato alla tua e-mail e a contactus@brahmas.org.",
+    "Your Google Meet invitation has been sent to your email.":
+      "L’invito Google Meet è stato inviato alla tua e-mail.",
     "The Google Meet link is being prepared and will be added to your calendar invitation.":
       "Il link Google Meet è in preparazione e sarà aggiunto all’invito del calendario.",
     "Join Google Meet": "Partecipa a Google Meet",
@@ -506,8 +506,8 @@ export const ADDITIONAL_TRANSLATIONS: Record<
     "Submitting this form automatically books the next available 30-minute slot. A Google Meet calendar invitation will be emailed to you and contactus@brahmas.org.":
       "Mit dem Absenden dieses Formulars wird automatisch der nächste verfügbare 30-Minuten-Termin gebucht. Die Google-Meet-Kalendereinladung wird dir und contactus@brahmas.org per E-Mail gesendet.",
     "Your demo is booked!": "Deine Probestunde ist gebucht!",
-    "Your Google Meet invitation has been sent to your email and contactus@brahmas.org.":
-      "Die Google-Meet-Einladung wurde an deine E-Mail-Adresse und contactus@brahmas.org gesendet.",
+    "Your Google Meet invitation has been sent to your email.":
+      "Die Google-Meet-Einladung wurde an deine E-Mail-Adresse gesendet.",
     "The Google Meet link is being prepared and will be added to your calendar invitation.":
       "Der Google-Meet-Link wird erstellt und deiner Kalendereinladung hinzugefügt.",
     "Join Google Meet": "Google Meet beitreten",
@@ -743,8 +743,8 @@ export const ADDITIONAL_TRANSLATIONS: Record<
     "Submitting this form automatically books the next available 30-minute slot. A Google Meet calendar invitation will be emailed to you and contactus@brahmas.org.":
       "Trimiterea acestui formular rezervă automat următorul interval disponibil de 30 de minute. Invitația Google Meet va fi trimisă prin e-mail către tine și contactus@brahmas.org.",
     "Your demo is booked!": "Demonstrația ta este rezervată!",
-    "Your Google Meet invitation has been sent to your email and contactus@brahmas.org.":
-      "Invitația Google Meet a fost trimisă la adresa ta de e-mail și la contactus@brahmas.org.",
+    "Your Google Meet invitation has been sent to your email.":
+      "Invitația Google Meet a fost trimisă la adresa ta de e-mail.",
     "The Google Meet link is being prepared and will be added to your calendar invitation.":
       "Linkul Google Meet este în curs de pregătire și va fi adăugat la invitația din calendar.",
     "Join Google Meet": "Participă la Google Meet",

@@ -18,17 +18,14 @@ export default function PricingSection() {
           <div className="mt-8 grid gap-4 lg:grid-cols-[1.1fr_.9fr]">
             <div className="rounded-[1.5rem] border border-[#c19a68]/45 bg-[#c19a68]/10 p-5 sm:p-7">
               <FaComments className="text-xl sm:text-2xl text-[#c19a68]" />
-              <h3 className="mt-4 text-xl sm:text-2xl font-semibold">{t('Book a free demo')}</h3>
-              <p className="mt-2 max-w-xl text-xs sm:text-sm leading-relaxed text-[#f7f4ef]/65">{t('Share your language, current level, target date and preferred class size. We will recommend a suitable learning format and next step.')}</p>
-              <button
-                type="button"
-                onClick={() => {
-                  window.dispatchEvent(new CustomEvent('native-connects:open-demo'));
-                }}
+              <h3 className="mt-4 text-xl sm:text-2xl font-semibold">{t('Request a course quote')}</h3>
+              <p className="mt-2 max-w-xl text-xs sm:text-sm leading-relaxed text-[#f7f4ef]/65">{t('Share your language, current level, target date and preferred class size. We will respond with a tailored course recommendation.')}</p>
+              <Link
+                href="#contact"
                 className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[#f7f4ef] px-5 py-2.5 text-xs sm:text-sm font-bold text-[#0b192c] transition hover:bg-white cursor-pointer"
               >
-                {t('Book a Free Demo')} <FaArrowRight className="text-[10px]" />
-              </button>
+                {t('Request your quote')} <FaArrowRight className="text-[10px]" />
+              </Link>
             </div>
             <div className="rounded-[1.5rem] border border-[#f7f4ef]/10 bg-[#f7f4ef]/5 p-5 sm:p-7">
               <h3 className="text-lg sm:text-xl font-semibold">{t('Your quote includes')}</h3>
