@@ -8,28 +8,40 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { NAV_LINKS } from "@/constants/pageContent";
 import LanguageSwitcher from "./LanguageSwitcher";
 
-const Logo = () => (
-  <Link href="/" className="flex items-center gap-2.5 group">
-    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#0b192c] shadow-md transition-transform group-hover:scale-105">
-      <svg viewBox="0 0 100 100" className="h-7 w-7" aria-hidden="true">
-        <path
-          d="M50 12C28 12 10 27 10 47c0 11 6 21 15 28l-4 16 18-10c4 1 7 2 11 2 22 0 40-15 40-36S72 12 50 12Z"
-          fill="#9b1c31"
-        />
-        <path
-          d="M34 37v25M34 37l32 25M66 37v25"
-          stroke="#f7f4ef"
-          strokeWidth="8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    </div>
-    <span className="text-lg font-bold tracking-tight text-[#0b192c]">
-      Native <span className="text-[#9b1c31]">Connects</span>
-    </span>
-  </Link>
-);
+const Logo = () => {
+  const { t } = useLanguage();
+
+  return (
+    <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group">
+      <div className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl bg-[#0b192c] shadow-md transition-transform group-hover:scale-105">
+        <svg viewBox="0 0 100 100" className="h-7 w-7 sm:h-8 sm:w-8" aria-hidden="true">
+          <path
+            d="M50 12C28 12 10 27 10 47c0 11 6 21 15 28l-4 16 18-10c4 1 7 2 11 2 22 0 40-15 40-36S72 12 50 12Z"
+            fill="#9b1c31"
+          />
+          <path
+            d="M34 37v25M34 37l32 25M66 37v25"
+            stroke="#f7f4ef"
+            strokeWidth="8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+
+      <div className="h-7 sm:h-8 w-[1.5px] bg-[#0b192c]/20 self-center" aria-hidden="true" />
+
+      <div className="flex flex-col justify-center">
+        <span className="text-lg sm:text-xl md:text-2xl font-extrabold tracking-tight text-[#0b192c] leading-none">
+          Native <span className="text-[#9b1c31]">Connects</span>
+        </span>
+        <span className="mt-1 text-[9px] sm:text-[10px] md:text-[11px] font-medium tracking-normal text-[#0b192c]/65 leading-none whitespace-nowrap">
+          {t("Learn")} <span className="text-[#9b1c31] font-bold mx-0.5 sm:mx-1">•</span> {t("Connect")} <span className="text-[#9b1c31] font-bold mx-0.5 sm:mx-1">•</span> {t("Build Your Future")}
+        </span>
+      </div>
+    </Link>
+  );
+};
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);

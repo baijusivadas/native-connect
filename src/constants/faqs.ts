@@ -20,7 +20,7 @@ export const FAQ_GROUPS = [
       ['Why learn German?', 'German can be useful for people planning to study, work or build a career in Germany, Austria or other German-speaking environments.'],
       ['Can you prepare me for German B1 or B2?', 'Yes. We provide structured preparation for B1 and B2, including speaking, writing, listening, reading and exam practice.'],
       ['Is German B2 useful for nurses?', 'Yes. B2-level German is commonly relevant to healthcare professionals pursuing opportunities in Germany, although specific professional and regulatory requirements vary.'],
-      ['Do you provide Germany job-placement support?', 'Where included in the selected program, we can provide career guidance, application support and assistance connecting eligible candidates with potential employers. Employment is subject to employer selection and applicable requirements.'],
+      ['Do you provide Germany job-placement support?', 'No. We focus on language training, healthcare communication and examination preparation. We do not arrange job placements or recruitment; employment decisions are made independently by hospitals and employers.'],
     ],
   },
   {
@@ -45,9 +45,9 @@ export const FAQ_GROUPS = [
     title: 'Europe Opportunities FAQs',
     questions: [
       ['Do you help students understand European culture?', 'Yes. Along with language training, we introduce students to European workplace culture, communication styles, social etiquette and everyday life.'],
-      ['Do you provide visa assistance?', 'Where included, we provide general guidance on documentation and the application process. Visa decisions are made by the relevant authorities.'],
-      ['Do you guarantee a job or visa?', 'No. We do not guarantee employment, visa approval or examination results. We provide training and support designed to help students prepare for their chosen pathway.'],
-      ['Can I learn the language while preparing for a European career?', 'Yes. We can combine language training, professional communication, cultural orientation and career guidance depending on the program.'],
+      ['Do you provide visa assistance?', 'We share general information on visa requirements, documentation and language qualifications. We do not submit or process visa applications; these must follow the relevant official procedures.'],
+      ['Do you guarantee a job or visa?', 'No. We support your language learning and explain general requirements. We do not arrange recruitment or process visas; job offers and visa approvals depend on employers and authorities.'],
+      ['Can I learn the language while preparing for a European career?', 'Yes. Our courses combine language learning, professional communication and cultural understanding, with practical speaking activities tailored to your study or career goals.'],
     ],
   },
 ] as const;

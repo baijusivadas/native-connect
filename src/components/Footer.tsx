@@ -27,7 +27,7 @@ export default function Footer() {
             </Link>
             <p className="max-w-sm text-xs leading-relaxed text-[#f7f4ef]/60">
               {t(
-                'Personalized language learning with native speakers. Clinical German training, TELC/Goethe exam prep, and direct nursing recruitment in Germany.',
+                'Personalized language learning with native speakers. Clinical German training, TELC/Goethe exam prep, and practical communication.',
               )}
             </p>
             <div className="pt-1.5 text-[11px] text-[#f7f4ef]/45 space-y-1">
@@ -131,7 +131,7 @@ export default function Footer() {
         <div className="mt-8 flex flex-col gap-3 border-t border-[#f7f4ef]/10 pt-4 pb-2 sm:pb-0 text-xs text-[#f7f4ef]/40 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5">
             <span>
-              © {new Date().getFullYear()} {LEGAL_ENTITY_NAME}. {t('All rights reserved.')}
+              ©  {new Date().getFullYear()} {LEGAL_ENTITY_NAME}. {t('All rights reserved.')}
             </span>
             <Link href="/privacy-policy" className="hover:text-white transition-colors underline">
               {t('Privacy')}
@@ -143,7 +143,7 @@ export default function Footer() {
               {t('Complaints')}
             </Link>
           </div>
-          <span className="font-medium text-[#f7f4ef]/60">{t('Train. Certify. Work in Germany.')}</span>
+          <span className="font-medium text-[#f7f4ef]/60">{t('Learn • Practise • Communicate')}</span>
         </div>
       </div>
     </footer>

@@ -56,8 +56,6 @@ export const ADDITIONAL_TRANSLATIONS: Record<
     "Open menu": "Ouvrir le menu",
     "German for Nurses": "Allemand pour les infirmiers",
     "Native Connects promoted by": "Native Connects, promu par",
-    "Personalized language training with native speakers and complete career pathways from A1 to TELC/Goethe certification and direct hospital placement in Germany.":
-      "Formation linguistique personnalisée avec des locuteurs natifs et parcours complets, du niveau A1 aux certifications TELC/Goethe et au placement direct dans des hôpitaux en Allemagne.",
     "Too many requests. Please try again shortly.":
       "Trop de demandes. Veuillez réessayer dans quelques instants.",
     "Invalid request payload.": "Les données envoyées ne sont pas valides.",
@@ -93,8 +91,8 @@ export const ADDITIONAL_TRANSLATIONS: Record<
     "Build essential German for introductions, ward routines, anatomy, and everyday life in Germany.":
       "Apprenez l'allemand essentiel pour vous présenter, suivre les routines du service, parler d'anatomie et gérer le quotidien en Allemagne.",
     "3-4 hrs / wk": "3 à 4 h / semaine",
-    "Practise patient history taking, handovers, documentation, vital signs, and initial dossier review.":
-      "Entraînez-vous à recueillir les antécédents, transmettre les consignes, rédiger la documentation, relever les signes vitaux et examiner les premiers dossiers.",
+    "Practise patient communication, handovers, German documentation, reporting vital signs and ward roleplays.":
+      "Pratiquez la communication avec les patients, les transmissions, la documentation clinique, les constantes et les jeux de rôle en service.",
     "4-5 hrs / wk": "4 à 5 h / semaine",
     "Ward Roleplays": "Mises en situation en service",
     "TELC Pflege & Goethe prep": "Préparation TELC Pflege et Goethe",
@@ -102,15 +100,15 @@ export const ADDITIONAL_TRANSLATIONS: Record<
       "Maîtrisez le vocabulaire médical spécialisé, les échanges avec les médecins et les stratégies de l'examen à double niveau.",
     "5-6 hrs / wk": "5 à 6 h / semaine",
     "Combined B1-B2 Safety Net": "La sécurité de l'examen combiné B1-B2",
-    "Placement": "Placement professionnel",
-    "Hospital hiring & relocation": "Recrutement hospitalier et installation",
-    "Direct interviews with German hospital employers, Defizitbescheid tracking, and fast-track work visa filing.":
-      "Entretiens directs avec des hôpitaux allemands, suivi du Defizitbescheid et accompagnement accéléré pour le visa de travail.",
-    "Direct Hiring": "Recrutement direct",
-    "0 Placement Fee": "Aucun frais de placement",
-    "Verified German Hospitals": "Hôpitaux allemands vérifiés",
-    "End-to-end support: We don’t just train in German we guide your TELC/Goethe exam prep and connect you directly to verified German hospital employers.":
-      "Un accompagnement complet : nous vous formons en allemand, vous préparons aux examens TELC/Goethe et vous mettons en relation directe avec des hôpitaux allemands vérifiés.",
+    "Speaking": "Expression orale",
+    "Hospital interview confidence": "Assurance en entretien hospitalier",
+    "Practise speaking with hospital employers through mock interviews, realistic roleplays and tutor feedback.":
+      "Entraînez-vous à échanger avec des employeurs hospitaliers grâce à des entretiens blancs, des jeux de rôle réalistes et les retours du tuteur.",
+    "Speaking Drills": "Exercices d'expression",
+    "Tutor Feedback": "Retours du tuteur",
+    "Mock Employer Interviews": "Simulations d'entretiens employeurs",
+    "Build your German from A1 to B2 with live classes, healthcare vocabulary and TELC/Goethe exam preparation, helping you speak confidently with patients and hospital employers.":
+      "Développez votre allemand du niveau A1 à B2 grâce à des cours en direct, du vocabulaire médical et une préparation aux examens TELC/Goethe, pour échanger avec assurance avec les patients et les équipes hospitalières.",
     "Certified German Tutor": "Tuteur certifié d'allemand",
     "C1 Certified & ÖSD Certificate": "Certifié C1 et certificat ÖSD",
     "Certified German speaker with real-world teaching experience in Germany (Gelsenkirchen) and strong international academic background from University of Lucerne, Switzerland. Tailored German tutoring for medical and career pathways.":
@@ -198,8 +196,8 @@ export const ADDITIONAL_TRANSLATIONS: Record<
       "Oui. Le niveau B2 est souvent pertinent pour les professionnels de santé qui envisagent de travailler en Allemagne, même si les exigences professionnelles et réglementaires varient.",
     "Do you provide Germany job-placement support?":
       "Proposez-vous un accompagnement pour trouver un emploi en Allemagne ?",
-    "Where included in the selected program, we can provide career guidance, application support and assistance connecting eligible candidates with potential employers. Employment is subject to employer selection and applicable requirements.":
-      "Lorsque le programme choisi le prévoit, nous pouvons proposer des conseils de carrière, une aide aux candidatures et mettre les candidats éligibles en relation avec des employeurs potentiels. Le recrutement dépend du choix de l'employeur et des exigences applicables.",
+    "No. We focus on language training, healthcare communication and examination preparation. We do not arrange job placements or recruitment; employment decisions are made independently by hospitals and employers.":
+      "Non. Nous nous concentrons sur la formation linguistique, la communication médicale et la préparation aux examens. Nous n'organisons pas de recrutement ni de placement professionnel ; les décisions d'embauche relèvent des hôpitaux et employeurs.",
     "Why learn French?": "Pourquoi apprendre le français ?",
     "French can support opportunities in France and other French-speaking countries, as well as education, tourism, hospitality, healthcare and international organisations.":
       "Le français peut ouvrir des perspectives en France et dans d'autres pays francophones, dans l'éducation, le tourisme, l'hôtellerie, la santé et les organisations internationales.",
@@ -235,17 +233,23 @@ export const ADDITIONAL_TRANSLATIONS: Record<
     "Yes. Along with language training, we introduce students to European workplace culture, communication styles, social etiquette and everyday life.":
       "Oui. En complément de la langue, nous présentons la culture professionnelle européenne, les styles de communication, les usages sociaux et la vie quotidienne.",
     "Do you provide visa assistance?": "Proposez-vous une aide pour les visas ?",
-    "Where included, we provide general guidance on documentation and the application process. Visa decisions are made by the relevant authorities.":
-      "Lorsque le programme le prévoit, nous donnons des conseils généraux sur les documents et la procédure de demande. Les décisions de visa relèvent des autorités compétentes.",
+    "We share general information on visa requirements, documentation and language qualifications. We do not submit or process visa applications; these must follow the relevant official procedures.":
+      "Nous partageons des informations générales sur les exigences de visa, les documents requis et les certifications linguistiques. Nous ne déposons ni ne traitons les demandes de visa, qui doivent suivre les voies officielles.",
     "Do you guarantee a job or visa?":
       "Garantissez-vous un emploi ou un visa ?",
-    "No. We do not guarantee employment, visa approval or examination results. We provide training and support designed to help students prepare for their chosen pathway.":
-      "Non. Nous ne garantissons ni emploi, ni visa, ni résultats d'examen. Nous proposons une formation et un accompagnement pour aider les étudiants à préparer leur parcours.",
+    "No. We support your language learning and explain general requirements. We do not arrange recruitment or process visas; job offers and visa approvals depend on employers and authorities.":
+      "Non. Nous vous accompagnons dans l'apprentissage de la langue et vous expliquons les exigences générales. Nous n'organisons pas de recrutement et ne traitons pas les visas ; les offres d'emploi et décisions de visa relèvent des employeurs et des autorités.",
     "Can I learn the language while preparing for a European career?":
       "Puis-je apprendre la langue tout en préparant une carrière en Europe ?",
-    "Yes. We can combine language training, professional communication, cultural orientation and career guidance depending on the program.":
-      "Oui. Selon le programme, nous pouvons combiner l'apprentissage linguistique, la communication professionnelle, l'orientation culturelle et les conseils de carrière.",
-  },
+    "Yes. Our courses combine language learning, professional communication and cultural understanding, with practical speaking activities tailored to your study or career goals.":
+      "Oui. Nos cours associent apprentissage linguistique, communication professionnelle et compréhension culturelle, avec des ateliers d'expression adaptés à vos objectifs d'études ou de carrière.",
+  
+    // Navbar tagline fr
+    "Learn": "Apprendre",
+    "Connect": "Connecter",
+    "Build Your Future": "Bâtir Votre Avenir",
+    "Learn • Connect • Build Your Future": "Apprendre • Connecter • Bâtir Votre Avenir",
+},
   it: {
     "Native Connect was founded on a simple belief: learning a language should help you step into your new life with confidence and clarity.":
       "Native Connect è nata da una convinzione semplice: imparare una lingua dovrebbe aiutarti a iniziare la tua nuova vita con sicurezza e serenità.",
@@ -300,8 +304,6 @@ export const ADDITIONAL_TRANSLATIONS: Record<
     "Open menu": "Apri il menu",
     "German for Nurses": "Tedesco per infermieri",
     "Native Connects promoted by": "Native Connects, promossa da",
-    "Personalized language training with native speakers and complete career pathways from A1 to TELC/Goethe certification and direct hospital placement in Germany.":
-      "Formazione linguistica personalizzata con madrelingua e percorsi completi dal livello A1 alle certificazioni TELC/Goethe e all'inserimento diretto negli ospedali in Germania.",
     "Too many requests. Please try again shortly.":
       "Troppe richieste. Riprova tra qualche istante.",
     "Invalid request payload.": "I dati inviati non sono validi.",
@@ -336,8 +338,8 @@ export const ADDITIONAL_TRANSLATIONS: Record<
     "Build essential German for introductions, ward routines, anatomy, and everyday life in Germany.":
       "Impara il tedesco essenziale per presentarti, seguire le routine di reparto, parlare di anatomia e affrontare la vita quotidiana in Germania.",
     "3-4 hrs / wk": "3-4 ore / settimana",
-    "Practise patient history taking, handovers, documentation, vital signs, and initial dossier review.":
-      "Esercitati nella raccolta dell'anamnesi, nei passaggi di consegne, nella documentazione, nella rilevazione dei parametri vitali e nella revisione iniziale dei dossier.",
+    "Practise patient communication, handovers, German documentation, reporting vital signs and ward roleplays.":
+      "Esercitati nella comunicazione con i pazienti, consegne, documentazione in tedesco, parametri vitali e giochi di ruolo in corsia.",
     "4-5 hrs / wk": "4-5 ore / settimana",
     "Ward Roleplays": "Simulazioni in reparto",
     "TELC Pflege & Goethe prep": "Preparazione TELC Pflege e Goethe",
@@ -345,15 +347,15 @@ export const ADDITIONAL_TRANSLATIONS: Record<
       "Padroneggia la terminologia sanitaria specialistica, i colloqui con i medici e le strategie per l'esame a doppio livello.",
     "5-6 hrs / wk": "5-6 ore / settimana",
     "Combined B1-B2 Safety Net": "Garanzia dell'esame combinato B1-B2",
-    "Placement": "Inserimento professionale",
-    "Hospital hiring & relocation": "Assunzione in ospedale e trasferimento",
-    "Direct interviews with German hospital employers, Defizitbescheid tracking, and fast-track work visa filing.":
-      "Colloqui diretti con ospedali tedeschi, monitoraggio del Defizitbescheid e assistenza accelerata per la richiesta del visto di lavoro.",
-    "Direct Hiring": "Assunzione diretta",
-    "0 Placement Fee": "Nessuna commissione di collocamento",
-    "Verified German Hospitals": "Ospedali tedeschi verificati",
-    "End-to-end support: We don’t just train in German we guide your TELC/Goethe exam prep and connect you directly to verified German hospital employers.":
-      "Supporto completo: non ti insegniamo solo il tedesco, ma ti prepariamo agli esami TELC/Goethe e ti mettiamo in contatto diretto con ospedali tedeschi verificati.",
+    "Speaking": "Conversazione",
+    "Hospital interview confidence": "Sicurezza nei colloqui ospedalieri",
+    "Practise speaking with hospital employers through mock interviews, realistic roleplays and tutor feedback.":
+      "Esercitati a parlare con i datori di lavoro ospedalieri attraverso simulazioni di colloqui, giochi di ruolo realistici e feedback del tutor.",
+    "Speaking Drills": "Esercitazioni orali",
+    "Tutor Feedback": "Feedback del tutor",
+    "Mock Employer Interviews": "Simulazioni di colloquio con datori di lavoro",
+    "Build your German from A1 to B2 with live classes, healthcare vocabulary and TELC/Goethe exam preparation, helping you speak confidently with patients and hospital employers.":
+      "Sviluppa il tuo tedesco dal livello A1 a B2 con lezioni dal vivo, vocabolario sanitario e preparazione agli esami TELC/Goethe, per parlare con sicurezza con pazienti e datori di lavoro ospedalieri.",
     "Certified German Tutor": "Tutor certificato di tedesco",
     "C1 Certified & ÖSD Certificate": "Certificazione C1 e certificato ÖSD",
     "Certified German speaker with real-world teaching experience in Germany (Gelsenkirchen) and strong international academic background from University of Lucerne, Switzerland. Tailored German tutoring for medical and career pathways.":
@@ -436,8 +438,8 @@ export const ADDITIONAL_TRANSLATIONS: Record<
       "Sì. Il livello B2 è spesso rilevante per i professionisti sanitari che cercano opportunità in Germania, anche se i requisiti professionali e normativi variano.",
     "Do you provide Germany job-placement support?":
       "Offrite supporto per trovare lavoro in Germania?",
-    "Where included in the selected program, we can provide career guidance, application support and assistance connecting eligible candidates with potential employers. Employment is subject to employer selection and applicable requirements.":
-      "Quando previsto dal programma scelto, offriamo orientamento professionale, supporto per le candidature e assistenza nel contatto con potenziali datori di lavoro. L'assunzione dipende dalla selezione del datore di lavoro e dai requisiti applicabili.",
+    "No. We focus on language training, healthcare communication and examination preparation. We do not arrange job placements or recruitment; employment decisions are made independently by hospitals and employers.":
+      "No. Ci concentriamo sulla formazione linguistica, sulla comunicazione sanitaria e sulla preparazione agli esami. Non organizziamo tirocini né collocamento lavorativo; le decisioni di assunzione spettano a ospedali e datori di lavoro.",
     "Why learn French?": "Perché imparare il francese?",
     "French can support opportunities in France and other French-speaking countries, as well as education, tourism, hospitality, healthcare and international organisations.":
       "Il francese può favorire opportunità in Francia e in altri Paesi francofoni, nell'istruzione, nel turismo, nell'ospitalità, nella sanità e nelle organizzazioni internazionali.",
@@ -482,7 +484,13 @@ export const ADDITIONAL_TRANSLATIONS: Record<
       "Posso imparare la lingua mentre preparo una carriera in Europa?",
     "Yes. We can combine language training, professional communication, cultural orientation and career guidance depending on the program.":
       "Sì. In base al programma, possiamo combinare formazione linguistica, comunicazione professionale, orientamento culturale e supporto alla carriera.",
-  },
+  
+    // Navbar tagline it
+    "Learn": "Imparare",
+    "Connect": "Connettersi",
+    "Build Your Future": "Costruire il Tuo Futuro",
+    "Learn • Connect • Build Your Future": "Imparare • Connettersi • Costruire il Tuo Futuro",
+},
   de: {
     "Native Connect was founded on a simple belief: learning a language should help you step into your new life with confidence and clarity.":
       "Native Connect wurde aus einer einfachen Überzeugung heraus gegründet: Eine Sprache zu lernen sollte dir helfen, selbstbewusst und klar in dein neues Leben zu starten.",
@@ -537,8 +545,6 @@ export const ADDITIONAL_TRANSLATIONS: Record<
     "Open menu": "Menü öffnen",
     "German for Nurses": "Deutsch für Pflegekräfte",
     "Native Connects promoted by": "Native Connects, gefördert von",
-    "Personalized language training with native speakers and complete career pathways from A1 to TELC/Goethe certification and direct hospital placement in Germany.":
-      "Individueller Sprachunterricht mit Muttersprachlern und umfassende Karrierewege von A1 bis zur TELC-/Goethe-Zertifizierung und direkten Vermittlung an Krankenhäuser in Deutschland.",
     "Too many requests. Please try again shortly.":
       "Zu viele Anfragen. Bitte versuche es in Kürze erneut.",
     "Invalid request payload.": "Die übermittelten Daten sind ungültig.",
@@ -574,8 +580,8 @@ export const ADDITIONAL_TRANSLATIONS: Record<
     "Build essential German for introductions, ward routines, anatomy, and everyday life in Germany.":
       "Lerne wichtiges Deutsch für Vorstellungsrunden, Stationsabläufe, Anatomie und den Alltag in Deutschland.",
     "3-4 hrs / wk": "3–4 Std. / Woche",
-    "Practise patient history taking, handovers, documentation, vital signs, and initial dossier review.":
-      "Übe Anamnesegespräche, Übergaben, Dokumentation, Vitalzeichenmessung und die erste Prüfung deiner Unterlagen.",
+    "Practise patient communication, handovers, German documentation, reporting vital signs and ward roleplays.":
+      "Üben Sie Patientengespräche, Übergaben, Pflegedokumentation, Vitalzeichenkontrolle und Rollenspiele auf Station.",
     "4-5 hrs / wk": "4–5 Std. / Woche",
     "Ward Roleplays": "Rollenspiele für den Stationsalltag",
     "TELC Pflege & Goethe prep": "TELC-Pflege- und Goethe-Vorbereitung",
@@ -583,15 +589,15 @@ export const ADDITIONAL_TRANSLATIONS: Record<
       "Lerne medizinische Fachbegriffe, Gespräche mit Ärzten und Prüfungsstrategien für die zweistufige Prüfung.",
     "5-6 hrs / wk": "5–6 Std. / Woche",
     "Combined B1-B2 Safety Net": "Sicherheitsnetz der kombinierten B1-B2-Prüfung",
-    "Placement": "Vermittlung",
-    "Hospital hiring & relocation": "Krankenhausvermittlung und Umzug",
-    "Direct interviews with German hospital employers, Defizitbescheid tracking, and fast-track work visa filing.":
-      "Direkte Gespräche mit deutschen Krankenhäusern, Begleitung beim Defizitbescheid und beschleunigte Unterstützung beim Arbeitsvisum.",
-    "Direct Hiring": "Direkteinstellung",
-    "0 Placement Fee": "Keine Vermittlungsgebühr",
-    "Verified German Hospitals": "Geprüfte deutsche Krankenhäuser",
-    "End-to-end support: We don’t just train in German we guide your TELC/Goethe exam prep and connect you directly to verified German hospital employers.":
-      "Rundum-Begleitung: Wir unterrichten nicht nur Deutsch, sondern bereiten dich auf TELC-/Goethe-Prüfungen vor und vermitteln direkte Kontakte zu geprüften deutschen Krankenhäusern.",
+    "Speaking": "Sprechen",
+    "Hospital interview confidence": "Sicherheit im Vorstellungsgespräch",
+    "Practise speaking with hospital employers through mock interviews, realistic roleplays and tutor feedback.":
+      "Üben Sie Gespräche mit Krankenhausarbeitgebern durch Vorstellungsgesprächssimulationen, realistische Rollenspiele und Feedback von Tutoren.",
+    "Speaking Drills": "Sprechübungen",
+    "Tutor Feedback": "Tutoren-Feedback",
+    "Mock Employer Interviews": "Arbeitgeber-Bewerbungssimulationen",
+    "Build your German from A1 to B2 with live classes, healthcare vocabulary and TELC/Goethe exam preparation, helping you speak confidently with patients and hospital employers.":
+      "Bauen Sie Ihr Deutsch von A1 bis B2 mit Live-Unterricht, medizinischem Fachwortschatz und TELC/Goethe-Prüfungsvorbereitung auf, um souverän mit Patienten und Krankenhausarbeitgebern zu kommunizieren.",
     "Certified German Tutor": "Zertifizierter Deutschlehrer",
     "C1 Certified & ÖSD Certificate": "C1-Zertifikat und ÖSD-Zertifikat",
     "Certified German speaker with real-world teaching experience in Germany (Gelsenkirchen) and strong international academic background from University of Lucerne, Switzerland. Tailored German tutoring for medical and career pathways.":
@@ -673,8 +679,8 @@ export const ADDITIONAL_TRANSLATIONS: Record<
       "Ja. Deutschkenntnisse auf B2-Niveau sind für Gesundheitsfachkräfte mit beruflichen Plänen in Deutschland häufig relevant. Die konkreten beruflichen und gesetzlichen Anforderungen unterscheiden sich jedoch.",
     "Do you provide Germany job-placement support?":
       "Unterstützen Sie bei der Arbeitsplatzvermittlung in Deutschland?",
-    "Where included in the selected program, we can provide career guidance, application support and assistance connecting eligible candidates with potential employers. Employment is subject to employer selection and applicable requirements.":
-      "Sofern im gewählten Programm enthalten, bieten wir Karriereberatung, Unterstützung bei Bewerbungen und Kontakte zu potenziellen Arbeitgebern für geeignete Kandidaten. Eine Einstellung hängt von der Auswahl des Arbeitgebers und den geltenden Anforderungen ab.",
+    "No. We focus on language training, healthcare communication and examination preparation. We do not arrange job placements or recruitment; employment decisions are made independently by hospitals and employers.":
+      "Nein. Unser Schwerpunkt liegt auf Sprachtraining, medizinischer Fachkommunikation und Prüfungsvorbereitung. Wir bieten keine Stellenvermittlung oder Rekrutierung an; Einstellungsentscheidungen treffen Arbeitgeber und Kliniken unabhängig.",
     "Why learn French?": "Warum Französisch lernen?",
     "French can support opportunities in France and other French-speaking countries, as well as education, tourism, hospitality, healthcare and international organisations.":
       "Französischkenntnisse können Chancen in Frankreich und anderen französischsprachigen Ländern sowie in Bildung, Tourismus, Gastgewerbe, Gesundheitswesen und internationalen Organisationen eröffnen.",
@@ -719,7 +725,13 @@ export const ADDITIONAL_TRANSLATIONS: Record<
       "Kann ich die Sprache lernen und mich zugleich auf eine Karriere in Europa vorbereiten?",
     "Yes. We can combine language training, professional communication, cultural orientation and career guidance depending on the program.":
       "Ja. Je nach Programm verbinden wir Sprachunterricht, berufliche Kommunikation, kulturelle Orientierung und Karriereberatung.",
-  },
+  
+    // Navbar tagline de
+    "Learn": "Lernen",
+    "Connect": "Verbinden",
+    "Build Your Future": "Zukunft Gestalten",
+    "Learn • Connect • Build Your Future": "Lernen • Verbinden • Zukunft Gestalten",
+},
   ro: {
     "Native Connect was founded on a simple belief: learning a language should help you step into your new life with confidence and clarity.":
       "Native Connect a pornit de la o convingere simplă: învățarea unei limbi ar trebui să te ajute să începi o viață nouă cu încredere și claritate.",
@@ -774,8 +786,6 @@ export const ADDITIONAL_TRANSLATIONS: Record<
     "Open menu": "Deschide meniul",
     "German for Nurses": "Germană pentru asistenți medicali",
     "Native Connects promoted by": "Native Connects, promovat de",
-    "Personalized language training with native speakers and complete career pathways from A1 to TELC/Goethe certification and direct hospital placement in Germany.":
-      "Instruire lingvistică personalizată cu vorbitori nativi și parcursuri complete de la A1 la certificările TELC/Goethe și plasarea directă în spitale din Germania.",
     "Too many requests. Please try again shortly.":
       "Prea multe solicitări. Te rugăm să încerci din nou în câteva momente.",
     "Invalid request payload.": "Datele trimise nu sunt valide.",
@@ -811,8 +821,8 @@ export const ADDITIONAL_TRANSLATIONS: Record<
     "Build essential German for introductions, ward routines, anatomy, and everyday life in Germany.":
       "Învață germana necesară pentru prezentări, rutine de secție, anatomie și viața de zi cu zi în Germania.",
     "3-4 hrs / wk": "3–4 ore / săptămână",
-    "Practise patient history taking, handovers, documentation, vital signs, and initial dossier review.":
-      "Exersează anamneza, predarea turei, documentarea, măsurarea semnelor vitale și verificarea inițială a dosarului.",
+    "Practise patient communication, handovers, German documentation, reporting vital signs and ward roleplays.":
+      "Exersează comunicarea cu pacienții, predarea turei, documentația în germană, semnele vitale și simulările de secție.",
     "4-5 hrs / wk": "4–5 ore / săptămână",
     "Ward Roleplays": "Simulări de situații în secție",
     "TELC Pflege & Goethe prep": "Pregătire TELC Pflege și Goethe",
@@ -820,15 +830,15 @@ export const ADDITIONAL_TRANSLATIONS: Record<
       "Stăpânește terminologia medicală de specialitate, discuțiile cu medicii și strategiile pentru examenul cu două niveluri.",
     "5-6 hrs / wk": "5–6 ore / săptămână",
     "Combined B1-B2 Safety Net": "Avantajul examenului combinat B1-B2",
-    "Placement": "Plasare profesională",
-    "Hospital hiring & relocation": "Angajare în spital și relocare",
-    "Direct interviews with German hospital employers, Defizitbescheid tracking, and fast-track work visa filing.":
-      "Interviuri directe cu angajatori din spitale germane, urmărirea Defizitbescheid și sprijin accelerat pentru viza de muncă.",
-    "Direct Hiring": "Angajare directă",
-    "0 Placement Fee": "Fără taxe de plasare",
-    "Verified German Hospitals": "Spitale germane verificate",
-    "End-to-end support: We don’t just train in German we guide your TELC/Goethe exam prep and connect you directly to verified German hospital employers.":
-      "Sprijin complet: nu doar te pregătim la germană, ci te ajutăm pentru examenele TELC/Goethe și te punem în legătură directă cu spitale germane verificate.",
+    "Speaking": "Conversație",
+    "Hospital interview confidence": "Încredere la interviul pentru spital",
+    "Practise speaking with hospital employers through mock interviews, realistic roleplays and tutor feedback.":
+      "Exersează conversația cu angajatorii din spitale prin interviuri simulate, jocuri de rol realiste și feedback de la tutori.",
+    "Speaking Drills": "Exerciții de conversație",
+    "Tutor Feedback": "Feedback-ul profesorului",
+    "Mock Employer Interviews": "Simulări de interviuri cu angajatorii",
+    "Build your German from A1 to B2 with live classes, healthcare vocabulary and TELC/Goethe exam preparation, helping you speak confidently with patients and hospital employers.":
+      "Dezvoltă-ți germana de la A1 la B2 prin cursuri live, vocabular medical și pregătire pentru examenele TELC/Goethe, ajutându-te să comunici cu încredere cu pacienții și angajatorii din spitale.",
     "Certified German Tutor": "Profesor certificat de germană",
     "C1 Certified & ÖSD Certificate": "Certificat C1 și certificat ÖSD",
     "Certified German speaker with real-world teaching experience in Germany (Gelsenkirchen) and strong international academic background from University of Lucerne, Switzerland. Tailored German tutoring for medical and career pathways.":
@@ -911,8 +921,8 @@ export const ADDITIONAL_TRANSLATIONS: Record<
       "Da. Nivelul B2 este adesea relevant pentru personalul medical care urmărește oportunități în Germania, deși cerințele profesionale și de reglementare diferă.",
     "Do you provide Germany job-placement support?":
       "Oferiți sprijin pentru găsirea unui loc de muncă în Germania?",
-    "Where included in the selected program, we can provide career guidance, application support and assistance connecting eligible candidates with potential employers. Employment is subject to employer selection and applicable requirements.":
-      "Dacă programul ales include acest serviciu, oferim îndrumare profesională, sprijin pentru candidaturi și ajutor pentru conectarea candidaților eligibili cu potențiali angajatori. Angajarea depinde de selecția angajatorului și de cerințele aplicabile.",
+    "No. We focus on language training, healthcare communication and examination preparation. We do not arrange job placements or recruitment; employment decisions are made independently by hospitals and employers.":
+      "Nu. Ne concentrăm pe instruirea lingvistică, comunicarea medicală și pregătirea pentru examene. Nu intermediem angajări sau recrutare; deciziile de angajare aparțin exclusiv spitalelor și angajatorilor.",
     "Why learn French?": "De ce să învăț franceză?",
     "French can support opportunities in France and other French-speaking countries, as well as education, tourism, hospitality, healthcare and international organisations.":
       "Franceza poate deschide oportunități în Franța și în alte țări francofone, în educație, turism, ospitalitate, sănătate și organizații internaționale.",
@@ -957,5 +967,11 @@ export const ADDITIONAL_TRANSLATIONS: Record<
       "Pot învăța limba în timp ce mă pregătesc pentru o carieră în Europa?",
     "Yes. We can combine language training, professional communication, cultural orientation and career guidance depending on the program.":
       "Da. În funcție de program, putem combina cursurile de limbă, comunicarea profesională, orientarea culturală și îndrumarea în carieră.",
-  },
+  
+    // Navbar tagline ro
+    "Learn": "Învață",
+    "Connect": "Conectează-te",
+    "Build Your Future": "Construiește-ți Viitorul",
+    "Learn • Connect • Build Your Future": "Învață • Conectează-te • Construiește-ți Viitorul",
+},
 };

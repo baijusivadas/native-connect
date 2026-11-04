@@ -9,7 +9,7 @@ export const PARENT_ORGANIZATION = {
 
 
 export const SITE_DESCRIPTION =
-  'Personalized online language courses, certified exam preparation (Goethe & TELC Pflege), and fast-track international career placement for nurses and professionals in Germany and Europe.';
+  'Personalized online language courses, certified exam preparation (Goethe & TELC Pflege), and practical communication training for nurses, students, and professionals in Germany and Europe.';
 
 function getValidOrigin(urlStr?: string): string | undefined {
   if (!urlStr) return undefined;
@@ -58,12 +58,12 @@ export const SITE_KEYWORDS = [
   'German courses for nurses',
   'TELC Deutsch B1 B2 Pflege',
   'Goethe Zertifikat exam preparation',
-  'nurse recruitment in Germany',
-  'German language training and placement',
+  'healthcare German curriculum',
+  'German language training and practice',
   'French courses',
   'Italian courses',
   'Romanian courses',
-  'European language learning and jobs',
+  'European language learning and exam prep',
 ];
 
 export const ORGANIZATION_SCHEMA = {
@@ -102,7 +102,7 @@ export const ORGANIZATION_SCHEMA = {
     'German language learning',
     'TELC Pflege B1-B2 exam preparation',
     'Goethe German exam preparation',
-    'Nurse training and hospital placement in Germany',
+    'Healthcare German and exam preparation for nurses',
     'Language learning for work, study, nursing, and relocation',
   ],
 };

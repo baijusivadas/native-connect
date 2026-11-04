@@ -36,27 +36,21 @@ export const NAV_LINKS = [
 export const HERO_HIGHLIGHTS = [
   "Native-speaking tutors",
   "TELC Pflege & Goethe Prep",
-  "0-Fee Placement in Germany",
+  "Structured Learning and Speaking Practice",
 ] as const;
 
 export const HERO_GOALS = [
   {
-    icon: "🇩🇪",
-    label: "Work as a Nurse in Germany",
+    icon: "🩺",
+    label: "German for Healthcare Communication",
     href: "/german-for-nurses",
-    goal: undefined,
+    goal: "German for Healthcare Communication",
   },
   {
     icon: "🎓",
-    label: "Study or Work in Europe",
-    href: "#nurses",
-    goal: "Study or Work in Europe",
-  },
-  {
-    icon: "👩‍👦",
-    label: "Language for my child",
+    label: "Language for Study and Professional Communication",
     href: "#offer",
-    goal: "Language for my child",
+    goal: "Language for Study and Professional Communication",
   },
   {
     icon: "💬",
@@ -192,7 +186,7 @@ export const NURSE_PATH_STAGES = [
     level: "B1",
     title: "Clinical communication",
     description:
-      "Practise patient history taking, handovers, documentation, vital signs, and initial dossier review.",
+      "Practise patient communication, handovers, German documentation, reporting vital signs and ward roleplays.",
     size: "4-6 learners",
     time: "4-5 hrs / wk",
     badge: "Ward Roleplays",
@@ -207,13 +201,13 @@ export const NURSE_PATH_STAGES = [
     badge: "Combined B1-B2 Safety Net",
   },
   {
-    level: "Placement",
-    title: "Hospital hiring & relocation",
+    level: "Speaking",
+    title: "Hospital interview confidence",
     description:
-      "Direct interviews with German hospital employers, Defizitbescheid tracking, and fast-track work visa filing.",
-    size: "Direct Hiring",
-    time: "0 Placement Fee",
-    badge: "Verified German Hospitals",
+      "Practise speaking with hospital employers through mock interviews, realistic roleplays and tutor feedback.",
+    size: "Speaking Drills",
+    time: "Tutor Feedback",
+    badge: "Mock Employer Interviews",
   },
 ] as const;
 

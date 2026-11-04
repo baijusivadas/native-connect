@@ -6,6 +6,7 @@ import Link from "next/link";
 import {
   FaArrowRight,
   FaCheck,
+  FaComments,
   FaEuroSign,
   FaFileAlt,
   FaGraduationCap,
@@ -39,6 +40,7 @@ const STAT_ICONS = {
   FaGraduationCap,
   FaStethoscope,
   FaFileAlt,
+  FaComments,
 } as const;
 
 export default function GermanForNursesView() {
@@ -89,19 +91,15 @@ export default function GermanForNursesView() {
         <div className="relative w-full px-5 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-14">
           <div className="max-w-4xl">
             <div className="inline-flex items-center gap-2 rounded-full bg-[#9b1c31] px-3.5 py-1 text-xs font-bold text-white shadow-md">
-              <span>🩺</span> {t("Language Training + Certified Exam Prep + Hospital Placement")}
+              <span>🩺</span> {t("Language Training + Focused Exam Prep + Speaking Confidence")}
             </div>
 
             <h1 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.15]">
-              {t(
-                "Build your German. Secure your nursing career in Germany.",
-              )}
+              {t("German for nurses. Build your confidence from A1 to B2.")}
             </h1>
 
             <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/75 sm:text-base sm:leading-7">
-              {t(
-                "We don't just teach German we provide a complete pathway. Intensive clinical training, dedicated preparation for TELC Deutsch B1-B2 Pflege & Goethe exams, and direct hospital recruitment with zero placement fees.",
-              )}
+              {t("Learn German for healthcare communication from A1 to B2 through live classes and speaking practice. Prepare for TELC Deutsch B1–B2 Pflege and Goethe exams with guided self-study and personalised tutor feedback.")}
             </p>
 
             <div className="mt-5 flex flex-wrap items-center gap-3">
@@ -114,10 +112,10 @@ export default function GermanForNursesView() {
               </Link>
 
               <a
-                href="#placement"
+                href="#learning-roadmap"
                 className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/10 px-5 py-2.5 text-xs sm:text-sm font-semibold text-white backdrop-blur-sm transition hover:border-[#c19a68] hover:text-[#c19a68] focus:outline-none focus:ring-2 focus:ring-[#c19a68]"
               >
-                {t("Training & Placement Pathway")}
+                {t("Explore the Language Course")}
               </a>
 
               <a
@@ -164,13 +162,11 @@ export default function GermanForNursesView() {
             <p className="eyebrow">{t("End-to-End Support")}</p>
 
             <h2 className="section-title mt-1.5 text-2xl sm:text-3xl lg:text-4xl">
-              {t("Training, Certification & Placement in one place")}
+              {t("Training & Certification in one place")}
             </h2>
 
             <p className="section-copy mt-2 text-xs sm:text-sm leading-relaxed">
-              {t(
-                "Learning German is the foundation. We pair rigorous language instruction with TELC/Goethe exam strategies and verified German hospital hiring partnerships.",
-              )}
+              {t("Learning German is the foundation. We pair rigorous language instruction with TELC/Goethe exam strategies and practical clinical communication practice.")}
             </p>
 
             <div className="mt-4 space-y-2.5">
@@ -188,18 +184,7 @@ export default function GermanForNursesView() {
                 </div>
               ))}
 
-              <div className="flex items-start gap-3 rounded-2xl border border-[#c19a68]/40 bg-[#c19a68]/10 p-3.5">
-                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#9b1c31] text-[10px] text-white">
-                  <FaCheck aria-hidden="true" />
-                </span>
-                <p className="text-xs leading-relaxed text-[#0b192c]/90 sm:text-sm">
-                  <strong>{t("Ethical Recruitment Guarantee:")}</strong>{" "}
-                  {t(
-                    "Nursing candidates are placed with verified German hospitals with 0 recruitment fees. All costs are covered directly by healthcare employers under German labor agreements.",
-                  )}
-                </p>
               </div>
-            </div>
           </div>
 
           {/* VISUAL STORY CAROUSEL */}
@@ -234,18 +219,16 @@ export default function GermanForNursesView() {
         </div>
       </section>
 
-      {/* END-TO-END PLACEMENT PATHWAY SECTION */}
-      <section id="placement" className="scroll-mt-16 bg-[#0b192c] py-10 text-white sm:py-14">
+      {/* LEARNING ROADMAP SECTION */}
+      <section id="learning-roadmap" className="scroll-mt-16 bg-[#0b192c] py-10 text-white sm:py-14">
         <div className="w-full px-5 sm:px-8 lg:px-12">
           <div className="max-w-3xl">
-            <p className="text-xs font-extrabold uppercase tracking-[.2em] text-[#c19a68]">{t("Complete Career Roadmap")}</p>
+            <p className="text-xs font-extrabold uppercase tracking-[.2em] text-[#c19a68]">{t("COMPLETE LEARNING ROADMAP")}</p>
             <h2 className="mt-1.5 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">
-              {t("From Language Beginner to Working Nurse in Germany")}
+              {t("From Language Beginner to Confident German Speaker")}
             </h2>
             <p className="mt-2 text-xs sm:text-sm text-white/75 leading-relaxed">
-              {t(
-                "We don't leave you stranded after A1 or B2. Native Connects handles the entire lifecycle from classroom training to your first day on a German hospital ward.",
-              )}
+              {t("Build your German from A1 to B2. Native Connects combines live classes, guided self-study, speaking practice and exam preparation to support your progress.")}
             </p>
           </div>
 
@@ -264,14 +247,14 @@ export default function GermanForNursesView() {
 
           <div className="mt-6 rounded-2xl border border-[#c19a68]/30 bg-white/5 p-4 sm:p-5 text-xs sm:text-sm flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="text-white/80">
-              <strong className="text-[#c19a68]">{t("Ready to explore open nursing positions in Germany?")}</strong>{" "}
-              {t("Talk with our placement counselors and evaluate your qualification recognition.")}
+              <strong className="text-[#c19a68]">{t("Ready to assess your German and choose your course?")}</strong>{" "}
+              {t("Talk with our course advisors and discuss your German level and learning goals.")}
             </div>
             <Link
               href="/#contact"
               className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-[#9b1c31] px-5 py-2.5 text-xs font-bold text-white shadow hover:bg-[#85172a] transition"
             >
-              {t("Schedule Consultation")}
+              {t("Schedule Assessment")}
               <FaArrowRight className="text-[10px]" />
             </Link>
           </div>
@@ -372,7 +355,7 @@ export default function GermanForNursesView() {
           </div>
 
 
-          <div className="mt-6 grid gap-3.5 sm:gap-4 md:grid-cols-2">
+          <div className="mt-6 grid gap-3.5 sm:gap-4 md:grid-cols-3">
             {LEVELS.map((item, index) => (
               <article
                 key={item.level}
@@ -404,7 +387,7 @@ export default function GermanForNursesView() {
                 <div className="mt-3 h-1 rounded-full bg-[#0b192c]/10">
                   <div
                     className="h-1 rounded-full bg-[#9b1c31]"
-                    style={{ width: `${25 + index * 25}%` }}
+                    style={{ width: `${Math.round(((index + 1) / LEVELS.length) * 100)}%` }}
                     aria-hidden="true"
                   />
                 </div>
@@ -483,7 +466,7 @@ export default function GermanForNursesView() {
                 <li className="flex justify-between border-b border-[#0b192c]/5 pb-2">
                   <span>{t("A1–B2 Training & Native Tutoring")}</span>
                   <span className="font-bold text-[#0b192c]">
-                    ₹35,000 – ₹50,000
+                    ₹45,000 – ₹65,000
                   </span>
                 </li>
                 <li className="flex justify-between border-b border-[#0b192c]/5 pb-2">
@@ -494,13 +477,16 @@ export default function GermanForNursesView() {
                 </li>
                 <li className="flex justify-between border-b border-[#0b192c]/5 pb-2">
                   <span>{t("Goethe B2 Official Exam Fee")}</span>
-                  <span className="font-bold text-[#0b192c]">~₹15,500</span>
+                  <span className="font-bold text-[#0b192c]">₹21,200*</span>
                 </li>
                 <li className="flex justify-between pt-1 font-bold text-sm text-[#9b1c31]">
                   <span>{t("Total Estimated Budget")}</span>
-                  <span>₹85,000 – ₹1,20,000</span>
+                  <span>₹80,200 – ₹1,06,200</span>
                 </li>
               </ul>
+              <p className="mt-3 text-[11px] text-[#0b192c]/60 leading-relaxed">
+                {t("*External-candidate fee for all four modules at the referenced Goethe-Institut centres. Confirm the fee with the chosen examination centre.")}
+              </p>
             </div>
 
             {/* Salary Card */}
@@ -922,9 +908,7 @@ export default function GermanForNursesView() {
             </h2>
 
             <p className="mx-auto mt-2 max-w-xl text-xs leading-relaxed text-white/80 sm:text-sm sm:leading-6">
-              {t(
-                "Tell us your German level, qualification and learning goals. We can explain our language courses; employers and authorities decide recognition, employment and visa outcomes.",
-              )}
+              {t("Tell us your German level, qualification and learning goals. Our team guides your language journey and shares clear information on recognition, employment and visa requirements.")}
             </p>
 
             <Link

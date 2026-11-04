@@ -41,10 +41,10 @@ export interface ExamComparisonItem {
 }
 
 export const WHY_GERMAN_POINTS: string[] = [
-  'End-to-end support: We don’t just train in German we guide your TELC/Goethe exam prep and connect you directly to verified German hospital employers.',
+  'Comprehensive Preparation: We don’t just train in German we guide your TELC/Goethe exam prep and build confident healthcare communication skills.',
   'Dual Exam Preparation: Aligned with both TELC Deutsch B1-B2 Pflege and Goethe-Zertifikat standards based on your individual career pathway.',
   'TELC Pflege Advantage: Combined B1-B2 exam structure provides a built-in safety net and hospital-specific clinical terminology.',
-  'Transparent Placement: 0 placement fee charges for nursing candidates placed with our partner hospital network in Germany.',
+  'Practical Communication: Guided self-study, clinical speaking roleplays and regular tutor feedback to build real-world confidence.',
 ];
 
 export const RECRUITMENT_PATHWAY_STEPS = [
@@ -56,22 +56,22 @@ export const RECRUITMENT_PATHWAY_STEPS = [
   {
     step: '02',
     title: 'TELC Pflege / Goethe Exam Prep',
-    desc: 'Mock exam simulations, handover roleplays, and documentation practice designed to secure B1/B2 certification on first attempt.',
+    desc: 'Mock exam simulations, handover roleplays and documentation practice to strengthen B1/B2 language skills and exam confidence.',
   },
   {
     step: '03',
-    title: 'Hospital Interviews & Direct Hiring',
-    desc: 'Interviews with verified German hospitals and care facilities. Receive your official employment contract (Arbeitsvertrag) with zero placement fees.',
+    title: 'Guided Self-Study & Daily Practice',
+    desc: 'Use videos, listening tasks and worksheets between classes. Strengthen healthcare vocabulary through guided practice and personalised tutor feedback.',
   },
   {
     step: '04',
-    title: 'Dossier, Defizitbescheid & Fast-Track Visa',
-    desc: 'Guidance through state recognition filings, certified translations, and fast-track German healthcare worker visa processing.',
+    title: 'Speaking Assessments & Personal Feedback',
+    desc: 'Track progress through speaking assessments and hospital roleplays, with personalised feedback on pronunciation and communication.',
   },
   {
     step: '05',
-    title: 'Arrival, Onboarding & Adaptation Support',
-    desc: 'Airport reception, initial accommodation assistance, and hospital onboarding support as you begin earning €2,800–€4,000+/month.',
+    title: 'Exam Revision & Communication Confidence',
+    desc: 'Focused revision, mock examinations and healthcare conversations strengthen communication skills and build exam confidence.',
   },
 ];
 
@@ -140,8 +140,8 @@ export const LEVELS: LanguageLevel[] = [
     level: 'B1',
     stage: 'Intermediate Clinical',
     title: 'Ward Communication & Patient Care',
-    copy: 'Master patient interactions, vital signs recording, nursing shift notes, and begin initial document dossier verification.',
-    focus: 'Estimated: 5–7 months (Includes TELC B1 readiness & dossier prep)',
+    copy: 'Master patient interactions, vital signs recording and nursing shift notes.',
+    focus: 'Estimated: 5–7 months (Includes TELC B1 readiness)',
   },
   {
     level: 'B2 / TELC Pflege',
@@ -149,13 +149,6 @@ export const LEVELS: LanguageLevel[] = [
     title: 'TELC Deutsch B1-B2 Pflege & Goethe Prep',
     copy: 'Advanced clinical communication, doctor discussions, emergency triage vocabulary, and intensive exam simulation for maximum scores.',
     focus: 'Estimated: 6–8 months (TELC Pflege / Goethe B2 Exam prep)',
-  },
-  {
-    level: 'Recruitment & Visa',
-    stage: 'Direct Career Placement',
-    title: 'Hospital Matching, Visa & Relocation',
-    copy: 'Direct employer interviews with German healthcare facilities, Defizitbescheid tracking, visa filing, and Germany onboarding.',
-    focus: '0 Placement Fees for Nurses',
   },
 ];
 
@@ -283,6 +276,6 @@ export const OVERVIEW_STATS = [
   { value: 'A1 → B2', label: 'CEFR learning range', icon: 'FaLanguage' as const },
   { value: 'TELC & Goethe', label: 'Certified exam prep', icon: 'FaGraduationCap' as const },
   { value: 'Clinical German', label: 'Practice focus', icon: 'FaStethoscope' as const },
-  { value: 'Direct Placement', label: 'Recruitment in Germany', icon: 'FaFileAlt' as const },
+  { value: 'Speaking Practice', label: 'Mock hospital interviews', icon: 'FaComments' as const },
 ];
 

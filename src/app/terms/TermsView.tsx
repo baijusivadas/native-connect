@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { CONTACT_DETAILS, LEGAL_ENTITY_NAME, SITE_NAME } from "@/constants/site";
+import { CONTACT_DETAILS } from "@/constants/site";
 import { useLanguage } from "@/contexts/LanguageContext";
 import {
   FaFileContract,
@@ -32,7 +32,7 @@ export default function TermsView() {
               {t("Terms of Service & Course Policy")}
             </h1>
             <p className="mt-2 text-xs sm:text-sm leading-relaxed text-white/75 sm:text-base">
-              {t("Effective Date: October 2026. These Terms govern your enrollment in language courses, exam preparation (Goethe / TELC), and career placement programs provided by")} {LEGAL_ENTITY_NAME} (&ldquo;{SITE_NAME}&rdquo;).
+              {t("Effective Date: October 2026. These Terms govern your enrollment in language courses, exam preparation (Goethe / TELC), and related student support services provided by Native Connects promoted by Brahmas (“Native Connects”).")}
             </p>
           </div>
         </div>
@@ -49,12 +49,12 @@ export default function TermsView() {
               <div>
                 <h2 className="text-2xl font-bold text-[#0b192c]">{t("1. Company & Entity Information")}</h2>
                 <p className="mt-3 text-sm leading-7 text-[#0b192c]/75">
-                  {t("These terms constitute a legally binding agreement between you")} (&ldquo;{t("Student")}&rdquo;, &ldquo;{t("User")}&rdquo;, {t("or")} &ldquo;{t("Candidate")}&rdquo;) {t("and")} <strong>{LEGAL_ENTITY_NAME}</strong> (&ldquo;{SITE_NAME}&rdquo;), {t("having its registered office at:")}
+                  {t("These terms constitute a legally binding agreement between you (“Student”, “User”, or “Candidate”) and Native Connects promoted by Brahmas (“Native Connects”), having its registered office at:")}
                 </p>
-                <div className="mt-3 rounded-2xl bg-[#f7f4ef] p-4 text-sm text-[#0b192c]/85 border border-[#0b192c]/10">
-                  <p><strong>{t("Registered Corporate Office:")}</strong> {CONTACT_DETAILS.registeredOffice.line1}, {CONTACT_DETAILS.registeredOffice.city}, {CONTACT_DETAILS.registeredOffice.state} - {CONTACT_DETAILS.registeredOffice.postalCode}, {t("India")}</p>
-                  <p><strong>{t("European Operations Desk:")}</strong> {CONTACT_DETAILS.europeanOffice.line1}, {CONTACT_DETAILS.europeanOffice.postalCode} {CONTACT_DETAILS.europeanOffice.city}, {t("Germany")}</p>
-                  <p><strong>{t("Support Helpline:")}</strong> {CONTACT_DETAILS.phone} | <strong>{t("Email:")}</strong> {CONTACT_DETAILS.supportEmail}</p>
+                <div className="mt-3 rounded-2xl bg-[#f7f4ef] p-4 text-sm text-[#0b192c]/85 border border-[#0b192c]/10 space-y-1">
+                  <p><strong>{t("Registered Corporate Office:")}</strong> Level 4, Infopark Technology Centre, Infopark Phase II, Kochi, Kerala - 682042, India</p>
+                  <p><strong>{t("European Operations Desk:")}</strong> Kaiserstraße 14, 60311 Frankfurt am Main, Germany</p>
+                  <p><strong>{t("Support Helpline:")}</strong> +91 8590832484 | <strong>{t("Email:")}</strong> <a href={`mailto:${CONTACT_DETAILS.supportEmail}`} className="text-[#9b1c31] font-semibold underline">{CONTACT_DETAILS.supportEmail}</a></p>
                 </div>
               </div>
 
@@ -64,25 +64,32 @@ export default function TermsView() {
                 <ul className="mt-3 list-disc pl-5 space-y-2.5 text-sm leading-7 text-[#0b192c]/75">
                   <li><strong>{t("Class Delivery:")}</strong> {t("Live online interactive coaching led by native and certified language tutors across CEFR levels (A1, A2, B1, B2, C1).")}</li>
                   <li><strong>{t("Batch Allocation & Sizing:")}</strong> {t("Batch schedules are established upon admission. Micro-batches maintain restricted student-to-tutor ratios (typically 4 to 8 learners for general courses and 3 to 5 for intensive nursing B2 batches).")}</li>
-                  <li><strong>{t("Attendance & Active Participation:")}</strong> {t("A minimum of 80% attendance in live sessions and submission of homework modules is recommended for exam readiness and placement eligibility.")}</li>
+                  <li><strong>{t("Attendance & Active Participation:")}</strong> {t("A minimum of 80% attendance in live sessions and submission of homework modules is recommended for consistent learning progress and exam readiness.")}</li>
                   <li><strong>{t("Batch Transfers:")}</strong> {t("Students facing medical or professional shifts may request one batch schedule transfer per CEFR level without penalty, subject to batch seat availability.")}</li>
                 </ul>
               </div>
 
-              {/* 3. Training + Direct Placement Services */}
+              {/* 3. Language Training & Learner Guidance */}
               <div>
-                <h2 className="text-2xl font-bold text-[#0b192c]">{t("3. Training & Hospital Recruitment Pathway")}</h2>
-                <div className="mt-3 rounded-2xl bg-[#9b1c31]/5 p-5 border border-[#9b1c31]/15">
-                  <p className="text-sm font-semibold text-[#9b1c31]">{t("Comprehensive End-to-End Pathway (Train, Certify & Place):")}</p>
-                  <p className="mt-2 text-xs leading-relaxed text-[#0b192c]/80 sm:text-sm">
-                    {t("For healthcare professionals (nurses) enrolled in our Germany Career Pathway, Native Connects provides integrated German language training, TELC/Goethe exam preparation, document dossier coordination (*Defizitbescheid*), employer interview scheduling with verified German hospital networks, and visa filing support.")}
+                <h2 className="text-2xl font-bold text-[#0b192c]">{t("3. Language Training & Learner Guidance")}</h2>
+                <div className="mt-3 rounded-2xl bg-[#f7f4ef] p-5 border border-[#0b192c]/10 space-y-3 text-sm leading-7 text-[#0b192c]/80">
+                  <p>
+                    <strong>{t("Structured Language Learning, Exam Preparation & Practical Communication:")}</strong>{" "}
+                    {t("Native Connects provides language training, TELC/Goethe exam preparation, speaking practice, guided self-study and tutor feedback according to the selected course. Healthcare-focused German programs include relevant vocabulary, patient communication, handover roleplays and German documentation exercises.")}
+                  </p>
+                  <p>
+                    <strong>{t("Language & Communication Support:")}</strong>{" "}
+                    {t("Students develop speaking, listening, reading and writing skills through structured lessons, practical activities, mock examinations and simulated workplace conversations.")}
+                  </p>
+                  <p>
+                    <strong>{t("General Information & Guidance:")}</strong>{" "}
+                    {t("Our team shares general information on recognition, employment and visa requirements to help students understand possible next steps. This guidance does not include arranging recruitment, employer interviews or job placements, preparing professional recognition applications, or filing visa applications.")}
+                  </p>
+                  <p>
+                    <strong>{t("Independent Decisions & Outcomes:")}</strong>{" "}
+                    {t("Examination results are determined by the relevant examination bodies. Professional recognition, employment offers and visa decisions rest with the relevant authorities and employers. Native Connects does not guarantee examination results, professional recognition, employment or visa approval.")}
                   </p>
                 </div>
-                <ul className="mt-4 list-disc pl-5 space-y-2 text-sm leading-7 text-[#0b192c]/75">
-                  <li><strong>{t("Zero Placement Fees for Nurses:")}</strong> {t("In compliance with international ethical recruitment guidelines (WHO & German healthcare recruitment standards), candidates are never charged placement or recruitment commissions for job allocations in Germany.")}</li>
-                  <li><strong>{t("Employer Hiring Decisions:")}</strong> {t("While Native Connects organizes verified employer interviews, final job offers and employment contracts (*Arbeitsvertrag*) remain at the sole discretion of the hiring hospital/facility.")}</li>
-                  <li><strong>{t("Visa & Licensing Decisions:")}</strong> {t("Official nursing license recognition (*Anerkennungsurkunde* or *Defizitbescheid*) and entry visas are issued exclusively by German state authorities (*Regierungspräsidium*) and the German Embassy/Consulate.")}</li>
-                </ul>
               </div>
 
               {/* 4. Language Examination Preparation (TELC & Goethe) */}
@@ -98,7 +105,7 @@ export default function TermsView() {
                 </ul>
               </div>
 
-              {/* 5. REFUND & CANCELLATION POLICY (CRITICAL REQUIREMENT) */}
+              {/* 5. REFUND & CANCELLATION POLICY */}
               <div id="refund-policy" className="scroll-mt-24 rounded-3xl bg-[#f7f4ef] p-6 sm:p-8 border-2 border-[#9b1c31]/30">
                 <div className="flex items-center gap-3 text-[#9b1c31]">
                   <FaUndoAlt className="text-2xl" />
@@ -116,7 +123,7 @@ export default function TermsView() {
                       <span>{t("7-Day Cooling-Off Period (100% Tuition Refund)")}</span>
                     </div>
                     <p className="mt-1.5 text-xs text-[#0b192c]/70 leading-5">
-                      {t("If within the first")} <strong>{t("7 calendar days")}</strong> {t("from batch kickoff (or after attending up to 2 live classes, whichever comes first) you determine the course is not right for you, you may request a")} <strong>{t("100% refund of tuition fees")}</strong> {t("without questions asked.")}
+                      {t("If within the first 7 calendar days from batch kickoff (or after attending up to 2 live classes, whichever comes first) you determine the course is not right for you, you may request a 100% refund of tuition fees without questions asked.")}
                     </p>
                   </div>
 
@@ -136,7 +143,7 @@ export default function TermsView() {
                       <span>{t("Non-Refundable Components")}</span>
                     </div>
                     <p className="mt-1.5 text-xs text-[#0b192c]/70 leading-5">
-                      {t("Direct third-party outlays (e.g., physical textbook international shipping, courier fees, completed document sworn translations, or fees paid directly to official exam centers like TELC/Goethe) are non-refundable once fulfilled.")}
+                      {t("Direct third-party outlays (e.g., physical textbook shipping and delivery charges, or fees paid directly to official exam centers like TELC/Goethe) are non-refundable once fulfilled.")}
                     </p>
                   </div>
 
@@ -146,7 +153,7 @@ export default function TermsView() {
                       <span>{t("Refund Processing Timeframe")}</span>
                     </div>
                     <p className="mt-1.5 text-xs text-[#0b192c]/70 leading-5">
-                      {t("Approved refunds are initiated within")} <strong>{t("24 business hours")}</strong> {t("and credited back to the original payment method (Bank account / UPI / Credit Card) within")} <strong>{t("5 to 7 working days")}</strong>.
+                      {t("Approved refunds are initiated within 24 business hours and credited back to the original payment method (Bank account / UPI / Credit Card) within 5 to 7 working days.")}
                     </p>
                   </div>
                 </div>
@@ -179,7 +186,7 @@ export default function TermsView() {
               <div>
                 <h2 className="text-2xl font-bold text-[#0b192c]">{t("7. Intellectual Property & Code of Conduct")}</h2>
                 <p className="mt-3 text-sm leading-7 text-[#0b192c]/75">
-                  {t("All course materials, customized clinical German worksheets, mock exams, audio files, and teaching slides remain the proprietary intellectual property of")} {LEGAL_ENTITY_NAME}. {t("Materials are licensed solely for individual student study and may not be redistributed, resold, or published online without prior written consent.")}
+                  {t("All course materials, customized clinical German worksheets, mock exams, audio files, and teaching slides remain the proprietary intellectual property of Native Connects promoted by Brahmas. Materials are licensed solely for individual student study and may not be redistributed, resold, or published online without prior written consent.")}
                 </p>
               </div>
 
@@ -196,7 +203,7 @@ export default function TermsView() {
                   </li>
                   <li className="flex items-start gap-2">
                     <FaCheckCircle className="mt-0.5 text-emerald-600 shrink-0" />
-                    <span>{t("0 placement fees for nursing hospital jobs")}</span>
+                    <span>{t("Live interactive classes with native & certified tutors")}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <FaCheckCircle className="mt-0.5 text-emerald-600 shrink-0" />

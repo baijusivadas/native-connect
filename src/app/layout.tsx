@@ -15,7 +15,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: {
-    default: 'Native Connects | German Courses, TELC Prep & Nursing Placement in Germany',
+    default: 'Native Connects | German Courses, TELC Prep & Healthcare Communication',
     template: '%s | Native Connects',
   },
   description: SITE_DESCRIPTION,
@@ -38,14 +38,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: SITE_NAME,
-    title: 'German Courses, TELC Pflege & Goethe Prep | Nurse Placement Germany | Native Connects',
+    title: 'German Courses, TELC Pflege & Goethe Prep | Healthcare Communication | Native Connects',
     description: SITE_DESCRIPTION,
     locale: 'en_US',
     ...(SITE_URL ? { url: SITE_URL } : {}),
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'German Courses, TELC Pflege & Nursing Jobs in Germany | Native Connects',
+    title: 'German Courses, TELC Pflege & Healthcare Communication | Native Connects',
     description: SITE_DESCRIPTION,
   },
   // Geo tags — dual targeting: Germany (primary market) + India (primary source country)

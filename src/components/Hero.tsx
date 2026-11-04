@@ -24,7 +24,7 @@ const Hero = () => {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1 text-xs font-semibold text-[#c19a68] border border-white/15 backdrop-blur-md">
               <span className="h-2 w-2 rounded-full bg-[#c19a68] animate-pulse" />
-              {t('Language Coaching • TELC & Goethe Prep • Direct Germany Placement')}
+              {t('Language Coaching • TELC & Goethe Prep • Live Online Language Training')}
             </div>
 
             <h1 className="mt-3 text-4xl font-semibold leading-[1.05] tracking-[-.04em] text-[#f7f4ef] sm:text-5xl lg:text-6xl xl:text-[4.75rem]">
@@ -33,7 +33,7 @@ const Hero = () => {
             </h1>
 
             <p className="mt-4 sm:mt-5 max-w-2xl text-sm leading-relaxed text-[#f7f4ef]/78 sm:text-base">
-              {t('Personalized language training with native speakers and complete career pathways from A1 to TELC/Goethe certification and direct hospital placement in Germany.')}
+              {t('Personalized language training with native speakers, interactive classes and speaking practice, with structured preparation for TELC and Goethe examinations.')}
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -48,7 +48,7 @@ const Hero = () => {
                 <FaArrowRight className="text-xs transition-transform group-hover:translate-x-1" />
               </button>
               <Link href="/german-for-nurses" className="inline-flex items-center justify-center rounded-xl border border-[#c19a68]/50 bg-[#c19a68]/15 px-6 py-3.5 text-sm font-bold text-[#f7f4ef] backdrop-blur-md transition hover:bg-[#c19a68]/25">
-                {t('German Nursing & Placement')}
+                {t('German Language Training for Nurses')}
               </Link>
             </div>
 
@@ -95,8 +95,8 @@ const Hero = () => {
                   ))}
                 </div>
                 <div className="mt-4 rounded-xl bg-[#f7f4ef] p-3.5 text-[#0b192c]">
-                  <div className="text-[11px] font-bold uppercase tracking-[.16em] text-[#9b1c31]">{t('Train • Certify • Relocate')}</div>
-                  <p className="mt-1 text-xs leading-relaxed text-[#0b192c]/75">{t('End-to-end support with certified exam preparation and direct employer matchmaking.')}</p>
+                  <div className="text-[11px] font-bold uppercase tracking-[.16em] text-[#9b1c31]">{t('Learn • Practise • Communicate')}</div>
+                  <p className="mt-1 text-xs leading-relaxed text-[#0b192c]/75">{t('Build practical language skills through live online classes, guided self-study and regular speaking practice.')}</p>
                 </div>
               </div>
             </div>

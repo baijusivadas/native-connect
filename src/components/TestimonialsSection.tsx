@@ -25,7 +25,14 @@ export default function TestimonialsSection() {
   const filteredReviews = STUDENT_REVIEWS.filter((review) => {
     if (activeFilter === 'recent') return Boolean(review.isRecent);
     if (activeFilter === 'nursing')
-      return review.program.includes('Nurses') || review.badge.includes('Nurse');
+      return (
+        review.program.includes('Nurses') ||
+        review.program.includes('Healthcare') ||
+        review.program.includes('Pflege') ||
+        review.badge.includes('Nurse') ||
+        review.badge.includes('Pflege') ||
+        review.role.includes('Nurse')
+      );
     if (activeFilter === 'career')
       return !review.program.includes('Nurses');
     return true;
@@ -81,7 +88,7 @@ export default function TestimonialsSection() {
           </h2>
           <p className="mt-1.5 text-xs sm:text-sm leading-relaxed text-[#0b192c]/65">
             {t(
-              'Hear from nursing candidates, professionals and learners who built fluency, cleared official exams, and began their careers in Germany.',
+              'Hear from nursing candidates, professionals and learners who built fluency, cleared official exams, and improved their German communication.',
             )}
           </p>
 

@@ -45,7 +45,7 @@ export default function FAQSection() {
               {t('Frequently Asked Questions')}
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-[#0b192c]/70 sm:text-base">
-              {t('Find clear answers about our language programs, exam preparation and European career support.')}
+              {t('Find clear answers about our courses, learning methods and examination preparation.')}
             </p>
           </div>
 

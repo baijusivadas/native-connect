@@ -17,17 +17,15 @@ export default function NursePathSection() {
             </div>
             
             <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#c19a68]/20 px-3 py-1 text-xs font-bold text-[#9b1c31]">
-              <FaHospital /> {t("Training + TELC Prep + Placement")}
+              <FaHospital /> {t("Training + TELC Prep + Practice")}
             </div>
 
             <p className="eyebrow mt-2.5">{t("German for nurses")}</p>
             <h2 className="section-title">
-              {t("Complete path from A1 to working in Germany.")}
+              {t("A clear path from A1 to confident German.")}
             </h2>
             <p className="section-copy">
-              {t(
-                "We don't just teach German we prepare you for TELC Deutsch B1-B2 Pflege & Goethe exams and connect you directly with German hospital employers with zero placement fees.",
-              )}
+              {t("Build your German from A1 to B2 with live classes, healthcare vocabulary and TELC/Goethe exam preparation, helping you speak confidently with patients and hospital employers.")}
             </p>
 
             <div className="mt-4 space-y-2 text-xs sm:text-sm text-[#0b192c]/80">
@@ -35,19 +33,19 @@ export default function NursePathSection() {
                 <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#9b1c31] text-[10px] text-white">
                   <FaCheck />
                 </span>
-                <span>{t("Specialized TELC Pflege healthcare curriculum & dual-level scoring")}</span>
+                <span>{t("Healthcare German curriculum, TELC/Goethe preparation and mock exams")}</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#9b1c31] text-[10px] text-white">
                   <FaCheck />
                 </span>
-                <span>{t("Verified German hospital interviews & ethical 0 placement fee hiring")}</span>
+                <span>{t("Speaking activities, listening practice and feedback from your tutor")}</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#9b1c31] text-[10px] text-white">
                   <FaCheck />
                 </span>
-                <span>{t("Defizitbescheid & nursing visa documentation guidance")}</span>
+                <span>{t("Mock hospital conversations and guided self-study tasks")}</span>
               </div>
             </div>
 
@@ -56,7 +54,7 @@ export default function NursePathSection() {
                 href="/german-for-nurses"
                 className="inline-flex items-center gap-2 rounded-xl bg-[#0b192c] px-5 py-2.5 text-xs sm:text-sm font-bold text-white transition hover:bg-[#9b1c31]"
               >
-                {t("Explore Nursing & TELC Guide")}
+                {t("Explore German & TELC Courses")}
                 <FaArrowRight className="text-xs" />
               </Link>
             </div>

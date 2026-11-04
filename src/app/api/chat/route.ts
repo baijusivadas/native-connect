@@ -66,6 +66,11 @@ function asRecord(value: unknown): Record<string, unknown> | null {
     : null;
 }
 
+function normalizeOpenAiCompatibleUrl(apiUrl: string): string {
+  const url = apiUrl.trim().replace(/\/+$/, '');
+  return url.endsWith('/chat/completions') ? url : `${url}/chat/completions`;
+}
+
 async function callProvider(
   apiUrl: string,
   body: string,
@@ -75,7 +80,7 @@ async function callProvider(
     method: 'POST',
     headers,
     body,
-    signal: AbortSignal.timeout(20_000),
+    signal: AbortSignal.timeout(45_000),
   });
 
   if (response.status === 429 || response.status === 503) {
@@ -84,7 +89,7 @@ async function callProvider(
       method: 'POST',
       headers,
       body,
-      signal: AbortSignal.timeout(20_000),
+      signal: AbortSignal.timeout(45_000),
     });
   }
 
@@ -359,19 +364,19 @@ You MUST respond entirely, naturally, and fluently in ${targetLanguage}.
 All greetings, explanations, lists, advice, and closing questions (such as asking if they want to book a demo) MUST be written in ${targetLanguage}.`;
 
     let lastError: { status: number; message: string } | null = null;
+    let overloadStatus: 429 | 503 | null = null;
     let extractedMessage: string | null = null;
     const candidateModels = [
-      config.model,
+      config.model === 'gemini-2.5-flash' ? 'gemini-3.8-flash' : config.model,
+      'gemini-3.8-flash',
       'gemini-flash-latest',
-      'gemini-3.7-flash',
-      'gemini-3.1-flash-lite',
     ].filter((model, index, models) => models.indexOf(model) === index);
 
     for (const currentModel of candidateModels) {
       try {
       const isOpenAiCompatible = config.provider === 'openai-compatible';
       const apiUrl = isOpenAiCompatible
-        ? config.apiUrl
+        ? normalizeOpenAiCompatibleUrl(config.apiUrl)
         : `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(currentModel)}:generateContent?key=${encodeURIComponent(config.apiKey)}`;
       const requestBody = isOpenAiCompatible
         ? {
@@ -419,6 +424,9 @@ All greetings, explanations, lists, advice, and closing questions (such as askin
         console.warn(`Chat provider returned ${response.status}: ${errMsg}`);
 
         lastError = { status: response.status, message: errMsg };
+        if (response.status === 429 || response.status === 503) {
+          overloadStatus = response.status;
+        }
         if (
           response.status === 404 ||
           response.status === 429 ||
@@ -462,21 +470,28 @@ All greetings, explanations, lists, advice, and closing questions (such as askin
         console.warn('Chat provider request failed:', errorMessage);
         lastError = {
           status: 502,
-          message: 'Unable to reach the AI service. Please try again later.',
+          message: errorMessage.toLowerCase().includes('abort') || errorMessage.toLowerCase().includes('timeout')
+            ? 'The AI service timed out. Please try again later.'
+            : 'Unable to reach the AI service. Please check your connection and try again.',
         };
-        break;
+        continue;
       }
     }
 
     if (!extractedMessage) {
-      const isOverload = lastError?.status === 503 || lastError?.status === 429;
+      const isOverload = overloadStatus !== null;
+      const status =
+        overloadStatus ??
+        (lastError?.status && lastError.status >= 400 && lastError.status < 600
+          ? lastError.status
+          : 502);
       return NextResponse.json(
         {
           error: isOverload
             ? 'The AI assistant is temporarily experiencing high demand. Please try again in a few moments.'
             : lastError?.message || 'The AI assistant is temporarily unavailable.',
         },
-        { status: lastError?.status && lastError.status >= 400 && lastError.status < 600 ? lastError.status : 502 }
+        { status }
       );
     }
 
