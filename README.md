@@ -64,13 +64,13 @@ The browser never receives the LLM API key or the Google Apps Script URL. Existi
 
 ## Automatic demo booking (Calendly API)
 
-Submitting **Schedule Demo Session** books the earliest available 30-minute slot from the configured Calendly event type, creates a Google Meet session, and sends calendar/email invitations to the student and `contactus@brahmas.org`. The scheduled time is also sent to the `Demo Requests` lead sheet.
+Submitting **Schedule Demo Session** books the earliest available 30-minute slot from the configured Calendly event type, creates a Google Meet session, and sends calendar/email invitations to the student and `support.nativeconnect@brahmas.org`. The scheduled time is also sent to the `Demo Requests` lead sheet.
 
 Configure these server-only environment variables in the deployment environment (never use the `NEXT_PUBLIC_` prefix for credentials):
 
 - `CALENDLY_ACCESS_TOKEN`: a Calendly personal access token.
 - `CALENDLY_EVENT_TYPE_URI`: the API URI for the public **Native Connects – Free Demo Session** event type, in the form `https://api.calendly.com/event_types/<id>`. The event type must have a 30-minute duration and the desired availability configured.
-- `DEMO_INTERNAL_ATTENDEE_EMAIL`: defaults to `contactus@brahmas.org`; set it explicitly if the internal invite address changes.
+- `DEMO_INTERNAL_ATTENDEE_EMAIL`: defaults to `support.nativeconnect@brahmas.org`; set it explicitly if the internal invite address changes.
 
 Calendly automatically manages Google Calendar sync, Google Meet generation, invitee notifications, and prevents double-booking.
 

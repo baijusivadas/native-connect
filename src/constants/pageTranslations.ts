@@ -22,8 +22,8 @@ export const ADDITIONAL_TRANSLATIONS: Record<
     "Please enter a valid phone number (10–15 digits).":
       "Veuillez saisir un numéro de téléphone valide (10 à 15 chiffres).",
     "Automatic demo booking": "Réservation automatique de la démonstration",
-    "Submitting this form automatically books the next available 30-minute slot. A Google Meet calendar invitation will be emailed to you and contactus@brahmas.org.":
-      "L’envoi de ce formulaire réserve automatiquement le prochain créneau disponible de 30 minutes. Une invitation Google Meet sera envoyée par e-mail à vous et à contactus@brahmas.org.",
+    "Submitting this form automatically books the next available 30-minute slot. A Google Meet calendar invitation will be emailed to you and support.nativeconnect@brahmas.org.":
+      "L’envoi de ce formulaire réserve automatiquement le prochain créneau disponible de 30 minutes. Une invitation Google Meet sera envoyée par e-mail à vous et à support.nativeconnect@brahmas.org.",
     "Your demo is booked!": "Votre démonstration est réservée !",
     "Your Google Meet invitation has been sent to your email.":
       "L’invitation Google Meet a été envoyée à votre adresse e-mail.",
@@ -270,8 +270,8 @@ export const ADDITIONAL_TRANSLATIONS: Record<
     "Please enter a valid phone number (10–15 digits).":
       "Inserisci un numero di telefono valido (da 10 a 15 cifre).",
     "Automatic demo booking": "Prenotazione automatica della demo",
-    "Submitting this form automatically books the next available 30-minute slot. A Google Meet calendar invitation will be emailed to you and contactus@brahmas.org.":
-      "Inviando il modulo verrà prenotato automaticamente il primo slot disponibile di 30 minuti. L’invito Google Meet sarà inviato via e-mail a te e a contactus@brahmas.org.",
+    "Submitting this form automatically books the next available 30-minute slot. A Google Meet calendar invitation will be emailed to you and support.nativeconnect@brahmas.org.":
+      "Inviando il modulo verrà prenotato automaticamente il primo slot disponibile di 30 minuti. L’invito Google Meet sarà inviato via e-mail a te e a support.nativeconnect@brahmas.org.",
     "Your demo is booked!": "La tua demo è prenotata!",
     "Your Google Meet invitation has been sent to your email.":
       "L’invito Google Meet è stato inviato alla tua e-mail.",
@@ -511,8 +511,8 @@ export const ADDITIONAL_TRANSLATIONS: Record<
     "Please enter a valid phone number (10–15 digits).":
       "Bitte gib eine gültige Telefonnummer mit 10 bis 15 Ziffern ein.",
     "Automatic demo booking": "Automatische Probestunden-Buchung",
-    "Submitting this form automatically books the next available 30-minute slot. A Google Meet calendar invitation will be emailed to you and contactus@brahmas.org.":
-      "Mit dem Absenden dieses Formulars wird automatisch der nächste verfügbare 30-Minuten-Termin gebucht. Die Google-Meet-Kalendereinladung wird dir und contactus@brahmas.org per E-Mail gesendet.",
+    "Submitting this form automatically books the next available 30-minute slot. A Google Meet calendar invitation will be emailed to you and support.nativeconnect@brahmas.org.":
+      "Mit dem Absenden dieses Formulars wird automatisch der nächste verfügbare 30-Minuten-Termin gebucht. Die Google-Meet-Kalendereinladung wird dir und support.nativeconnect@brahmas.org per E-Mail gesendet.",
     "Your demo is booked!": "Deine Probestunde ist gebucht!",
     "Your Google Meet invitation has been sent to your email.":
       "Die Google-Meet-Einladung wurde an deine E-Mail-Adresse gesendet.",
@@ -752,8 +752,8 @@ export const ADDITIONAL_TRANSLATIONS: Record<
     "Please enter a valid phone number (10–15 digits).":
       "Introdu un număr de telefon valid (10–15 cifre).",
     "Automatic demo booking": "Programare automată a demonstrației",
-    "Submitting this form automatically books the next available 30-minute slot. A Google Meet calendar invitation will be emailed to you and contactus@brahmas.org.":
-      "Trimiterea acestui formular rezervă automat următorul interval disponibil de 30 de minute. Invitația Google Meet va fi trimisă prin e-mail către tine și contactus@brahmas.org.",
+    "Submitting this form automatically books the next available 30-minute slot. A Google Meet calendar invitation will be emailed to you and support.nativeconnect@brahmas.org.":
+      "Trimiterea acestui formular rezervă automat următorul interval disponibil de 30 de minute. Invitația Google Meet va fi trimisă prin e-mail către tine și support.nativeconnect@brahmas.org.",
     "Your demo is booked!": "Demonstrația ta este rezervată!",
     "Your Google Meet invitation has been sent to your email.":
       "Invitația Google Meet a fost trimisă la adresa ta de e-mail.",
